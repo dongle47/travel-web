@@ -17,8 +17,6 @@ build:
   artifacts:
       paths:
         - web-app-vietmy-${CI_PIPELINE_ID}.zip
-  tags:
-    - runner-local
   only:
     - main
 
@@ -42,7 +40,5 @@ deploy-staging:
       && docker image prune -f
       && rm web-app-vietmy-${CI_PIPELINE_ID}.*
       && exit"
-  tags:
-    - runner-local
   only:
     - main
