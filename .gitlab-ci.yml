@@ -30,9 +30,9 @@ deploy-staging:
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
     - chmod 700 ~/.ssh
   script:
-    - scp -P $SSH_PORT travel-web-${CI_PIPELINE_ID}.zip $SSH_USER@$SSH_HOST:/home/virtual-travel/travel-web
+    - scp -P $SSH_PORT travel-web-${CI_PIPELINE_ID}.zip $SSH_USER@$SSH_SERVER_IP:/home/virtual-travel/travel-web
     - >-
-      ssh -p $SSH_PORT $SSH_USER@$SSH_HOST
+      ssh -p $SSH_PORT $SSH_USER@$SSH_SERVER_IP
       "cd /home/virtual-travel/travel-web
       && unzip travel-web-${CI_PIPELINE_ID}.zip
       && cat travel-web-${CI_PIPELINE_ID}.tar | docker load
