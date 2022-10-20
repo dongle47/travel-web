@@ -22,13 +22,12 @@ import {
   YoutubeFilled,
   RedditOutlined,
   GlobalOutlined,
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
   ArrowLeftOutlined,
   ArrowRightOutlined,
   TwitterSquareFilled,
   RedditSquareFilled,
+  FacebookOutlined,
+  YoutubeOutlined,
 } from "@ant-design/icons";
 import { url } from "inspector";
 
@@ -512,7 +511,7 @@ const Homepage: React.FC = () => {
           <img
             style={{
               borderRadius: "0.5rem",
-              filter: "brightness(70%)",
+              filter: "brightness(80%)",
             }}
             alt=""
             src="https://6f3ebe2ff971707.cmccloud.com.vn/tour/wp-content/uploads/2022/03/202005171129SA19.jpeg"
@@ -539,7 +538,7 @@ const Homepage: React.FC = () => {
 
         <Col span={6}>
           <img
-            style={{ borderRadius: "0.5rem" }}
+            style={{ borderRadius: "0.5rem", filter: "brightness(80%)" }}
             alt=""
             src="https://scontent.fsgn5-3.fna.fbcdn.net/v/t1.15752-9/307679541_1527331077693905_5452152073450292985_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=ae9488&_nc_ohc=t8MxmmmBGZ4AX8wCexj&tn=fMTxUtGiWhtZ5nW4&_nc_ht=scontent.fsgn5-3.fna&oh=03_AdR_jXFLCUzREl6DN6jJ0FMVGnNaDgEXQoiTekmysq1P1g&oe=6375A105"
             width="100%"
@@ -548,9 +547,9 @@ const Homepage: React.FC = () => {
         </Col>
         <Col span={3}>
           <img
-            style={{ borderRadius: "0.5rem" }}
+            style={{ borderRadius: "0.5rem", filter: "brightness(80%)" }}
             alt=""
-            src="https://scontent.fsgn5-2.fna.fbcdn.net/v/t1.15752-9/308060721_3373106152940473_5587046922679944625_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=ae9488&_nc_ohc=UOLCAm1mdrMAX-jhH0q&_nc_ht=scontent.fsgn5-2.fna&oh=03_AdS3GA5wEImjB1UtXS7JS-FQZyBG-vLBVV5Y3j-1nSwxZQ&oe=6376C993"
+            src="https://scontent.fsgn5-8.fna.fbcdn.net/v/t1.15752-9/310983640_5717766861615549_6444556240082191301_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=ae9488&_nc_ohc=724Im6s_w8MAX8nuOic&_nc_ht=scontent.fsgn5-8.fna&oh=03_AdSUqYaf_3iD2eS6kMhVfWRnA7k-GoE3cgBBni3uutXzxw&oe=637812AE"
             width="100%"
             height="100%"
           />
@@ -562,7 +561,7 @@ const Homepage: React.FC = () => {
           position: "relative",
           width: "80%",
           alignSelf: "center",
-          margin: "0 auto 10rem auto",
+          margin: "0 auto 8rem auto",
         }}
         justify="center"
       >
@@ -607,23 +606,35 @@ const Homepage: React.FC = () => {
           className="doughnut2"
         ></div>
       </Row>
-      <Row justify="center">
+
+      <Row style={{ textAlign: "center" }} justify="center">
         <Space direction="vertical">
           <Title style={{ margin: 0, fontSize: "3rem" }}>
             Backpacking Trips
           </Title>
-          <Title style={{ margin: "0 auto" }} level={5}>
-            abcasdasdasdadadczczxczxczxczxczxczxczxcxssssssssssssssssssssssssssssssssssssssssssssssssss
-          </Title>
-          <Button style={{ width: "10rem", height: "3rem" }}>read more</Button>
+          <div style={{ width: "50rem", fontSize: "1rem" }}>
+            <Text style={{ margin: "0 auto" }}>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
+              dolorem voluptate ipsa veniam veritatis, nemo ratione cumque
+              cupiditate? Consequatur, labore id sunt cum corporis dignissimos
+              facere aspernatur ipsum enim esse?
+            </Text>
+          </div>
+          <Button
+            style={{ width: "10rem", height: "3rem" }}
+            shape="round"
+            type="primary"
+          >
+            XEM THÊM
+          </Button>
         </Space>
       </Row>
 
       <Row
         style={{
           position: "relative",
-          padding: "0 10rem",
-          margin: "0 auto 10rem auto",
+          padding: "0 15rem",
+          margin: "5rem auto 10rem auto",
         }}
         justify="end"
       >
@@ -632,16 +643,16 @@ const Homepage: React.FC = () => {
             <Title
               style={{
                 position: "absolute",
-                fontSize: "3rem",
-                top: 210,
-                right: 450,
+                fontSize: "5rem",
+                top: 260,
+                left: 350,
               }}
             >
               Freedom
             </Title>
             <img
-              width={400}
-              height={400}
+              width={500}
+              height={500}
               style={{
                 borderRadius: "100%",
               }}
@@ -661,7 +672,14 @@ const Homepage: React.FC = () => {
           </div>
         </Space>
         <div
-          style={{ position: "absolute", bottom: 200, left: 210 }}
+          style={{
+            position: "absolute",
+            bottom: 200,
+            left: 210,
+            width: "8rem",
+            height: "8rem",
+            border: "1.5rem solid #6C738A",
+          }}
           className="doughnut2"
         ></div>
       </Row>
@@ -669,13 +687,13 @@ const Homepage: React.FC = () => {
       <Row
         style={{
           position: "relative",
-          marginLeft: "20rem",
+          marginLeft: "10rem",
           marginBottom: "10rem",
         }}
       >
         <img
-          width={500}
-          height={500}
+          width={600}
+          height={600}
           style={{
             borderRadius: "100%",
           }}
@@ -683,19 +701,20 @@ const Homepage: React.FC = () => {
           src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/09/blog-post-h6-img2.jpg"
         />
         <Space
+          size={30}
           direction="vertical"
           style={{
             position: "absolute",
             borderRadius: "2rem",
-            padding: "3rem",
-            width: "25rem",
-            height: "15rem",
-            backgroundColor: "#132456",
+            padding: "2rem",
+            width: "30rem",
+            height: "18rem",
+            backgroundColor: "#2a9d8f",
             right: 200,
             bottom: -50,
           }}
         >
-          <Title style={{ color: "white", margin: 0 }} level={1}>
+          <Title style={{ color: "white", margin: 0 }} level={2}>
             Hot Air Balloon Festival
           </Title>
           <Text style={{ color: "white" }}>
@@ -703,7 +722,9 @@ const Homepage: React.FC = () => {
             sensible entirely am so. Quick can manor smart money hopes worth
             too.
           </Text>
-          <Button shape="round">Xem them</Button>
+          <Button style={{backgroundColor:'#4B4F5F', width:'10rem', height:'2.5rem'}} type="primary" shape="round">
+            XEM THÊM
+          </Button>
         </Space>
         <div
           style={{
@@ -717,58 +738,61 @@ const Homepage: React.FC = () => {
           }}
         ></div>
         <div
-          style={{ position: "absolute", top: 30, right: 260 }}
+          style={{
+            position: "absolute",
+            top: 30,
+            right: 310,
+            border: "2.5rem solid #6C738A",
+          }}
           className="doughnut2"
         ></div>
       </Row>
 
-      <Row justify="center">
+      <Row style={{ height: "20rem" }} justify="center">
         <Col span={12}>
-          <Space direction="vertical">
+          <Space direction="vertical" size={20}>
             <Title style={{ margin: 0 }}>Virtual Travel</Title>
-            <Text>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum
-              repellat saepe nesciunt similique asperiores cumque voluptate nemo
-              iure placeat eaque ratione at, libero, praesentium dolorem, rerum
-              hic corporis consectetur consequatur?
-            </Text>
-            <Space>
+            <div style={{ width: "30rem" }}>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum
+                repellat saepe nesciunt similique asperiores cumque voluptate
+                nemo iure placeat eaque ratione at, libero, praesentium dolorem
+              </Text>
+            </div>
+
+            <Space size={30}>
+              <FacebookOutlined />
               <InstagramOutlined />
               <TwitterOutlined />
-              <FacebookFilled />
               <RedditOutlined />
-              <YoutubeFilled />
+              <YoutubeOutlined />
             </Space>
           </Space>
         </Col>
         <Col span={4}>
           <Space direction="vertical">
-            <Title>navigation</Title>
-            <Text>abc</Text>
-            <Text>abc</Text>
-            <Text>abc</Text>
-            <Text>abc</Text>
-            <Text>abc</Text>
+            <Title level={3}>Navigate</Title>
+            <Text>Trang chủ</Text>
+            <Text>Destination</Text>
+            <Text>Expedition</Text>
+            <Text>Timeline</Text>
+            <Text>Review</Text>
           </Space>
         </Col>
         <Col span={4}>
           <Space direction="vertical">
-            <Title>navigation</Title>
-            <Text>abc</Text>
-            <Text>abc</Text>
-            <Text>abc</Text>
-            <Text>abc</Text>
-            <Text>abc</Text>
+            <Title level={3}>Support Us</Title>
+            <Text>FAQ</Text>
+            <Text>Contact Us</Text>
+            <Text>Suport Center</Text>
+            <Text>Security</Text>
           </Space>
         </Col>
         <Col span={4}>
           <Space direction="vertical">
-            <Title>navigation</Title>
-            <Text>abc</Text>
-            <Text>abc</Text>
-            <Text>abc</Text>
-            <Text>abc</Text>
-            <Text>abc</Text>
+            <Title level={3}>Partner</Title>
+            <Text>Our Parner</Text>
+            <Text>Subscribe</Text>
           </Space>
         </Col>
       </Row>
