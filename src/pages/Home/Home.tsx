@@ -1,94 +1,29 @@
 import React from "react";
-
 import "./Home.scss";
-import logo from "../../assets/img/logo.png";
+
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
+
+import { Typography, Row, Col, Card, Space, Button } from "antd";
 
 import {
-  Typography,
-  Layout,
-  Row,
-  Col,
-  Avatar,
-  Card,
-  Space,
-  Button,
-  Divider,
-} from "antd";
-
-import {
-  InstagramOutlined,
   FacebookFilled,
-  TwitterOutlined,
-  YoutubeFilled,
-  RedditOutlined,
-  GlobalOutlined,
   ArrowLeftOutlined,
   ArrowRightOutlined,
   TwitterSquareFilled,
   RedditSquareFilled,
-  FacebookOutlined,
-  YoutubeOutlined,
 } from "@ant-design/icons";
-import { url } from "inspector";
 
-const { Header, Sider, Footer, Content } = Layout;
 const { Title, Text, Paragraph } = Typography;
 const { Meta } = Card;
 
 const Homepage: React.FC = () => {
   return (
-    <>
-      {/* header */}
-      <Row style={{ marginTop: "1rem" }} justify="space-between" align="middle">
-        <Col>
-          <Space>
-            <GlobalOutlined style={{ fontSize: "1.5rem", color: "grey" }} />
-            <Text>Ngôn ngữ</Text>
-          </Space>
-        </Col>
-        <Col span={15}>
-          <Row justify="space-evenly" align="middle">
-            <Button size="small" type="text">
-              TRANG CHỦ
-            </Button>
-            <Button size="small" type="text">
-              PAGE
-            </Button>
-            <Button size="small" type="text">
-              TRAVEL
-            </Button>
-            <Col>
-              <img height={50} src={logo} alt="" />
-            </Col>
-            <Button size="small" type="text">
-              BLOG
-            </Button>
-            <Button size="small" type="text">
-              CỬA HÀNG
-            </Button>
-            <Button size="small" type="text">
-              ELEMENTS
-            </Button>
-          </Row>
-        </Col>
-        <Col>
-          <Space style={{ color: "grey" }} size="middle">
-            <InstagramOutlined />
-            <TwitterOutlined />
-            <FacebookFilled />
-            <RedditOutlined />
-            <YoutubeFilled />
-          </Space>
-        </Col>
-      </Row>
-      {/* /header */}
+    <div style={styleContainer}>
+      <Header />
 
-      <Row
-        style={{ position: "relative", marginTop: "1rem" }}
-        justify="center"
-        align="middle"
-      >
-        <Col style={{ position: "relative" }}>
+      <Row className="position-relative  mt-3" justify="center" align="middle">
+        <Col className="position-relative">
           <img
             width={1150}
             height={500}
@@ -96,7 +31,8 @@ const Homepage: React.FC = () => {
             alt=""
           />
           <img
-            style={{ position: "absolute", top: 150, right: 90 }}
+            className="position-absolute "
+            style={{ top: 150, right: 90 }}
             width={900}
             height={200}
             src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/08/h6-slider-graphic-1.png"
@@ -129,7 +65,8 @@ const Homepage: React.FC = () => {
       <Row style={{ marginTop: "5rem" }} justify="center" align="middle">
         <Space size={10}>
           <Card
-            style={{ width: "10rem", padding: "1rem 0 0 0" }}
+            className="pt-3"
+            style={{ width: "10rem" }}
             size="small"
             hoverable
             cover={
@@ -211,10 +148,10 @@ const Homepage: React.FC = () => {
 
       <Row style={{ marginTop: "5rem" }} justify="center">
         <Space direction="vertical" align="center">
-          <Title style={{ margin: 0 }} level={1}>
+          <Title className="m-0" level={1}>
             DESTINATIONS
           </Title>
-          <Text type="secondary" className="bodyFont">
+          <Text type="secondary" className="secondFont">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. A error
           </Text>
         </Space>
@@ -240,7 +177,7 @@ const Homepage: React.FC = () => {
                 alt="example"
                 src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/08/peru-img.png"
               />
-              <Title style={{ margin: 0 }} level={3}>
+              <Title className="m-0" level={3}>
                 Bình Định
               </Title>
               <Text type="secondary">abcd</Text>
@@ -268,7 +205,7 @@ const Homepage: React.FC = () => {
                 alt="example"
                 src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/08/peru-img.png"
               />
-              <Title style={{ margin: 0 }} level={3}>
+              <Title className="m-0" level={3}>
                 Nha Trang
               </Title>
               <Text type="secondary">abcd</Text>
@@ -296,7 +233,7 @@ const Homepage: React.FC = () => {
                 alt="example"
                 src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/08/peru-img.png"
               />
-              <Title style={{ margin: 0 }} level={3}>
+              <Title className="m-0" level={3}>
                 Đà Nẵng
               </Title>
               <Text type="secondary">abcd</Text>
@@ -322,7 +259,7 @@ const Homepage: React.FC = () => {
                 alt="example"
                 src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/08/peru-img.png"
               />
-              <Title style={{ margin: 0 }} level={3}>
+              <Title className="mt-0" level={3}>
                 Bình Định
               </Title>
               <Text type="secondary">abcd</Text>
@@ -337,7 +274,7 @@ const Homepage: React.FC = () => {
       <Row style={{ textAlign: "center", marginTop: "5rem" }} justify="center">
         <Space direction="vertical" size={30}>
           <Col>
-            <Title style={{ margin: 0, fontWeight: 100 }} level={1}>
+            <Title className="m-0 fw-light" level={1}>
               RECENT STORIES FROM
             </Title>
             <Title
@@ -351,7 +288,7 @@ const Homepage: React.FC = () => {
 
           <div style={{ width: "40rem" }}>
             <Title
-              className="bodyFont"
+              className="secondFont"
               type="secondary"
               style={{ margin: 0 }}
               level={5}
@@ -382,10 +319,10 @@ const Homepage: React.FC = () => {
             }
           >
             <Space direction="vertical">
-              <Title style={{ margin: 0 }}>Bình Định</Title>
-              <Title style={{ margin: 0, fontWeight: 100 }}>sub title</Title>
+              <Title className="m-0">Bình Định</Title>
+              <Title className="m-0 fw-light">sub title</Title>
               <Text type="secondary">WORLD</Text>
-              <Text style={{ fontSize: "1rem" }} className="bodyFont">
+              <Text className="secondFont fs-6">
                 Version of Lorem Ipsum. Proin gravida nibh vel velit auctor
                 aliquet. Aenean sollicituuis bibendum auctor, nisi elit
                 consequat ipsum, nec sagittis sem nibh id elit.
@@ -417,11 +354,11 @@ const Homepage: React.FC = () => {
               }
             >
               <Space direction="vertical">
-                <Title style={{ margin: 0 }} level={4}>
+                <Title className="m-0" level={4}>
                   Title
                 </Title>
 
-                <Text className="bodyFont" type="secondary">
+                <Text className="secondFont" type="secondary">
                   description
                 </Text>
               </Space>
@@ -437,11 +374,11 @@ const Homepage: React.FC = () => {
               }
             >
               <Space direction="vertical">
-                <Title style={{ margin: 0 }} level={4}>
+                <Title className="m-0" level={4}>
                   Title
                 </Title>
 
-                <Text className="bodyFont" type="secondary">
+                <Text className="secondFont" type="secondary">
                   description
                 </Text>
               </Space>
@@ -451,63 +388,46 @@ const Homepage: React.FC = () => {
 
         <Col span={6}>
           <Card hoverable size="small">
-            <Title style={{}} level={5}>
-              Title
-            </Title>
-            <Text className="bodyFont" type="secondary">
+            <Title level={5}>Title</Title>
+            <Text className="secondFont" type="secondary">
               description
             </Text>
           </Card>
           <Card hoverable size="small">
-            <Title style={{}} level={5}>
-              Title
-            </Title>
-            <Text className="bodyFont" type="secondary">
+            <Title level={5}>Title</Title>
+            <Text className="secondFont" type="secondary">
               description
             </Text>
           </Card>
           <Card hoverable size="small">
-            <Title style={{}} level={5}>
-              Title
-            </Title>
-            <Text className="bodyFont" type="secondary">
+            <Title level={5}>Title</Title>
+            <Text className="secondFont" type="secondary">
               description
             </Text>
           </Card>
           <Card hoverable size="small">
-            <Title style={{}} level={5}>
-              Title
-            </Title>
-            <Text className="bodyFont" type="secondary">
+            <Title level={5}>Title</Title>
+            <Text className="secondFont" type="secondary">
               description
             </Text>
           </Card>
           <Card hoverable size="small">
-            <Title style={{}} level={5}>
-              Title
-            </Title>
-            <Text className="bodyFont" type="secondary">
+            <Title level={5}>Title</Title>
+            <Text className="secondFont" type="secondary">
               description
             </Text>
           </Card>
           <Card hoverable size="small">
-            <Title style={{}} level={5}>
-              Title
-            </Title>
-            <Text className="bodyFont" type="secondary">
+            <Title level={5}>Title</Title>
+            <Text className="secondFont" type="secondary">
               description
             </Text>
           </Card>
         </Col>
       </Row>
 
-      <Row justify="center" style={{ padding: "8rem" }} gutter={10}>
-        <Col
-          style={{
-            position: "relative",
-          }}
-          span={15}
-        >
+      <Row className="p-5" justify="center" gutter={10}>
+        <Col className="position-relative" span={15}>
           <img
             style={{
               borderRadius: "0.5rem",
@@ -523,13 +443,13 @@ const Homepage: React.FC = () => {
               <Text style={{ color: "white", fontSize: "0.8rem" }}>
                 PRIVATE TRIP
               </Text>
-              <Title level={3} style={{ color: "white", margin: 0 }}>
+              <Title className="text-white m-0" level={3}>
                 Awesome Dessert
               </Title>
-              <Title level={3} style={{ color: "white" }}>
+              <Title className="text-white" level={3}>
                 Private Trip Adventure
               </Title>
-              <Button style={{ color: "white" }} type="text">
+              <Button className="text-white" type="text">
                 Take the trip <ArrowRightOutlined />
               </Button>
             </Space>
@@ -572,10 +492,9 @@ const Homepage: React.FC = () => {
           alt=""
           src="https://images01.nicepage.com/c461c07a441a5d220e8feb1a/78c2a90df1ac561790a74491/photo-1418065460487-3e41a6c84dc5.jpg"
         />
-        <div
-          style={{ position: "absolute", bottom: 110, left: 30 }}
-          className="doughnut1"
-        ></div>
+
+        <div style={doughnut1}></div>
+
         <img
           width={550}
           height={550}
@@ -613,7 +532,7 @@ const Homepage: React.FC = () => {
             Backpacking Trips
           </Title>
           <div style={{ width: "50rem", fontSize: "1rem" }}>
-            <Text style={{ margin: "0 auto" }}>
+            <Text className="my-0 mx-auto" >
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
               dolorem voluptate ipsa veniam veritatis, nemo ratione cumque
               cupiditate? Consequatur, labore id sunt cum corporis dignissimos
@@ -671,17 +590,7 @@ const Homepage: React.FC = () => {
             </Title>
           </div>
         </Space>
-        <div
-          style={{
-            position: "absolute",
-            bottom: 200,
-            left: 210,
-            width: "8rem",
-            height: "8rem",
-            border: "1.5rem solid #6C738A",
-          }}
-          className="doughnut2"
-        ></div>
+        <div style={doughnut3} className="doughnut2"></div>
       </Row>
 
       <Row
@@ -722,7 +631,15 @@ const Homepage: React.FC = () => {
             sensible entirely am so. Quick can manor smart money hopes worth
             too.
           </Text>
-          <Button style={{backgroundColor:'#4B4F5F', width:'10rem', height:'2.5rem'}} type="primary" shape="round">
+          <Button
+            style={{
+              backgroundColor: "#4B4F5F",
+              width: "10rem",
+              height: "2.5rem",
+            }}
+            type="primary"
+            shape="round"
+          >
             XEM THÊM
           </Button>
         </Space>
@@ -748,56 +665,34 @@ const Homepage: React.FC = () => {
         ></div>
       </Row>
 
-      <Row style={{ height: "20rem" }} justify="center">
-        <Col span={12}>
-          <Space direction="vertical" size={20}>
-            <Title style={{ margin: 0 }}>Virtual Travel</Title>
-            <div style={{ width: "30rem" }}>
-              <Text>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum
-                repellat saepe nesciunt similique asperiores cumque voluptate
-                nemo iure placeat eaque ratione at, libero, praesentium dolorem
-              </Text>
-            </div>
-
-            <Space size={30}>
-              <FacebookOutlined />
-              <InstagramOutlined />
-              <TwitterOutlined />
-              <RedditOutlined />
-              <YoutubeOutlined />
-            </Space>
-          </Space>
-        </Col>
-        <Col span={4}>
-          <Space direction="vertical">
-            <Title level={3}>Navigate</Title>
-            <Text>Trang chủ</Text>
-            <Text>Destination</Text>
-            <Text>Expedition</Text>
-            <Text>Timeline</Text>
-            <Text>Review</Text>
-          </Space>
-        </Col>
-        <Col span={4}>
-          <Space direction="vertical">
-            <Title level={3}>Support Us</Title>
-            <Text>FAQ</Text>
-            <Text>Contact Us</Text>
-            <Text>Suport Center</Text>
-            <Text>Security</Text>
-          </Space>
-        </Col>
-        <Col span={4}>
-          <Space direction="vertical">
-            <Title level={3}>Partner</Title>
-            <Text>Our Parner</Text>
-            <Text>Subscribe</Text>
-          </Space>
-        </Col>
-      </Row>
-    </>
+      <Footer />
+    </div>
   );
 };
 
 export default Homepage;
+
+const styleContainer: Object = {
+  padding: "0 2rem",
+  fontFamily: "'Montserrat', sans-serif",
+  fontSize: "1rem",
+};
+
+const doughnut1: Object = {
+  position: "absolute",
+  border: "1.5rem solid #EF2853",
+  borderRadius: "100%",
+  height: "8rem",
+  width: "8rem",
+  bottom: "110",
+  left: "30",
+};
+
+const doughnut3: Object = {
+  position: "absolute",
+  bottom: 200,
+  left: 210,
+  width: "8rem",
+  height: "8rem",
+  border: "1.5rem solid #6C738A",
+};
