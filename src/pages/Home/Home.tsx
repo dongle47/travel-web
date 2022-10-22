@@ -1,5 +1,4 @@
 import React from "react";
-import "./Home.scss";
 
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
@@ -14,10 +13,11 @@ import {
   RedditSquareFilled,
 } from "@ant-design/icons";
 
-const { Title, Text, Paragraph } = Typography;
+const { Title, Text } = Typography;
 const { Meta } = Card;
 
 const Homepage: React.FC = () => {
+
   return (
     <div style={styleContainer}>
       <Header />
@@ -508,31 +508,25 @@ const Homepage: React.FC = () => {
           src="https://images01.nicepage.com/c461c07a441a5d220e8feb1a/f9bf585de71b58019a321e7f/photo-1483197452165-7abc4b248905.jpg"
         />
         <img
+          className="position-absolute rounded-circle"
           width={350}
           height={350}
           style={{
-            borderRadius: "100%",
             border: "1.5rem solid #D7D7D7",
-            position: "absolute",
             left: 250,
             bottom: -90,
           }}
           alt=""
           src="https://images01.nicepage.com/c461c07a441a5d220e8feb1a/169dbf9a76c2571e8373e379/photo-1504870712357-65ea720d6078.jpg"
         />
-        <div
-          style={{ position: "absolute", bottom: -80, right: 10 }}
-          className="doughnut2"
-        ></div>
+        <div className="doughnut2" style={{ bottom: -80, right: 10 }}></div>
       </Row>
 
       <Row style={{ textAlign: "center" }} justify="center">
         <Space direction="vertical">
-          <Title style={{ margin: 0, fontSize: "3rem" }}>
-            Backpacking Trips
-          </Title>
-          <div style={{ width: "50rem", fontSize: "1rem" }}>
-            <Text className="my-0 mx-auto" >
+          <Title className="m-0 fs-1">Backpacking Trips</Title>
+          <div className="fs-6" style={{ width: "50rem" }}>
+            <Text className="my-0 mx-auto">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
               dolorem voluptate ipsa veniam veritatis, nemo ratione cumque
               cupiditate? Consequatur, labore id sunt cum corporis dignissimos
@@ -550,8 +544,8 @@ const Homepage: React.FC = () => {
       </Row>
 
       <Row
+        className="position-relative"
         style={{
-          position: "relative",
           padding: "0 15rem",
           margin: "5rem auto 10rem auto",
         }}
@@ -590,7 +584,7 @@ const Homepage: React.FC = () => {
             </Title>
           </div>
         </Space>
-        <div style={doughnut3} className="doughnut2"></div>
+        <div style={doughnut3}></div>
       </Row>
 
       <Row
@@ -601,32 +595,17 @@ const Homepage: React.FC = () => {
         }}
       >
         <img
+          className="rounded-circle"
           width={600}
           height={600}
-          style={{
-            borderRadius: "100%",
-          }}
           alt=""
           src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/09/blog-post-h6-img2.jpg"
         />
-        <Space
-          size={30}
-          direction="vertical"
-          style={{
-            position: "absolute",
-            borderRadius: "2rem",
-            padding: "2rem",
-            width: "30rem",
-            height: "18rem",
-            backgroundColor: "#2a9d8f",
-            right: 200,
-            bottom: -50,
-          }}
-        >
+        <Space size={30} direction="vertical" style={stylePanel1}>
           <Title style={{ color: "white", margin: 0 }} level={2}>
             Hot Air Balloon Festival
           </Title>
-          <Text style={{ color: "white" }}>
+          <Text className="text-white">
             Article evident arrived express highest men did boy. Mistress
             sensible entirely am so. Quick can manor smart money hopes worth
             too.
@@ -643,20 +622,9 @@ const Homepage: React.FC = () => {
             XEM THÊM
           </Button>
         </Space>
+        <div style={styleRedDot}></div>
         <div
           style={{
-            width: 100,
-            height: 100,
-            position: "absolute",
-            backgroundColor: "#EF2853",
-            borderRadius: "100%",
-            bottom: 10,
-            left: 30,
-          }}
-        ></div>
-        <div
-          style={{
-            position: "absolute",
             top: 30,
             right: 310,
             border: "2.5rem solid #6C738A",
@@ -695,4 +663,26 @@ const doughnut3: Object = {
   width: "8rem",
   height: "8rem",
   border: "1.5rem solid #6C738A",
+  borderRadius: "100%",
+};
+
+const stylePanel1: Object = {
+  position: "absolute",
+  borderRadius: "2rem",
+  padding: "2rem",
+  width: "30rem",
+  height: "18rem",
+  backgroundColor: "#2a9d8f",
+  right: 200,
+  bottom: -50,
+};
+
+const styleRedDot: Object = {
+  position: "absolute",
+  width: 100,
+  height: 100,
+  backgroundColor: "#EF2853",
+  borderRadius: "100%",
+  bottom: 10,
+  left: 30,
 };
