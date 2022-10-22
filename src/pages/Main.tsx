@@ -1,13 +1,12 @@
 import React from "react";
+import 'leaflet/dist/leaflet.css';
 
-import {Header, Footer} from '../components';
+import { Map } from "../components";
 
 const Main: React.FC = () => {
   return (
     <>
-      <h1>Main</h1>
-      <Header />
-      <Footer />
+      <Map />
     </>
   );
 };

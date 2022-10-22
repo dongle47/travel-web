@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import "leaflet/dist/leaflet.css";
+
 import {
   MapContainer,
   TileLayer,
@@ -6,9 +8,17 @@ import {
   Popup,
   useMapEvents,
 } from "react-leaflet";
+
 import { LatLng, LocationEvent } from "leaflet";
 
-const LocationMarker = () => {
+import marker from "../assets/img/logo.png";
+import { Icon } from "leaflet";
+const myIcon = new Icon({
+  iconUrl: marker,
+  iconSize: [32, 32],
+});
+
+const LocationMarker: React.FC = () => {
   const [position, setPosition] = useState<LatLng | null>(null);
   const map = useMapEvents({
     click() {
@@ -21,16 +31,18 @@ const LocationMarker = () => {
   });
 
   return position === null ? null : (
-    <Marker position={position}>
+    <Marker position={position} icon={myIcon}>
       <Popup>You are here</Popup>
     </Marker>
   );
 };
 
-const TestMap: React.FC = () => {
+const Map: React.FC = () => {
+  const position: [number, number] = [51.505, -0.09];
+
   return (
     <MapContainer
-      style={{ height: "30rem", width: "50rem" }}
+      className="vh-100 vw-100"
       center={[51.505, -0.09]}
       zoom={13}
       scrollWheelZoom={false}
@@ -45,4 +57,4 @@ const TestMap: React.FC = () => {
   );
 };
 
-export default TestMap;
+export default Map;

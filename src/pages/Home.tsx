@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { Header, Footer } from "../components";
 
@@ -29,20 +30,29 @@ const Homepage: React.FC = () => {
             alt=""
           />
           <img
-            className="position-absolute "
+            className="position-absolute w-70 h-25"
             style={{ top: 150, right: 90 }}
-            width={900}
-            height={200}
+            // width={900}
+            // height={200}
             src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/08/h6-slider-graphic-1.png"
             alt=""
           />
           <img
-            style={{ position: "absolute", top: 180, right: 290 }}
+            className="position-absolute w-40 h-15"
+            style={{ top: 160, right: 290 }}
             width={500}
             height={100}
             src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/09/logo-bottom-1.png"
             alt=""
           />
+          <Link to="./main">
+            <Button
+              className="position-absolute "
+              style={{ top: "70%", right: "45%", width: 200, height: 50 }}
+            >
+              TRẢI NGHIỆM NGAY
+            </Button>
+          </Link>
         </Col>
         <Col style={{ position: "absolute", left: 67 }}>
           <Button
@@ -638,13 +648,13 @@ const Homepage: React.FC = () => {
 
 export default Homepage;
 
-const styleContainer: Object = {
+const styleContainer: object = {
   padding: "0 2rem",
   fontFamily: "'Montserrat', sans-serif",
   fontSize: "1rem",
 };
 
-const doughnut1: Object = {
+const doughnut1: object = {
   position: "absolute",
   border: "1.5rem solid #EF2853",
   borderRadius: "100%",
@@ -654,7 +664,7 @@ const doughnut1: Object = {
   left: "30",
 };
 
-const doughnut3: Object = {
+const doughnut3: object = {
   position: "absolute",
   bottom: 200,
   left: 210,
@@ -664,7 +674,7 @@ const doughnut3: Object = {
   borderRadius: "100%",
 };
 
-const stylePanel1: Object = {
+const stylePanel1: object = {
   position: "absolute",
   borderRadius: "2rem",
   padding: "2rem",
@@ -675,7 +685,7 @@ const stylePanel1: Object = {
   bottom: -50,
 };
 
-const styleRedDot: Object = {
+const styleRedDot: object = {
   position: "absolute",
   width: 100,
   height: 100,
