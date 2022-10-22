@@ -1,7 +1,6 @@
 import React from "react";
 
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
+import { Header, Footer } from "../components";
 
 import { Typography, Row, Col, Card, Space, Button } from "antd";
 
@@ -17,7 +16,6 @@ const { Title, Text } = Typography;
 const { Meta } = Card;
 
 const Homepage: React.FC = () => {
-
   return (
     <div style={styleContainer}>
       <Header />

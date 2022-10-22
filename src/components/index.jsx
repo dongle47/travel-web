@@ -1,5 +1,4 @@
-import { Button } from './Button/Button';
-import { InputField } from './InputField/InputField';
-import { Card } from './Card/Card';
+import Header from "./Header";
+import Footer from "./Footer";
 
-export { Button, Card, InputField };
+export { Header, Footer };

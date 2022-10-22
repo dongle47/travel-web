@@ -1,21 +1,16 @@
 import React from "react";
 
-import { Typography, Layout, Row, Col, Card, Space, Button } from "antd";
+import { Typography, Row, Col, Space } from "antd";
 
 import {
   InstagramOutlined,
-  FacebookFilled,
   TwitterOutlined,
   RedditOutlined,
-  ArrowLeftOutlined,
-  ArrowRightOutlined,
-  TwitterSquareFilled,
-  RedditSquareFilled,
   FacebookOutlined,
   YoutubeOutlined,
 } from "@ant-design/icons";
 
-const { Title, Text, Paragraph } = Typography;
+const { Title, Text } = Typography;
 
 const Footer: React.FC = () => {
   return (

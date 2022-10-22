@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Typography, Layout, Row, Col, Card, Space, Button } from "antd";
-import logo from "../../assets/img/logo.png";
+import { Typography, Row, Col, Space, Button } from "antd";
+import logo from "../assets/img/logo.png";
 
 import {
   InstagramOutlined,
@@ -12,7 +12,7 @@ import {
   GlobalOutlined,
 } from "@ant-design/icons";
 
-const { Title, Text, Paragraph } = Typography;
+const {Text } = Typography;
 
 const Header: React.FC = () => {
   return (
