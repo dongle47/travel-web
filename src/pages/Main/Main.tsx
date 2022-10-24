@@ -1,7 +1,8 @@
 import React from "react";
-import 'leaflet/dist/leaflet.css';
+import './Main.scss'
+import "leaflet/dist/leaflet.css";
 
-import { Map } from "../components";
+import { Map } from "../../components";
 
 const Main: React.FC = () => {
   return (

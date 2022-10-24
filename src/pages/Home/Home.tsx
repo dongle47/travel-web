@@ -1,7 +1,8 @@
 import React from "react";
+import "./Home.scss";
 import { Link } from "react-router-dom";
 
-import { Header, Footer } from "../components";
+import { Header, Footer } from "../../components";
 
 import { Typography, Row, Col, Card, Space, Button } from "antd";
 
@@ -18,7 +19,7 @@ const { Meta } = Card;
 
 const Homepage: React.FC = () => {
   return (
-    <div style={styleContainer}>
+    <div className="container-home">
       <Header />
 
       <Row className="position-relative  mt-3" justify="center" align="middle">
@@ -32,8 +33,6 @@ const Homepage: React.FC = () => {
           <img
             className="position-absolute w-70 h-25"
             style={{ top: 150, right: 90 }}
-            // width={900}
-            // height={200}
             src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/08/h6-slider-graphic-1.png"
             alt=""
           />
@@ -47,7 +46,7 @@ const Homepage: React.FC = () => {
           />
           <Link to="./main">
             <Button
-              className="position-absolute "
+              className="position-absolute"
               style={{ top: "70%", right: "45%", width: 200, height: 50 }}
             >
               TRẢI NGHIỆM NGAY
@@ -501,7 +500,7 @@ const Homepage: React.FC = () => {
           src="https://images01.nicepage.com/c461c07a441a5d220e8feb1a/78c2a90df1ac561790a74491/photo-1418065460487-3e41a6c84dc5.jpg"
         />
 
-        <div style={doughnut1}></div>
+        <div className="doughnut1"></div>
 
         <img
           width={550}
@@ -592,7 +591,7 @@ const Homepage: React.FC = () => {
             </Title>
           </div>
         </Space>
-        <div style={doughnut3}></div>
+        <div className="doughnut3"></div>
       </Row>
 
       <Row
@@ -609,7 +608,7 @@ const Homepage: React.FC = () => {
           alt=""
           src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/09/blog-post-h6-img2.jpg"
         />
-        <Space size={30} direction="vertical" style={stylePanel1}>
+        <Space className="home-panel1" size={30} direction="vertical" style={stylePanel1}>
           <Title style={{ color: "white", margin: 0 }} level={2}>
             Hot Air Balloon Festival
           </Title>
@@ -630,7 +629,7 @@ const Homepage: React.FC = () => {
             XEM THÊM
           </Button>
         </Space>
-        <div style={styleRedDot}></div>
+        <div className="home-reddot" style={styleRedDot}></div>
         <div
           style={{
             top: 30,
@@ -648,31 +647,6 @@ const Homepage: React.FC = () => {
 
 export default Homepage;
 
-const styleContainer: object = {
-  padding: "0 2rem",
-  fontFamily: "'Montserrat', sans-serif",
-  fontSize: "1rem",
-};
-
-const doughnut1: object = {
-  position: "absolute",
-  border: "1.5rem solid #EF2853",
-  borderRadius: "100%",
-  height: "8rem",
-  width: "8rem",
-  bottom: "110",
-  left: "30",
-};
-
-const doughnut3: object = {
-  position: "absolute",
-  bottom: 200,
-  left: 210,
-  width: "8rem",
-  height: "8rem",
-  border: "1.5rem solid #6C738A",
-  borderRadius: "100%",
-};
 
 const stylePanel1: object = {
   position: "absolute",

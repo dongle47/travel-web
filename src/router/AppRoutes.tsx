@@ -1,14 +1,14 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-import Homepage from "../pages/Home";
-import Main from "../pages/Main";
+import Home from "../pages/Home/Home";
+import Main from "../pages/Main/Main";
 
 const AppRoutes: React.FC = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Homepage />} />
+        <Route path="/" element={<Home />} />
         <Route path="/main" element={<Main />} />
       </Routes>
     </>
