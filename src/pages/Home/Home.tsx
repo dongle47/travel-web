@@ -45,10 +45,7 @@ const Homepage: React.FC = () => {
             alt=""
           />
           <Link to="./main">
-            <Button
-              className="position-absolute"
-              style={{ top: "70%", right: "45%", width: 200, height: 50 }}
-            >
+            <Button className="position-absolute explore-btn">
               TRẢI NGHIỆM NGAY
             </Button>
           </Link>
@@ -608,7 +605,12 @@ const Homepage: React.FC = () => {
           alt=""
           src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/09/blog-post-h6-img2.jpg"
         />
-        <Space className="home-panel1" size={30} direction="vertical" style={stylePanel1}>
+        <Space
+          className="home-panel1"
+          size={30}
+          direction="vertical"
+          style={stylePanel1}
+        >
           <Title style={{ color: "white", margin: 0 }} level={2}>
             Hot Air Balloon Festival
           </Title>
@@ -646,7 +648,6 @@ const Homepage: React.FC = () => {
 };
 
 export default Homepage;
-
 
 const stylePanel1: object = {
   position: "absolute",
