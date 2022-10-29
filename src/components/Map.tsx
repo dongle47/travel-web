@@ -3,24 +3,9 @@ import "leaflet/dist/leaflet.css";
 
 import { Typography, Row, Col, Card, Space, Button } from "antd";
 
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-  LayersControl,
-  FeatureGroup,
-  ZoomControl,
-  Polygon,
-  useMapEvent,
-  useMapEvents,
-  useMap,
-  Pane,
-  Circle,
-  ImageOverlay,
-} from "react-leaflet";
+import { MapContainer, TileLayer, ZoomControl, useMap } from "react-leaflet";
 
-import { latLng, LatLng, LocationEvent } from "leaflet";
+import { latLng, LatLng, LocationEvent, latLngBounds } from "leaflet";
 
 import tileLayer from "../utils/tileLayer";
 import L from "leaflet";
@@ -31,6 +16,7 @@ import ControlMarker from "./ControlMarker";
 import ControlPolygon from "./ControlPolygon";
 
 import apiPlaces from "../api/apiPlaces";
+import { Url } from "url";
 
 interface point {
   lat: number;
@@ -43,7 +29,8 @@ interface groupPoint {
   points: point[];
 }
 
-const center: [number, number] = [52.22977, 21.01178];
+// const center: [number, number] = [52.22977, 21.01178];
+const center: [number, number] = [13.955392, 108.676758];
 
 const pointsA: point[] = [
   { lat: 52.230020586193795, lng: 21.01083755493164, title: "point A1" },
@@ -105,17 +92,37 @@ interface IProps {
   map: any;
 }
 
+interface place {
+  id: string;
+  name: string;
+  address: string;
+  lat: number;
+  lng: number;
+  thumbnail: string;
+}
+
 const Map: React.FC = () => {
-  const [places, setPlaces] = useState<point[] | null>(null);
+  const [places, setPlaces] = useState<place[]>([]);
 
   useEffect(() => {
-    const getPlaces = async () => {
-      apiPlaces.getPlaces().then((res) => {
-        console.log(res.data);
-      });
+    const getData = async () => {
+      await apiPlaces
+        .getPlaces()
+        .then((res) => {
+          const arrPlace: place[] = [];
+
+          res.data.forEach((item: any) => {
+            console.log(item.name);
+            const { id, name, address, lat, lng, thumbnail } = item;
+            const newPlace = { id, name, address, lat, lng, thumbnail };
+            arrPlace.push(newPlace);
+          });
+          setPlaces((prev) => (prev = arrPlace));
+        })
+        .catch((err) => console.log("err", err));
     };
 
-    getPlaces();
+    getData();
   }, []);
 
   return (
@@ -124,12 +131,19 @@ const Map: React.FC = () => {
         className="vh-100 vw-100"
         zoomControl={false}
         center={center}
-        zoom={18}
+        zoom={10}
         scrollWheelZoom={true}
       >
-        <ControlMarker data={[groupA, groupB]} />
+        {/* <ControlMarker data={[groupA, groupB]} /> */}
 
-        <MapMarker title="lam deo j" position={center} />
+        {places.map((item) => (
+          <MapMarker
+            title={item.name}
+            position={[item.lat, item.lng]}
+            thumbnail={item.thumbnail}
+            address={item.address}
+          />
+        ))}
 
         <TileLayer {...tileLayer} />
 
@@ -147,19 +161,3 @@ const Map: React.FC = () => {
 };
 
 export default Map;
-
-// interface IProps {
-//   data: point[];
-// }
-
-// const MyMarkers: React.FC<IProps> = ({ data }) => {
-//   return (
-//     <>
-//       {data.map((item, index) => (
-//         <Marker key={index} position={[item.lat, item.lng]} icon={iconMarker}>
-//           <Popup>{item.title}</Popup>
-//         </Marker>
-//       ))}
-//     </>
-//   );
-// };

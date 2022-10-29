@@ -32,7 +32,8 @@ const ControlMarker: React.FC<IProps> = ({ data }) => {
         <LayersControl.Overlay name={name}>
           <FeatureGroup>
             {points.map(({ lat, lng, title }, index) => (
-              <MapMarker position={[lat, lng]} title={title} />
+              // <MapMarker position={[lat, lng]} title={title} />
+              <h1>test</h1>
             ))}
           </FeatureGroup>
         </LayersControl.Overlay>

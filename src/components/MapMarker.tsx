@@ -3,12 +3,10 @@ import { Popup, useMapEvent, useMapEvents, Marker } from "react-leaflet";
 import { Typography, Row, Col, Card, Space, Button } from "antd";
 
 import { Icon } from "leaflet";
+const { Meta } = Card;
+const { Title, Text } = Typography;
 
-interface IProps {
-  id?: string;
-  position: [number, number];
-  title: string;
-}
+import { ExclamationOutlined, QuestionOutlined } from "@ant-design/icons";
 
 import iconmarker from "../assets/img/marker-icon.png";
 
@@ -17,7 +15,21 @@ const iconMarker = new Icon({
   iconSize: [25, 40],
 });
 
-const MapMarker: React.FC<IProps> = ({ id, position, title }) => {
+interface IProps {
+  id?: string;
+  position: [number, number];
+  title: string;
+  thumbnail: string;
+  address: string;
+}
+
+const MapMarker: React.FC<IProps> = ({
+  id,
+  position,
+  title,
+  thumbnail,
+  address,
+}) => {
   return (
     <>
       <Marker
@@ -28,7 +40,41 @@ const MapMarker: React.FC<IProps> = ({ id, position, title }) => {
           mouseover: (event) => event.target.openPopup(),
         }}
       >
-        <Popup>{title}</Popup>
+        <Popup className="vw-50">
+          <Space size={0} direction="vertical">
+            <img
+              style={{
+                padding: 0,
+                width: "100%",
+                height: "5rem",
+                borderTopRightRadius: "5px",
+                borderTopLeftRadius: "5px",
+              }}
+              alt=""
+              src={thumbnail}
+            />
+            <Row className="p-2" align="top" justify="center">
+              <Col span={16}>
+                <Title level={5}>{title}</Title>
+                <Text>{address}</Text>
+              </Col>
+              <Col className="mr-0" span={8}>
+                <Space size={10}>
+                  <Button
+                    size="middle"
+                    shape="circle"
+                    icon={<ExclamationOutlined />}
+                  />
+                  <Button
+                    size="middle"
+                    shape="circle"
+                    icon={<QuestionOutlined />}
+                  />
+                </Space>
+              </Col>
+            </Row>
+          </Space>
+        </Popup>
       </Marker>
     </>
   );
