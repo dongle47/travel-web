@@ -1,4 +1,6 @@
 import React from "react";
+import { Navigate, Link } from "react-router-dom";
+
 import { Popup, useMapEvent, useMapEvents, Marker } from "react-leaflet";
 import { Typography, Row, Col, Card, Space, Button } from "antd";
 
@@ -38,6 +40,9 @@ const MapMarker: React.FC<IProps> = ({
         icon={iconMarker}
         eventHandlers={{
           mouseover: (event) => event.target.openPopup(),
+          click: (event) => {
+            window.open("/detail");
+          },
         }}
       >
         <Popup className="vw-50">
