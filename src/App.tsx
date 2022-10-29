@@ -1,16 +1,22 @@
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
+
+
 import "./assets/style/App.scss";
+// import './assets/style/_custome.scss'
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import "antd/dist/antd.css";
 
-import TestMap from "./components/testMap";
-import Homepage from "./pages/Home/Home";
+import AppRoutes from "./router/AppRoutes";
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <Homepage />
-    </div>
+    <>
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
+    </>
   );
 };
 
