@@ -112,7 +112,6 @@ const Map: React.FC = () => {
           const arrPlace: place[] = [];
 
           res.data.forEach((item: any) => {
-            console.log(item.name);
             const { id, name, address, lat, lng, thumbnail } = item;
             const newPlace = { id, name, address, lat, lng, thumbnail };
             arrPlace.push(newPlace);
