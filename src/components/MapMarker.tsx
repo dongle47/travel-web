@@ -2,7 +2,7 @@ import React from "react";
 import { Navigate, Link } from "react-router-dom";
 
 import { Popup, useMapEvent, useMapEvents, Marker } from "react-leaflet";
-import { Typography, Row, Col, Card, Space, Button } from "antd";
+import { Typography, Row, Col, Card, Space, Button, Rate } from "antd";
 
 import { Icon } from "leaflet";
 const { Meta } = Card;
@@ -60,8 +60,11 @@ const MapMarker: React.FC<IProps> = ({
             />
             <Row className="p-2" align="top" justify="center">
               <Col span={16}>
-                <Title level={5}>{title}</Title>
-                <Text>{address}</Text>
+                <Title className="font-1" level={5}>
+                  {title}
+                </Title>
+                <Rate style={{ width: "10rem" }} allowHalf defaultValue={3.5} />
+                <Text className="font-1">{address}</Text>
               </Col>
               <Col className="mr-0" span={8}>
                 <Space size={10}>

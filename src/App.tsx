@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-
+import 'swiper/css'
 
 import "./assets/style/App.scss";
 // import './assets/style/_custome.scss'
