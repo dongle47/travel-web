@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import "./DetailPlace.scss";
+
 import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+// import required modules
+import { Pagination, Navigation } from "swiper";
 
 import {
   Typography,
@@ -165,9 +173,14 @@ const DetailPlace: React.FC = () => {
             align="center"
             size={25}
           >
-            <i
+            {/* <i
               style={{ fontSize: "3rem" }}
               className="fa-solid fa-mountain-sun text-white mt-5"
+            ></i> */}
+
+            <i
+              style={{ fontSize: "3rem" }}
+              className="fa-solid fa-umbrella-beach text-white mt-5"
             ></i>
 
             <div style={{ textAlign: "center", width: "40rem" }}>
@@ -289,29 +302,38 @@ const DetailPlace: React.FC = () => {
           </Col>
         </Row>
 
-        <Row
-          style={{ marginTop: "5rem" }}
-          className="w-100 "
-          justify="center"
-          gutter={20}
+        <Swiper
+          loop={true}
+          pagination={{
+            type: "fraction",
+          }}
+          navigation={true}
+          modules={[Pagination, Navigation]}
+          className="mySwiper"
         >
-          <Col>
-            <img
-              width={470}
+          <SwiperSlide>
+            <Image
+              width={500}
               height={250}
-              alt=""
               src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/08/brazil-single-2-2.jpg"
             />
-          </Col>
-          <Col>
-            <img
-              width={470}
+          </SwiperSlide>
+          <SwiperSlide>
+            <Image
+              width={500}
               height={250}
-              alt=""
-              src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/08/brazil-single-2-2.jpg"
+              src="https://6f3ebe2ff971707.cmccloud.com.vn/tour/wp-content/uploads/2022/03/202005171129SA19.jpeg"
             />
-          </Col>
-        </Row>
+          </SwiperSlide>
+          <SwiperSlide>
+            <Image
+              width={500}
+              height={250}
+              src="https://hoangthinhtravel.com/images/hoangthinhtravel.com/2021/11/bai-tam-quy-nhon-1637689113-1301686.jpg"
+            />
+          </SwiperSlide>
+        </Swiper>
+
         <div
           style={{
             backgroundColor: "#F7FAFB",
@@ -329,7 +351,7 @@ const DetailPlace: React.FC = () => {
               <img
                 className="rounded-circle"
                 height={500}
-                width={350}
+                width={400}
                 alt=""
                 src="https://prod-virtuoso.dotcmscloud.com/dA/188da7ea-f44f-4b9c-92f9-6a65064021c1/previewImage/PowerfulReasons_hero.jpg"
               />
@@ -360,7 +382,7 @@ const DetailPlace: React.FC = () => {
 
                 <Modal
                   open={open}
-                  title="Title"
+                  title="Đánh giá"
                   onOk={handleOk}
                   onCancel={handleCancel}
                   footer={[
