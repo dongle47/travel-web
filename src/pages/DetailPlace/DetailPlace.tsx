@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./DetailPlace.scss";
 
+import { Header, Footer } from "../../components";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
@@ -160,8 +162,10 @@ const DetailPlace: React.FC = () => {
   };
 
   return (
-    <div style={{ height: "200rem" }} className="primary-font">
-      <Row style={{}} className="pdlr-4">
+    <div style={{ minHeight: "200rem" }} className="primary-font px-5">
+      <Header />
+
+      <Row style={{}} className="pdlr-4 mb-5">
         <Row
           style={{ marginTop: "6rem" }}
           className="bg-img rounded"
@@ -219,12 +223,12 @@ const DetailPlace: React.FC = () => {
         </Row>
 
         <Row
-          style={{ marginTop: "8rem", padding: "0" }}
+          style={{ marginTop: "5rem", padding: "0" }}
           justify="center"
           align="middle"
           gutter={100}
         >
-          <Col span={7}>
+          <Col span={9}>
             <Space direction="vertical" size={10}>
               <Text style={{ fontSize: "2rem" }} className="" strong>
                 Tên địa điểm
@@ -236,15 +240,22 @@ const DetailPlace: React.FC = () => {
               >
                 Loại địa điểm
               </Text>
-              <Text>
+
+              <Text className="fs-6">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Inventore id iure maxime repellendus a rem quisquam eum nisi et
                 aliquam deserunt quam architecto ducimus magnam, doloribus sint,
                 consequatur, nemo ipsam!
               </Text>
+
+              <Text className="fs-6">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Inventore id iure maxime repellendus a rem quisquam eum nisi et
+              </Text>
+
               <Button
                 style={{ width: "15rem", height: "3rem" }}
-                className="bg-black mt-3"
+                className="bg-black mt-5"
               >
                 <Text className="text-white fs-6">Check in</Text>
                 <i
@@ -291,7 +302,7 @@ const DetailPlace: React.FC = () => {
             <img
               // width={480}
               className="w-100 video-detail"
-              height={600}
+              height={500}
               alt=""
               src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/08/brazil-single-2-2.jpg"
             />
@@ -304,6 +315,9 @@ const DetailPlace: React.FC = () => {
 
         <Swiper
           loop={true}
+          slidesPerView={3}
+          centeredSlides={true}
+          spaceBetween={30}
           pagination={{
             type: "fraction",
           }}
@@ -332,6 +346,13 @@ const DetailPlace: React.FC = () => {
               src="https://hoangthinhtravel.com/images/hoangthinhtravel.com/2021/11/bai-tam-quy-nhon-1637689113-1301686.jpg"
             />
           </SwiperSlide>
+          <SwiperSlide>
+            <Image
+              width={500}
+              height={250}
+              src="https://www.icisequynhon.com/wp-content/uploads/2020/05/quynhon-binhdinh.jpg"
+            />
+          </SwiperSlide>
         </Swiper>
 
         <div
@@ -345,6 +366,11 @@ const DetailPlace: React.FC = () => {
           {/* <Row>
             <Title>ĐÁNH GIÁ</Title>
           </Row> */}
+
+          <Space direction="vertical">
+            <Title className="m-0">Bình luận và</Title>
+            <Title style={{ color: "#FF7424" }}>Đánh giá</Title>
+          </Space>
 
           <Row justify="center" align="middle" gutter={100}>
             <Col>
@@ -442,7 +468,7 @@ const DetailPlace: React.FC = () => {
             </Text>
           </Divider>
 
-          <Row justify="center">
+          {/* <Row justify="center">
             <Row className="w-50">
               <Space className="w-100" direction="vertical" align="start">
                 <Space size={30}>
@@ -521,6 +547,205 @@ const DetailPlace: React.FC = () => {
                   2
                 </Button>
               </Space>
+            </Row>
+          </Row> */}
+
+          <Row justify="start">
+            <Row style={{ marginLeft: "8rem" }} className="w-75">
+              <Row className="w-100" align="middle">
+                <Space size={25}>
+                  <Avatar
+                    size={64}
+                    src="https://wegotthiscovered.com/wp-content/uploads/2022/08/Vegeta.jpeg"
+                  />
+                  <Text className="fs-5 text-center" strong>
+                    Tên người dùng
+                  </Text>
+                </Space>
+              </Row>
+
+              <Row className="mt-2">
+                <Rate
+                  style={{ color: "#FF7424" }}
+                  className="fs-5"
+                  disabled
+                  allowHalf={true}
+                  defaultValue={2.5}
+                />
+              </Row>
+
+              <Row className="mt-3">
+                <Col span={2}>
+                  <i
+                    style={{ color: "#FF7424" }}
+                    className="fa-solid fa-quote-left fs-1"
+                  ></i>
+                </Col>
+                <Col span={22}>
+                  <Row>
+                    <Text className="fs-6" strong>
+                      A Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Sed nesciunt officiis provident similique reprehenderit
+                      optio nihil sequi, corporis neque earum voluptatum ratione
+                      pariatur deserunt placeat tempora rem a, modi ipsum!
+                    </Text>
+                  </Row>
+
+                  <Row className="mt-3">
+                    <Image.PreviewGroup>
+                      {[0, 1, 2].map((item) => (
+                        <div className="me-2">
+                          <Image
+                            height={100}
+                            width={100}
+                            src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/08/brazil-single-2-2.jpg"
+                          />
+                        </div>
+                      ))}
+                    </Image.PreviewGroup>
+                  </Row>
+
+                  <Row className="mt-3" gutter={100}>
+                    <Col>
+                      <Space className="w-100 d-flex justify-content-start">
+                        <Button
+                          className="d-flex align-items-center justify-content-center"
+                          type="primary"
+                          style={{
+                            width: "5rem",
+                            height: "2rem",
+                            // backgroundColor: "#FF7424",
+                          }}
+                          icon={<LikeOutlined className="text-primary" />}
+                          ghost
+                        >
+                          5
+                        </Button>
+                        <Button
+                          className="d-flex align-items-center justify-content-center"
+                          type="primary"
+                          style={{
+                            width: "5rem",
+                            height: "2rem",
+                            // backgroundColor: "#FF7424",
+                          }}
+                          icon={<DislikeOutlined className="text-danger" />}
+                          danger
+                          ghost
+                        >
+                          2
+                        </Button>
+                      </Space>
+                    </Col>
+                    <Col>
+                      <Button
+                        className="d-flex align-items-center"
+                        type="text"
+                        icon={<CommentOutlined className="fs-6" />}
+                      >
+                        <Text strong>Phản hồi</Text>
+                      </Button>
+                    </Col>
+                  </Row>
+
+                  <div>
+                    {[0, 1, 2].map((item) => (
+                      <Row style={{ marginLeft: "0" }} className="w-75 mt-4">
+                        <Row className="w-100" align="middle">
+                          <Space size={25}>
+                            <Avatar
+                              size={40}
+                              src="https://wegotthiscovered.com/wp-content/uploads/2022/08/Vegeta.jpeg"
+                            />
+                            <Text
+                              style={{ fontSize: "0.9rem" }}
+                              className="text-center"
+                              strong
+                            >
+                              Tên người dùng
+                            </Text>
+                          </Space>
+                        </Row>
+
+                        <Row className="mt-2">
+                          <Col span={2}>
+                            <i
+                              style={{ color: "#FF7424" }}
+                              className="fa-solid fa-quote-left fs-3"
+                            ></i>
+                          </Col>
+                          <Col span={22}>
+                            <Row>
+                              <Text
+                                style={{ fontSize: "0.8rem" }}
+                                className=""
+                                strong
+                              >
+                                A Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Sed nesciunt officiis
+                                provident similique reprehenderit optio nihil
+                                sequi, corporis neque earum voluptatum ratione
+                                pariatur deserunt placeat tempora rem a, modi
+                                ipsum!
+                              </Text>
+                            </Row>
+
+                            {/* <Row className="mt-3">
+                          <Image.PreviewGroup>
+                            {[0, 1, 2].map((item) => (
+                              <div className="me-2">
+                                <Image
+                                  height={100}
+                                  width={100}
+                                  src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/08/brazil-single-2-2.jpg"
+                                />
+                              </div>
+                            ))}
+                          </Image.PreviewGroup>
+                        </Row> */}
+
+                            <Row className="mt-1 ms-1" gutter={100}>
+                              <Space className="w-100 d-flex justify-content-start">
+                                <Button
+                                  className="d-flex align-items-center justify-content-center"
+                                  type="text"
+                                  style={{
+                                    width: "100%",
+                                    height: "1.5rem",
+                                    // backgroundColor: "#FF7424",
+                                  }}
+                                  icon={
+                                    <LikeOutlined className="text-primary" />
+                                  }
+                                  ghost
+                                >
+                                  5
+                                </Button>
+                                <Button
+                                  className="d-flex align-items-center justify-content-center"
+                                  type="text"
+                                  style={{
+                                    width: "100%",
+                                    height: "1.5rem",
+                                    // backgroundColor: "#FF7424",
+                                  }}
+                                  icon={
+                                    <DislikeOutlined className="text-danger" />
+                                  }
+                                  danger
+                                  ghost
+                                >
+                                  2
+                                </Button>
+                              </Space>
+                            </Row>
+                          </Col>
+                        </Row>
+                      </Row>
+                    ))}
+                  </div>
+                </Col>
+              </Row>
             </Row>
           </Row>
 
@@ -695,6 +920,8 @@ const DetailPlace: React.FC = () => {
           </Button>
         </Row>
       </Row>
+
+      <Footer />
     </div>
   );
 };
