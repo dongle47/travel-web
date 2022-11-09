@@ -19,10 +19,15 @@ const { Meta } = Card;
 
 const Homepage: React.FC = () => {
   return (
-    <div className="container-home">
+    <div className="container-home px-5">
       <Header />
 
-      <Row className="position-relative  mt-3" justify="center" align="middle">
+      <Row
+        style={{ marginTop: "5rem" }}
+        className="position-relative"
+        justify="center"
+        align="middle"
+      >
         <Col className="position-relative">
           <img
             width={1150}

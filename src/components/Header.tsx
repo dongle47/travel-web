@@ -12,11 +12,11 @@ import {
   GlobalOutlined,
 } from "@ant-design/icons";
 
-const {Text } = Typography;
+const { Text } = Typography;
 
 const Header: React.FC = () => {
   return (
-    <Row style={{ marginTop: "1rem" }} justify="space-between" align="middle">
+    <Row className="header-homepage" justify="space-between" align="middle">
       <Col>
         <Space>
           <GlobalOutlined style={{ fontSize: "1.5rem", color: "grey" }} />

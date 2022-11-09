@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./DetailPlace.scss";
 
+import { Header, Footer } from "../../components";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
@@ -160,8 +162,10 @@ const DetailPlace: React.FC = () => {
   };
 
   return (
-    <div style={{ height: "200rem" }} className="primary-font">
-      <Row style={{}} className="pdlr-4">
+    <div style={{ minHeight: "200rem" }} className="primary-font px-5">
+      <Header />
+
+      <Row style={{}} className="pdlr-4 mb-5">
         <Row
           style={{ marginTop: "6rem" }}
           className="bg-img rounded"
@@ -916,6 +920,8 @@ const DetailPlace: React.FC = () => {
           </Button>
         </Row>
       </Row>
+
+      <Footer />
     </div>
   );
 };
