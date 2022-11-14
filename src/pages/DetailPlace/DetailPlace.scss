@@ -28,7 +28,7 @@
 .bg-img{
   position: relative;
   background-image: url("https://6f3ebe2ff971707.cmccloud.com.vn/tour/wp-content/uploads/2022/03/202005171129SA19.jpeg"), linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(117, 19, 93, 0.73));
-  height: 35rem;
+  height: 40rem;
   width: 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -36,7 +36,6 @@
 }
 
 .layer{
-    background-color: rgba(0, 0, 0, 0.310);
     position: absolute;
     top: 0;
     left: 0;
@@ -46,10 +45,6 @@
 
 .video-detail{
     position: relative;
-}
-
-.bg-img-reviews{
-    
 }
 
 .swiper {
@@ -83,4 +78,12 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.trapezoid {
+  border-bottom: 14rem solid #FF7424;
+  border-left: 1rem solid transparent;
+  border-right: 1rem solid transparent;
+  height: 0;
+  width: 9rem;
 }

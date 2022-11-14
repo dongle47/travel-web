@@ -12,6 +12,10 @@ import "swiper/css/navigation";
 // import required modules
 import { Pagination, Navigation } from "swiper";
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import ReactReadMoreReadLess from "react-read-more-read-less";
+
 import {
   Typography,
   Row,
@@ -50,6 +54,7 @@ import Icon, {
   LikeOutlined,
   DislikeOutlined,
   PlusOutlined,
+  EllipsisOutlined,
 } from "@ant-design/icons";
 
 import ggMapIcon from "../../assets/img/Google_Maps.svg.png";
@@ -162,74 +167,74 @@ const DetailPlace: React.FC = () => {
   };
 
   return (
-    <div style={{ minHeight: "200rem" }} className="primary-font px-5">
+    <div style={{ minHeight: "200rem" }} className="primary-font">
       <Header />
 
-      <Row style={{}} className="pdlr-4 mb-5">
+      <Row style={{}} className="mb-5">
         <Row
           style={{ marginTop: "6rem" }}
           className="bg-img rounded"
           justify="center"
         >
-          <Space
-            className="layer rounded"
-            direction="vertical"
-            align="center"
-            size={25}
-          >
-            {/* <i
-              style={{ fontSize: "3rem" }}
-              className="fa-solid fa-mountain-sun text-white mt-5"
-            ></i> */}
-
-            <i
-              style={{ fontSize: "3rem" }}
-              className="fa-solid fa-umbrella-beach text-white mt-5"
-            ></i>
-
-            <div style={{ textAlign: "center", width: "40rem" }}>
-              <Text style={{ fontSize: "3rem" }} className="text-white">
-                TÊN ĐỊA ĐIỂM
-              </Text>
-            </div>
-
+          <Col span={12} className="position-relative">
             <div
               style={{
-                margin: "0 auto",
-                textAlign: "center",
-                backgroundColor: "white",
-                width: "15rem",
-                height: "0.4rem",
+                width: "75%",
+                backgroundColor: "#292D33",
+                zIndex: 1,
+                top: 80,
               }}
-            ></div>
-            <div style={{ textAlign: "center", width: "40rem" }}>
-              <Text style={{ fontSize: "1rem" }} className="text-white" strong>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe,
-                cum animi aperiam recusandae quia consectetur, nobis adipisci
-                officiis eaque tenetur est deserunt obcaecati iste optio vitae
-                quibusdam sapiente maxime neque.
-              </Text>
-            </div>
-
-            <Button
-              style={{ width: "12rem", height: "2.5rem" }}
-              className="mt-3"
+              className="h-50 ms-5 p-4 position-absolute"
             >
-              <Text className="" strong>
-                READ MORE
-              </Text>
-            </Button>
-          </Space>
+              <Title className="text-white" level={3}>
+                HIKING & TREKKING
+              </Title>
+              <Title className="text-white" level={2}>
+                Hike the amazing mountains
+              </Title>
+              <Text className="text-white">Image from </Text>
+            </div>
+            <div
+              style={{
+                backgroundColor: "#F86449",
+                width: "12rem",
+                height: "90%",
+                top: 40,
+                left: 400,
+                zIndex: 0,
+              }}
+              className="position-absolute"
+            ></div>
+          </Col>
+          <Col className="position-relative" span={12}>
+            <div
+              style={{ width: "75%", bottom: 100 }}
+              className="bg-white position-absolute shadow p-5"
+            >
+              <Space direction="vertical" size={25}>
+                <Title level={3}>
+                  Check out all of these physical benefits of hiking
+                </Title>
+                <Text>
+                  Massa ultricies mi quis hendrerit. Ac ut consequat semper
+                  viverra nam. Libero id faucibus nisl tincidunt eget nullam non
+                  nisi est. Arcu odio ut sem nulla. Amet tellus cras adipiscing
+                  enim. Et magnis dis parturient montes. Imperdiet sed euismod
+                  nisi porta lorem mollis.
+                </Text>
+                <Button className="border-black">LEARN MORE</Button>
+              </Space>
+            </div>
+          </Col>
         </Row>
 
         <Row
-          style={{ marginTop: "5rem", padding: "0" }}
+          style={{ marginTop: "5rem", padding: "0 6rem" }}
           justify="center"
           align="middle"
-          gutter={100}
         >
-          <Col span={9}>
-            <Space direction="vertical" size={10}>
+          <Col span={6}>
+            <Space style={{}} className="" direction="vertical" size={15}>
               <Text style={{ fontSize: "2rem" }} className="" strong>
                 Tên địa điểm
               </Text>
@@ -241,25 +246,20 @@ const DetailPlace: React.FC = () => {
                 Loại địa điểm
               </Text>
 
-              <Text className="fs-6">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Inventore id iure maxime repellendus a rem quisquam eum nisi et
-                aliquam deserunt quam architecto ducimus magnam, doloribus sint,
-                consequatur, nemo ipsam!
-              </Text>
-
-              <Text className="fs-6">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Inventore id iure maxime repellendus a rem quisquam eum nisi et
+              <Text style={{ fontSize: "0.9rem" }}>
+                Lorem ipsum dolor sit amet adipisicing elit. Inventore id iure
+                maxime repellendus a rem quisquam eum nisi et aliquam deserunt
+                quam architecto ducimus magnam, doloribus sint, consequatur,
+                nemo ipsam!
               </Text>
 
               <Button
                 style={{ width: "15rem", height: "3rem" }}
-                className="bg-black mt-5"
+                className="bg-black mt-2"
               >
                 <Text className="text-white fs-6">Check in</Text>
                 <i
-                  style={{ width: "1.5rem" }}
+                  style={{ width: "2rem" }}
                   className="fa-solid fa-arrow-right text-white "
                 ></i>
               </Button>
@@ -268,14 +268,19 @@ const DetailPlace: React.FC = () => {
 
           <Col
             style={{
-              backgroundColor: "#FF7424",
-              height: "50%",
+              height: "60%",
               width: "9rem",
             }}
-            className="p-0 d-flex justify-content-center align-items-center m-0"
+            className="d-flex justify-content-center"
+            span={6}
           >
-            <Space direction="vertical" align="center" size={20}>
-              <Row justify="center">
+            <Space
+              className="trapezoid pt-5"
+              direction="vertical"
+              align="center"
+              size={20}
+            >
+              <Row className="mt-3" justify="center">
                 <Space direction="vertical" align="center" size={3}>
                   <i className="fa-solid fa-location-dot text-white fs-3"></i>
                   <Text className="text-white fw-lighter">Lượt check in</Text>
@@ -300,8 +305,8 @@ const DetailPlace: React.FC = () => {
 
           <Col className="position-relative" span={10}>
             <img
-              // width={480}
-              className="w-100 video-detail"
+              width={480}
+              className="video-detail"
               height={500}
               alt=""
               src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/08/brazil-single-2-2.jpg"
@@ -313,66 +318,70 @@ const DetailPlace: React.FC = () => {
           </Col>
         </Row>
 
-        <Swiper
-          loop={true}
-          slidesPerView={3}
-          centeredSlides={true}
-          spaceBetween={30}
-          pagination={{
-            type: "fraction",
-          }}
-          navigation={true}
-          modules={[Pagination, Navigation]}
-          className="mySwiper"
-        >
-          <SwiperSlide>
-            <Image
-              width={500}
-              height={250}
-              src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/08/brazil-single-2-2.jpg"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              width={500}
-              height={250}
-              src="https://6f3ebe2ff971707.cmccloud.com.vn/tour/wp-content/uploads/2022/03/202005171129SA19.jpeg"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              width={500}
-              height={250}
-              src="https://hoangthinhtravel.com/images/hoangthinhtravel.com/2021/11/bai-tam-quy-nhon-1637689113-1301686.jpg"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Image
-              width={500}
-              height={250}
-              src="https://www.icisequynhon.com/wp-content/uploads/2020/05/quynhon-binhdinh.jpg"
-            />
-          </SwiperSlide>
-        </Swiper>
+        <Image.PreviewGroup>
+          <Row
+            style={{
+              textAlign: "center",
+              marginTop: "5rem",
+              width: "100%",
+              height: "700px",
+              padding: "0 0 0 5rem",
+            }}
+            justify="start"
+            align="top"
+            gutter={25}
+          >
+            <Col className="h-100" span={9}>
+              <Image
+                style={{}}
+                className="w-100 vh-100"
+                src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/08/brazil-single-2-2.jpg"
+              />
+            </Col>
+
+            <Col className="h-100" span={6}>
+              <Space className="vh-100" direction="vertical" size={10}>
+                <Image
+                  // style={{ width: "100%", height: "40%" }}
+                  className="w-100"
+                  src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/09/blog-post-h6-img2.jpg"
+                />
+                <Image
+                  // style={{ width: "100%", height: "40%" }}
+                  className="w-100"
+                  src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/09/blog-post-h6-img2.jpg"
+                />
+              </Space>
+            </Col>
+
+            <Col className="h-100" span={4}>
+              <Space className="vh-100" direction="vertical" size={10}>
+                {[0, 1, 2, 3, 4].map((item) => (
+                  <Image
+                    style={{ width: "14rem", height: "6rem" }}
+                    className=""
+                    src="https://prod-virtuoso.dotcmscloud.com/dA/188da7ea-f44f-4b9c-92f9-6a65064021c1/previewImage/PowerfulReasons_hero.jpg"
+                  />
+                ))}
+              </Space>
+            </Col>
+          </Row>
+        </Image.PreviewGroup>
 
         <div
           style={{
             backgroundColor: "#F7FAFB",
             marginTop: "5rem",
-            padding: "2rem 3rem",
+            padding: "2rem 0rem",
           }}
-          className="w-100  bg-img-reviews"
+          className="w-100"
         >
-          {/* <Row>
-            <Title>ĐÁNH GIÁ</Title>
-          </Row> */}
-
           <Space direction="vertical">
             <Title className="m-0">Bình luận và</Title>
             <Title style={{ color: "#FF7424" }}>Đánh giá</Title>
           </Space>
 
-          <Row justify="center" align="middle" gutter={100}>
+          <Row className="m-0" justify="center" align="middle" gutter={100}>
             <Col>
               <img
                 className="rounded-circle"
@@ -468,439 +477,105 @@ const DetailPlace: React.FC = () => {
             </Text>
           </Divider>
 
-          {/* <Row justify="center">
-            <Row className="w-50">
-              <Space className="w-100" direction="vertical" align="start">
-                <Space size={30}>
-                  <Avatar
-                    size={50}
-                    src="https://wegotthiscovered.com/wp-content/uploads/2022/08/Vegeta.jpeg"
-                  />
-                  <Text className="fs-6" strong>
-                    Tên người dùng
-                  </Text>
-                </Space>
-
-                <Space direction="vertical" size={10}>
-                  <Rate
-                    style={{ color: "#FF7424" }}
-                    disabled
-                    defaultValue={2}
-                  />
-
-                  <Space align="start" size={15}>
-                    <i
-                      style={{ color: "#FF7424" }}
-                      className="fa-solid fa-quote-left fs-1"
-                    ></i>
-
-                    <Text className="fs-6" strong>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Sed nesciunt officiis provident similique reprehenderit
-                      optio nihil sequi, corporis neque earum voluptatum ratione
-                      pariatur deserunt placeat tempora rem a, modi ipsum!
-                    </Text>
-                  </Space>
-
-                  <Row className="ms-5">
-                    <Image.PreviewGroup>
-                      {[0, 1, 2].map((item) => (
-                        <div className="me-2">
-                          <Image
-                            height={70}
-                            width={70}
-                            src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/08/brazil-single-2-2.jpg"
-                          />
-                        </div>
-                      ))}
-                    </Image.PreviewGroup>
-                  </Row>
-                </Space>
-              </Space>
-
-              <Space className="w-100 d-flex justify-content-start ms-5 mt-3">
-                <Button
-                  className="d-flex align-items-center justify-content-center"
-                  type="primary"
-                  style={{
-                    width: "5rem",
-                    height: "2rem",
-                    // backgroundColor: "#FF7424",
-                  }}
-                  icon={<LikeOutlined className="text-primary" />}
-                  ghost
-                >
-                  5
-                </Button>
-                <Button
-                  className="d-flex align-items-center justify-content-center"
-                  type="primary"
-                  style={{
-                    width: "5rem",
-                    height: "2rem",
-                    // backgroundColor: "#FF7424",
-                  }}
-                  icon={<DislikeOutlined className="text-danger" />}
-                  danger
-                  ghost
-                >
-                  2
-                </Button>
-              </Space>
-            </Row>
-          </Row> */}
-
-          <Row justify="start">
-            <Row style={{ marginLeft: "8rem" }} className="w-75">
-              <Row className="w-100" align="middle">
-                <Space size={25}>
-                  <Avatar
-                    size={64}
-                    src="https://wegotthiscovered.com/wp-content/uploads/2022/08/Vegeta.jpeg"
-                  />
-                  <Text className="fs-5 text-center" strong>
-                    Tên người dùng
-                  </Text>
-                </Space>
-              </Row>
-
-              <Row className="mt-2">
-                <Rate
-                  style={{ color: "#FF7424" }}
-                  className="fs-5"
-                  disabled
-                  allowHalf={true}
-                  defaultValue={2.5}
-                />
-              </Row>
-
-              <Row className="mt-3">
-                <Col span={2}>
-                  <i
-                    style={{ color: "#FF7424" }}
-                    className="fa-solid fa-quote-left fs-1"
-                  ></i>
-                </Col>
-                <Col span={22}>
-                  <Row>
-                    <Text className="fs-6" strong>
-                      A Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Sed nesciunt officiis provident similique reprehenderit
-                      optio nihil sequi, corporis neque earum voluptatum ratione
-                      pariatur deserunt placeat tempora rem a, modi ipsum!
-                    </Text>
-                  </Row>
-
-                  <Row className="mt-3">
-                    <Image.PreviewGroup>
-                      {[0, 1, 2].map((item) => (
-                        <div className="me-2">
-                          <Image
-                            height={100}
-                            width={100}
-                            src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/08/brazil-single-2-2.jpg"
-                          />
-                        </div>
-                      ))}
-                    </Image.PreviewGroup>
-                  </Row>
-
-                  <Row className="mt-3" gutter={100}>
-                    <Col>
-                      <Space className="w-100 d-flex justify-content-start">
-                        <Button
-                          className="d-flex align-items-center justify-content-center"
-                          type="primary"
-                          style={{
-                            width: "5rem",
-                            height: "2rem",
-                            // backgroundColor: "#FF7424",
-                          }}
-                          icon={<LikeOutlined className="text-primary" />}
-                          ghost
-                        >
-                          5
-                        </Button>
-                        <Button
-                          className="d-flex align-items-center justify-content-center"
-                          type="primary"
-                          style={{
-                            width: "5rem",
-                            height: "2rem",
-                            // backgroundColor: "#FF7424",
-                          }}
-                          icon={<DislikeOutlined className="text-danger" />}
-                          danger
-                          ghost
-                        >
-                          2
-                        </Button>
-                      </Space>
-                    </Col>
-                    <Col>
-                      <Button
-                        className="d-flex align-items-center"
-                        type="text"
-                        icon={<CommentOutlined className="fs-6" />}
-                      >
-                        <Text strong>Phản hồi</Text>
-                      </Button>
-                    </Col>
-                  </Row>
-
-                  <div>
-                    {[0, 1, 2].map((item) => (
-                      <Row style={{ marginLeft: "0" }} className="w-75 mt-4">
-                        <Row className="w-100" align="middle">
-                          <Space size={25}>
-                            <Avatar
-                              size={40}
-                              src="https://wegotthiscovered.com/wp-content/uploads/2022/08/Vegeta.jpeg"
-                            />
-                            <Text
-                              style={{ fontSize: "0.9rem" }}
-                              className="text-center"
-                              strong
-                            >
-                              Tên người dùng
-                            </Text>
-                          </Space>
-                        </Row>
-
-                        <Row className="mt-2">
-                          <Col span={2}>
-                            <i
-                              style={{ color: "#FF7424" }}
-                              className="fa-solid fa-quote-left fs-3"
-                            ></i>
-                          </Col>
-                          <Col span={22}>
-                            <Row>
-                              <Text
-                                style={{ fontSize: "0.8rem" }}
-                                className=""
-                                strong
-                              >
-                                A Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Sed nesciunt officiis
-                                provident similique reprehenderit optio nihil
-                                sequi, corporis neque earum voluptatum ratione
-                                pariatur deserunt placeat tempora rem a, modi
-                                ipsum!
-                              </Text>
-                            </Row>
-
-                            {/* <Row className="mt-3">
-                          <Image.PreviewGroup>
-                            {[0, 1, 2].map((item) => (
-                              <div className="me-2">
-                                <Image
-                                  height={100}
-                                  width={100}
-                                  src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/08/brazil-single-2-2.jpg"
-                                />
-                              </div>
-                            ))}
-                          </Image.PreviewGroup>
-                        </Row> */}
-
-                            <Row className="mt-1 ms-1" gutter={100}>
-                              <Space className="w-100 d-flex justify-content-start">
-                                <Button
-                                  className="d-flex align-items-center justify-content-center"
-                                  type="text"
-                                  style={{
-                                    width: "100%",
-                                    height: "1.5rem",
-                                    // backgroundColor: "#FF7424",
-                                  }}
-                                  icon={
-                                    <LikeOutlined className="text-primary" />
-                                  }
-                                  ghost
-                                >
-                                  5
-                                </Button>
-                                <Button
-                                  className="d-flex align-items-center justify-content-center"
-                                  type="text"
-                                  style={{
-                                    width: "100%",
-                                    height: "1.5rem",
-                                    // backgroundColor: "#FF7424",
-                                  }}
-                                  icon={
-                                    <DislikeOutlined className="text-danger" />
-                                  }
-                                  danger
-                                  ghost
-                                >
-                                  2
-                                </Button>
-                              </Space>
-                            </Row>
-                          </Col>
-                        </Row>
-                      </Row>
-                    ))}
-                  </div>
-                </Col>
-              </Row>
-            </Row>
-          </Row>
-
-          {/* {[0, 1, 2].map((item) => (
-            <Row
-              style={{ marginTop: "4rem" }}
-              className="bg-white p-4"
-              justify="start"
-              align="middle"
-            >
-              <Col span={10} className="">
-                <Space className="d-flex" direction="vertical" align="center">
-                  <Avatar
-                    size={100}
-                    src="https://wegotthiscovered.com/wp-content/uploads/2022/08/Vegeta.jpeg"
-                  />
-                  <Text className="fs-3" strong>
-                    Tên người dùng
-                  </Text>
-                  <Text className="fs-4" type="secondary">
-                    Ngày đăng
-                  </Text>
-                </Space>
-              </Col>
-
-              <Col className="" span={14}>
-                <Space className="d-flex " direction="vertical" size={5}>
-                  <Row>
-                    <Space>
-                      <StarFilled className="fs-3 text-warning" />
-                      <StarFilled className="fs-3 text-warning" />
-                      <StarFilled className="fs-3 text-warning" />
-                      <StarOutlined className="fs-3" />
-                      <StarOutlined className="fs-3" />
-                    </Space>
-                  </Row>
-
-                  <Row>
-                    <Text className="fs-6">
-                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                      Recusandae hic quis facilis quae perspiciatis, ullam sint
-                      aut autem molestias! Natus, incidunt impedit? Soluta odit
-                      sequi nemo possimus laudantium fugit? Animi.
-                    </Text>
-                  </Row>
-
-                  <Row>
-                    <Image.PreviewGroup>
-                      {[0, 1, 2].map((item) => (
-                        <div className="me-3">
-                          <Image
-                            height={100}
-                            width={100}
-                            src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/08/brazil-single-2-2.jpg"
-                          />
-                        </div>
-                      ))}
-                    </Image.PreviewGroup>
-                  </Row>
-
-                  <Row className="mt-1">
-                    <Button
-                      className="bg-white text-primary me-3"
-                      type="text"
-                      icon={<LikeTwoTone className="fs-2" />}
-                    >
-                      5
-                    </Button>
-                    <Button
-                      className="bg-white text-danger"
-                      type="text"
-                      danger
-                      icon={
-                        <DislikeTwoTone
-                          className="fs-2"
-                          twoToneColor="#FF0000"
-                        />
-                      }
-                    >
-                      1
-                    </Button>
-                  </Row>
-                </Space>
-              </Col>
-            </Row>
-          ))} */}
-
-          {/* {[0, 1, 2, 3, 4].map((item) => (
-            <div style={{ marginTop: "5rem" }} className="">
-              <Row justify="start" align="top">
-                <Col span={5}>
-                  <Space direction="vertical" align="center">
+          <Row className="w-100" justify="center">
+            <Row style={{}} className="w-75 mb-5" gutter={25}>
+              <Col span={5}>
+                <Row gutter={10} align="middle">
+                  <Col>
                     <Avatar
-                      size={60}
-                      src="https://wegotthiscovered.com/wp-content/uploads/2022/08/Vegeta.jpeg"
+                      size={50}
+                      src="https://wegotthiscovered.com/wp-content/uploads/2022/08/Vegeta-1200x900.jpeg"
                     />
-                    <Space direction="vertical">
+                  </Col>
+                  <Col>
+                    <Space direction="vertical" size={0}>
                       <Text strong>Tên người dùng</Text>
-                      <Text type="secondary">Tên người dùng</Text>
+                      <Text>Địa điểm</Text>
                     </Space>
+                  </Col>
+                </Row>
+              </Col>
+
+              <Col span={11}>
+                <Row className="mb-1">
+                  <Space size={3}>
+                    <StarFilled
+                      style={{ color: "#292D33", fontSize: "1.2rem" }}
+                    />
+                    <StarFilled
+                      style={{ color: "#292D33", fontSize: "1.2rem" }}
+                    />
+                    <StarFilled
+                      style={{ color: "#292D33", fontSize: "1.2rem" }}
+                    />
+                    <StarFilled
+                      style={{ color: "#E0E0E3", fontSize: "1.2rem" }}
+                    />
+                    <StarFilled
+                      style={{ color: "#E0E0E3", fontSize: "1.2rem" }}
+                    />
                   </Space>
-                </Col>
+                </Row>
+                <Row className="mb-1">
+                  <Text strong>Highly Recommended Coffee</Text>
+                </Row>
+                <Row className="mb-1 text-secondary">
+                  <ReactReadMoreReadLess
+                    charLimit={150}
+                    readMoreText={"Read more ▼"}
+                    readLessText={"Read less ▲"}
+                  >
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Illo molestias expedita officiis obcaecati, vel ea. Tempora
+                    blanditiis enim laudantium, magni ullam dignissimos nemo
+                    rerum eius reiciendis ipsam perspiciatis accusamus
+                    accusantium!
+                  </ReactReadMoreReadLess>
+                </Row>
+              </Col>
+              <Col span={4}>
+                <Text style={{ fontSize: "0.8rem" }} className="text-secondary">
+                  15/11/2022 1:26 AM
+                </Text>
+              </Col>
+              <Col span={3}>
+                <Space direction="vertical">
+                  <Button
+                    style={{ width: "5rem" }}
+                    type="primary"
+                    size="small"
+                    shape="round"
+                    ghost
+                  >
+                    Like
+                  </Button>
+                  <Button
+                    style={{ width: "5rem" }}
+                    type="primary"
+                    size="small"
+                    shape="round"
+                    ghost
+                    danger
+                  >
+                    Dislike
+                  </Button>
+                  <Button
+                    style={{ width: "5rem" }}
+                    className="mt-1"
+                    size="small"
+                    shape="round"
+                  >
+                    Trả lời
+                  </Button>
+                </Space>
+              </Col>
+              <Col span={1}>
+                <EllipsisOutlined className="fs-5" />
+              </Col>
+            </Row>
 
-                <Col span={18}>
-                  <Row>
-                    <Rate disabled defaultValue={2} />
-                  </Row>
-
-                  <Row>
-                    <Text className="fs-6">
-                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                      Recusandae hic quis facilis quae perspiciatis, ullam sint
-                      aut autem molestias! Natus, incidunt impedit? Soluta odit
-                      sequi nemo possimus laudantium fugit? Animi.
-                    </Text>
-                  </Row>
-
-                  <Row>
-                    <Image.PreviewGroup>
-                      <div className="me-3">
-                        <Image
-                          height={150}
-                          width={150}
-                          src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/08/brazil-single-2-2.jpg"
-                        />
-                      </div>
-                      <div>
-                        <Image
-                          height={150}
-                          width={150}
-                          src="https://cdn.pixabay.com/photo/2012/08/27/14/19/mountains-55067__340.png"
-                        />
-                      </div>
-                    </Image.PreviewGroup>
-                  </Row>
-
-                  <Row className="mt-4">
-                    <Button
-                      className="bg-white text-primary me-3"
-                      type="primary"
-                    >
-                      Like (50)
-                    </Button>
-                    <Button
-                      className="bg-white text-danger"
-                      type="primary"
-                      danger
-                    >
-                      Dislike (3)
-                    </Button>
-                  </Row>
-                </Col>
-              </Row>
-            </div>
-          ))} */}
+            
+          </Row>
         </div>
 
         <Row className="w-100 mt-5" justify="center" gutter={25}>
