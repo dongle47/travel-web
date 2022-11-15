@@ -11,13 +11,14 @@ import {
 } from "@ant-design/icons";
 
 const { Title, Text } = Typography;
+import logo from "../assets/img/GameOn.png";
 
 const Footer: React.FC = () => {
   return (
-    <Row style={{ height: "20rem" }} justify="center">
+    <Row style={{ height: "20rem" }} className="px-5" justify="center">
       <Col span={12}>
         <Space direction="vertical" size={20}>
-          <Title style={{ margin: 0 }}>Virtual Travel</Title>
+          <img height={80} src={logo} alt="" />
           <div style={{ width: "30rem" }}>
             <Text>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum

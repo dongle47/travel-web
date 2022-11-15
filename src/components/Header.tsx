@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Typography, Row, Col, Space, Button } from "antd";
-import logo from "../assets/img/logo.png";
+import logo from "../assets/img/GameOn.png";
 
 import {
   InstagramOutlined,
