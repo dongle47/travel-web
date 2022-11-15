@@ -57,6 +57,7 @@ import Icon, {
   EllipsisOutlined,
   EnterOutlined,
   MessageOutlined,
+  EnvironmentOutlined,
 } from "@ant-design/icons";
 
 import ggMapIcon from "../../assets/img/Google_Maps.svg.png";
@@ -295,7 +296,7 @@ const DetailPlace: React.FC = () => {
             >
               <Row className="mt-3" justify="center">
                 <Space direction="vertical" align="center" size={3}>
-                  <i className="fa-solid fa-location-dot text-white fs-3"></i>
+                  <EnvironmentOutlined className="text-white fs-3" />
                   <Text className="text-white fw-lighter">Lượt check in</Text>
                 </Space>
               </Row>
@@ -529,13 +530,13 @@ const DetailPlace: React.FC = () => {
                 <Row className="mb-1">
                   <Space size={3}>
                     <StarFilled
-                      style={{ color: "#292D33", fontSize: "1.2rem" }}
+                      style={{ color: "#FFC107", fontSize: "1.2rem" }}
                     />
                     <StarFilled
-                      style={{ color: "#292D33", fontSize: "1.2rem" }}
+                      style={{ color: "#FFC107", fontSize: "1.2rem" }}
                     />
                     <StarFilled
-                      style={{ color: "#292D33", fontSize: "1.2rem" }}
+                      style={{ color: "#FFC107", fontSize: "1.2rem" }}
                     />
                     <StarFilled
                       style={{ color: "#E0E0E3", fontSize: "1.2rem" }}
