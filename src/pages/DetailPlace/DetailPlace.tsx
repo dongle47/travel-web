@@ -55,6 +55,8 @@ import Icon, {
   DislikeOutlined,
   PlusOutlined,
   EllipsisOutlined,
+  EnterOutlined,
+  MessageOutlined,
 } from "@ant-design/icons";
 
 import ggMapIcon from "../../assets/img/Google_Maps.svg.png";
@@ -172,35 +174,38 @@ const DetailPlace: React.FC = () => {
 
       <Row style={{}} className="mb-5">
         <Row
-          style={{ marginTop: "6rem" }}
+          style={{ marginTop: "5rem" }}
           className="bg-img rounded"
           justify="center"
         >
           <Col span={12} className="position-relative">
             <div
               style={{
-                width: "75%",
+                width: "70%",
                 backgroundColor: "#292D33",
+                padding: "2rem",
                 zIndex: 1,
                 top: 80,
               }}
-              className="h-50 ms-5 p-4 position-absolute"
+              className="h-50 ms-5 p-5 position-absolute"
             >
-              <Title className="text-white" level={3}>
+              <Text style={{ fontSize: "1.6rem" }} className="text-white">
                 HIKING & TREKKING
-              </Title>
-              <Title className="text-white" level={2}>
+              </Text>
+              <Title
+                style={{ fontSize: "2.8rem" }}
+                className="text-white fw-light m-0 mt-4"
+              >
                 Hike the amazing mountains
               </Title>
-              <Text className="text-white">Image from </Text>
             </div>
             <div
               style={{
                 backgroundColor: "#F86449",
-                width: "12rem",
+                width: "14rem",
                 height: "90%",
                 top: 40,
-                left: 400,
+                left: 410,
                 zIndex: 0,
               }}
               className="position-absolute"
@@ -208,21 +213,29 @@ const DetailPlace: React.FC = () => {
           </Col>
           <Col className="position-relative" span={12}>
             <div
-              style={{ width: "75%", bottom: 100 }}
+              style={{
+                width: "85%",
+                bottom: 100,
+              }}
               className="bg-white position-absolute shadow p-5"
             >
               <Space direction="vertical" size={25}>
-                <Title level={3}>
+                <Title className="fw-light" level={2}>
                   Check out all of these physical benefits of hiking
                 </Title>
-                <Text>
+                <Text className="fs-6">
                   Massa ultricies mi quis hendrerit. Ac ut consequat semper
                   viverra nam. Libero id faucibus nisl tincidunt eget nullam non
                   nisi est. Arcu odio ut sem nulla. Amet tellus cras adipiscing
                   enim. Et magnis dis parturient montes. Imperdiet sed euismod
                   nisi porta lorem mollis.
                 </Text>
-                <Button className="border-black">LEARN MORE</Button>
+                <Button
+                  style={{ width: "10rem", height: "2.5rem" }}
+                  className=""
+                >
+                  LEARN MORE
+                </Button>
               </Space>
             </div>
           </Col>
@@ -289,7 +302,7 @@ const DetailPlace: React.FC = () => {
 
               <Row justify="center">
                 <Space direction="vertical" align="center" size={3}>
-                  <CommentOutlined className="text-white fs-3" />
+                  <MessageOutlined className="text-white fs-3" />
                   <Text className="text-white fw-lighter">Lượt đánh giá</Text>
                 </Space>
               </Row>
@@ -340,7 +353,7 @@ const DetailPlace: React.FC = () => {
             </Col>
 
             <Col className="h-100" span={6}>
-              <Space className="vh-100" direction="vertical" size={10}>
+              <Space className="vh-100" direction="vertical" size={20}>
                 <Image
                   // style={{ width: "100%", height: "40%" }}
                   className="w-100"
@@ -355,12 +368,24 @@ const DetailPlace: React.FC = () => {
             </Col>
 
             <Col className="h-100" span={4}>
-              <Space className="vh-100" direction="vertical" size={10}>
-                {[0, 1, 2, 3, 4].map((item) => (
+              <Space className="vh-100" direction="vertical" size={15}>
+                {[0, 1, 2, 3].map((item) => (
                   <Image
-                    style={{ width: "14rem", height: "6rem" }}
+                    style={{ width: "15rem", height: "7rem" }}
                     className=""
                     src="https://prod-virtuoso.dotcmscloud.com/dA/188da7ea-f44f-4b9c-92f9-6a65064021c1/previewImage/PowerfulReasons_hero.jpg"
+                  />
+                ))}
+              </Space>
+            </Col>
+
+            <Col className="h-100" span={4}>
+              <Space className="vh-100" direction="vertical" size={15}>
+                {[0, 1, 2, 3].map((item) => (
+                  <Image
+                    style={{ width: "6rem", height: "6rem" }}
+                    className=""
+                    src="https://vcdn1-dulich.vnecdn.net/2022/06/03/cauvang-1654247842-9403-1654247849.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=Swd6JjpStebEzT6WARcoOA"
                   />
                 ))}
               </Space>
@@ -371,10 +396,10 @@ const DetailPlace: React.FC = () => {
         <div
           style={{
             backgroundColor: "#F7FAFB",
-            marginTop: "5rem",
+            margin: "3rem 4rem",
             padding: "2rem 0rem",
           }}
-          className="w-100"
+          className="w-100 "
         >
           <Space direction="vertical">
             <Title className="m-0">Bình luận và</Title>
@@ -471,15 +496,19 @@ const DetailPlace: React.FC = () => {
             </Col>
           </Row>
 
-          <Divider style={{ borderTop: "#FF7424" }} className="mt-5" plain>
+          <Divider style={{ borderTop: "#FF7424" }} className="mt-5 mb-5" plain>
             <Text style={{ color: "#FF7424" }} className="fs-5" strong>
               Tất cả các bài đánh giá
             </Text>
           </Divider>
 
           <Row className="w-100" justify="center">
-            <Row style={{}} className="w-75 mb-5" gutter={25}>
-              <Col span={5}>
+            <Row
+              style={{ width: "75%", marginBottom: "5rem" }}
+              className=""
+              gutter={20}
+            >
+              <Col span={6}>
                 <Row gutter={10} align="middle">
                   <Col>
                     <Avatar
@@ -490,13 +519,13 @@ const DetailPlace: React.FC = () => {
                   <Col>
                     <Space direction="vertical" size={0}>
                       <Text strong>Tên người dùng</Text>
-                      <Text>Địa điểm</Text>
+                      <Text className="text-secondary">Ngày đăng</Text>
                     </Space>
                   </Col>
                 </Row>
               </Col>
 
-              <Col span={11}>
+              <Col span={13}>
                 <Row className="mb-1">
                   <Space size={3}>
                     <StarFilled
@@ -516,32 +545,147 @@ const DetailPlace: React.FC = () => {
                     />
                   </Space>
                 </Row>
+
                 <Row className="mb-1">
                   <Text strong>Highly Recommended Coffee</Text>
                 </Row>
+
                 <Row className="mb-1 text-secondary">
                   <ReactReadMoreReadLess
-                    charLimit={150}
-                    readMoreText={"Read more ▼"}
-                    readLessText={"Read less ▲"}
+                    charLimit={190}
+                    readMoreText={
+                      <Text style={{ color: "#5449A3" }} strong>
+                        Xem thêm
+                      </Text>
+                    }
+                    readLessText={
+                      <Text style={{ color: "#5449A3" }} strong>
+                        Thu gọn
+                      </Text>
+                    }
                   >
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Illo molestias expedita officiis obcaecati, vel ea. Tempora
-                    blanditiis enim laudantium, magni ullam dignissimos nemo
-                    rerum eius reiciendis ipsam perspiciatis accusamus
-                    accusantium!
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Cumque, debitis corrupti. Reprehenderit ullam modi excepturi
+                    eaque dolorum. Dolorum sint asperiores ratione repellat
+                    fugit quam dignissimos quibusdam. Ut, saepe? Dicta,
+                    laudantium.
                   </ReactReadMoreReadLess>
                 </Row>
+
+                <Image.PreviewGroup>
+                  <Space>
+                    {[0, 1, 2].map((item) => (
+                      <Image
+                        style={{ marginRight: "1rem" }}
+                        width={120}
+                        height={120}
+                        src="https://image.thanhnien.vn/w1024/Uploaded/2022/kbfluaa/2021_11_02/qn-mua-may-7180.jpeg"
+                      />
+                    ))}
+                  </Space>
+                </Image.PreviewGroup>
+
+                {/* trả lời */}
+                <div>
+                  <Row
+                    style={{ width: "90%" }}
+                    className="mt-3"
+                    align="top"
+                    gutter={10}
+                  >
+                    <Col span={3}>
+                      <Text
+                        style={{
+                          color: "#FD665E",
+                          fontSize: "5rem",
+                          lineHeight: "5rem",
+                        }}
+                      >
+                        “
+                      </Text>
+                    </Col>
+
+                    <Col span={21}>
+                      <Row className="mb-2" gutter={15} align="middle">
+                        <Col>
+                          <Avatar
+                            size={40}
+                            src="https://wegotthiscovered.com/wp-content/uploads/2022/08/Vegeta-1200x900.jpeg"
+                          />
+                        </Col>
+                        <Col>
+                          <Space direction="vertical" size={0}>
+                            <Text style={{ fontSize: "0.8rem" }} strong>
+                              Tên người dùng
+                            </Text>
+                            <Text
+                              style={{ fontSize: "0.8rem" }}
+                              className="text-secondary m-0"
+                            >
+                              Ngày đăng
+                            </Text>
+                          </Space>
+                        </Col>
+                      </Row>
+
+                      <Row
+                        style={{ fontSize: "0.8rem" }}
+                        className="mb-2 text-secondary"
+                      >
+                        <ReactReadMoreReadLess
+                          charLimit={150}
+                          readMoreText={
+                            <Text style={{ color: "#5449A3" }} strong>
+                              Xem thêm
+                            </Text>
+                          }
+                          readLessText={
+                            <Text style={{ color: "#5449A3" }} strong>
+                              Thu gọn
+                            </Text>
+                          }
+                        >
+                          Lorem ipsum dolor, sit amet consectetur adipisicing
+                          elit. Cumque, debitis corrupti. Reprehenderit ullam
+                          modi excepturi eaque dolorum. Dolorum sint asperiores
+                          ratione repellat fugit quam dignissimos quibusdam. Ut,
+                          saepe? Dicta, laudantium.
+                        </ReactReadMoreReadLess>
+                      </Row>
+
+                      <Row className="">
+                        <Space>
+                          <Button
+                            style={{ width: "5rem" }}
+                            type="primary"
+                            size="small"
+                            shape="round"
+                            ghost
+                          >
+                            Like
+                          </Button>
+                          <Button
+                            style={{ width: "5rem" }}
+                            type="primary"
+                            size="small"
+                            shape="round"
+                            ghost
+                            danger
+                          >
+                            Dislike
+                          </Button>
+                        </Space>
+                      </Row>
+                    </Col>
+                  </Row>
+                </div>
+                {/* end trả lời */}
               </Col>
-              <Col span={4}>
-                <Text style={{ fontSize: "0.8rem" }} className="text-secondary">
-                  15/11/2022 1:26 AM
-                </Text>
-              </Col>
-              <Col span={3}>
+
+              <Col className="d-flex justify-content-center" span={3}>
                 <Space direction="vertical">
                   <Button
-                    style={{ width: "5rem" }}
+                    style={{ width: "5.5rem", marginTop: "2rem" }}
                     type="primary"
                     size="small"
                     shape="round"
@@ -550,7 +694,7 @@ const DetailPlace: React.FC = () => {
                     Like
                   </Button>
                   <Button
-                    style={{ width: "5rem" }}
+                    style={{ width: "5.5rem" }}
                     type="primary"
                     size="small"
                     shape="round"
@@ -559,22 +703,264 @@ const DetailPlace: React.FC = () => {
                   >
                     Dislike
                   </Button>
+
                   <Button
-                    style={{ width: "5rem" }}
-                    className="mt-1"
-                    size="small"
-                    shape="round"
+                    style={{ width: "5.5rem" }}
+                    className="mt-1 d-flex align-items-center justify-content-center"
+                    type="text"
+                    size="large"
+                    icon={<CommentOutlined className="fs-4 text-secondary" />}
                   >
-                    Trả lời
+                    <Text
+                      style={{ fontSize: "0.9rem" }}
+                      className="text-secondary"
+                    >
+                      Trả lời
+                    </Text>
                   </Button>
                 </Space>
               </Col>
+
               <Col span={1}>
-                <EllipsisOutlined className="fs-5" />
+                <EllipsisOutlined
+                  style={{ marginTop: "2rem" }}
+                  className="fs-5"
+                />
               </Col>
             </Row>
 
-            
+            <Row
+              style={{ width: "75%", marginBottom: "5rem", marginLeft: "9rem" }}
+              className=""
+              gutter={20}
+            >
+              <Col span={1}>
+                <EllipsisOutlined
+                  style={{ marginTop: "3.5rem" }}
+                  className="fs-5"
+                />
+              </Col>
+
+              <Col className="d-flex justify-content-center" span={3}>
+                <Space className="" direction="vertical">
+                  <Button
+                    style={{ width: "5.5rem", marginTop: "3.5rem" }}
+                    type="primary"
+                    size="small"
+                    shape="round"
+                    ghost
+                  >
+                    Like
+                  </Button>
+                  <Button
+                    style={{ width: "5.5rem" }}
+                    type="primary"
+                    size="small"
+                    shape="round"
+                    ghost
+                    danger
+                  >
+                    Dislike
+                  </Button>
+
+                  <Button
+                    style={{ width: "5.5rem" }}
+                    className="mt-1 d-flex align-items-center justify-content-center"
+                    type="text"
+                    size="large"
+                    icon={<CommentOutlined className="fs-4 text-secondary" />}
+                  >
+                    <Text
+                      style={{ fontSize: "0.9rem" }}
+                      className="text-secondary"
+                    >
+                      Trả lời
+                    </Text>
+                  </Button>
+                </Space>
+              </Col>
+
+              <Col span={13}>
+                <Row className="mb-1" justify="end">
+                  <Space size={3}>
+                    <StarFilled
+                      style={{ color: "#292D33", fontSize: "1.2rem" }}
+                    />
+                    <StarFilled
+                      style={{ color: "#292D33", fontSize: "1.2rem" }}
+                    />
+                    <StarFilled
+                      style={{ color: "#292D33", fontSize: "1.2rem" }}
+                    />
+                    <StarFilled
+                      style={{ color: "#E0E0E3", fontSize: "1.2rem" }}
+                    />
+                    <StarFilled
+                      style={{ color: "#E0E0E3", fontSize: "1.2rem" }}
+                    />
+                  </Space>
+                </Row>
+
+                <Row className="mb-1" justify="end">
+                  <Text strong>Highly Recommended Coffee</Text>
+                </Row>
+
+                <Row className="mb-1 text-secondary text-end" justify="end">
+                  <ReactReadMoreReadLess
+                    charLimit={190}
+                    readMoreText={
+                      <Text style={{ color: "#5449A3" }} strong>
+                        Xem thêm
+                      </Text>
+                    }
+                    readLessText={
+                      <Text style={{ color: "#5449A3" }} strong>
+                        Thu gọn
+                      </Text>
+                    }
+                  >
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                    Cumque, debitis corrupti. Reprehenderit ullam modi excepturi
+                    eaque dolorum. Dolorum sint asperiores ratione repellat
+                    fugit quam dignissimos quibusdam. Ut, saepe? Dicta,
+                    laudantium.
+                  </ReactReadMoreReadLess>
+                </Row>
+
+                <Image.PreviewGroup>
+                  <Space className="d-flex justify-content-end">
+                    {[0, 1, 2].map((item) => (
+                      <Image
+                        style={{ marginRight: "1rem" }}
+                        width={120}
+                        height={120}
+                        src="https://image.thanhnien.vn/w1024/Uploaded/2022/kbfluaa/2021_11_02/qn-mua-may-7180.jpeg"
+                      />
+                    ))}
+                  </Space>
+                </Image.PreviewGroup>
+
+                {/* trả lời */}
+                <div>
+                  <Row
+                    style={{}}
+                    className="mt-3"
+                    justify="end"
+                    align="top"
+                    gutter={10}
+                  >
+                    <Col span={21}>
+                      <Row
+                        className="mb-2"
+                        gutter={15}
+                        justify="end"
+                        align="middle"
+                      >
+                        <Col>
+                          <Space direction="vertical" size={0}>
+                            <Text style={{ fontSize: "0.8rem" }} strong>
+                              Tên người dùng
+                            </Text>
+                            <Text
+                              style={{ fontSize: "0.8rem" }}
+                              className="text-secondary m-0"
+                            >
+                              Ngày đăng
+                            </Text>
+                          </Space>
+                        </Col>
+                        <Col>
+                          <Avatar
+                            size={40}
+                            src="https://wegotthiscovered.com/wp-content/uploads/2022/08/Vegeta-1200x900.jpeg"
+                          />
+                        </Col>
+                      </Row>
+
+                      <Row
+                        style={{ fontSize: "0.8rem" }}
+                        className="mb-2 text-secondary text-end"
+                        justify="end"
+                      >
+                        <ReactReadMoreReadLess
+                          charLimit={150}
+                          readMoreText={
+                            <Text style={{ color: "#5449A3" }} strong>
+                              Xem thêm
+                            </Text>
+                          }
+                          readLessText={
+                            <Text style={{ color: "#5449A3" }} strong>
+                              Thu gọn
+                            </Text>
+                          }
+                        >
+                          Lorem ipsum dolor, sit amet consectetur adipisicing
+                          elit. Cumque, debitis corrupti. Reprehenderit ullam
+                          modi excepturi eaque dolorum. Dolorum sint asperiores
+                          ratione repellat fugit quam dignissimos quibusdam. Ut,
+                          saepe? Dicta, laudantium.
+                        </ReactReadMoreReadLess>
+                      </Row>
+
+                      <Row className="" justify="end">
+                        <Space>
+                          <Button
+                            style={{ width: "5rem" }}
+                            type="primary"
+                            size="small"
+                            shape="round"
+                            ghost
+                          >
+                            Like
+                          </Button>
+                          <Button
+                            style={{ width: "5rem" }}
+                            type="primary"
+                            size="small"
+                            shape="round"
+                            ghost
+                            danger
+                          >
+                            Dislike
+                          </Button>
+                        </Space>
+                      </Row>
+                    </Col>
+
+                    <Col span={3}>
+                      <Text
+                        style={{
+                          color: "#FD665E",
+                          fontSize: "5rem",
+                          lineHeight: "5rem",
+                        }}
+                      >
+                        ”
+                      </Text>
+                    </Col>
+                  </Row>
+                </div>
+                {/* end trả lời */}
+              </Col>
+
+              <Col span={6}>
+                <Row gutter={10} align="middle">
+                  <Col>
+                    <Space direction="vertical" size={0} align="end">
+                      <Text strong>Tên người dùng</Text>
+                      <Text className="text-secondary">Ngày đăng</Text>
+                    </Space>
+                  </Col>
+                  <Col>
+                    <Avatar
+                      size={50}
+                      src="https://wegotthiscovered.com/wp-content/uploads/2022/08/Vegeta-1200x900.jpeg"
+                    />
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
           </Row>
         </div>
 
