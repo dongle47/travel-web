@@ -205,8 +205,8 @@ const DetailPlace: React.FC = () => {
                 backgroundColor: "#F86449",
                 width: "14rem",
                 height: "90%",
-                top: 40,
-                left: 410,
+                top: "5%",
+                left: "60%",
                 zIndex: 0,
               }}
               className="position-absolute"
@@ -338,7 +338,7 @@ const DetailPlace: React.FC = () => {
               textAlign: "center",
               marginTop: "5rem",
               width: "100%",
-              height: "700px",
+              height: "100%",
               padding: "0 0 0 5rem",
             }}
             justify="start"
@@ -356,23 +356,21 @@ const DetailPlace: React.FC = () => {
             <Col className="h-100" span={6}>
               <Space className="vh-100" direction="vertical" size={20}>
                 <Image
-                  // style={{ width: "100%", height: "40%" }}
-                  className="w-100"
+                  className="h-100"
                   src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/09/blog-post-h6-img2.jpg"
                 />
                 <Image
-                  // style={{ width: "100%", height: "40%" }}
-                  className="w-100"
+                  className="h-100"
                   src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/09/blog-post-h6-img2.jpg"
                 />
               </Space>
             </Col>
 
-            <Col className="h-100" span={4}>
+            <Col className="h-100 w-100" span={4}>
               <Space className="vh-100" direction="vertical" size={15}>
                 {[0, 1, 2, 3].map((item) => (
                   <Image
-                    style={{ width: "15rem", height: "7rem" }}
+                    style={{ width: "13rem", height: "7rem" }}
                     className=""
                     src="https://prod-virtuoso.dotcmscloud.com/dA/188da7ea-f44f-4b9c-92f9-6a65064021c1/previewImage/PowerfulReasons_hero.jpg"
                   />
@@ -380,7 +378,7 @@ const DetailPlace: React.FC = () => {
               </Space>
             </Col>
 
-            <Col className="h-100" span={4}>
+            <Col className="h-100 w-100" span={3}>
               <Space className="vh-100" direction="vertical" size={15}>
                 {[0, 1, 2, 3].map((item) => (
                   <Image

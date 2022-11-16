@@ -198,7 +198,11 @@ const Profile: React.FC = () => {
                     layout="vertical"
                   >
                     <Form.Item label={<Text strong>Họ tên</Text>}>
-                      <Input suffix={<CloseOutlined />} />
+                      <Input
+                        className="rounded p-2"
+                        defaultValue="Tên người dùng"
+                        suffix={<CloseOutlined />}
+                      />
                     </Form.Item>
 
                     <Form.Item label={<Text strong>Giới tính</Text>}>
@@ -216,15 +220,23 @@ const Profile: React.FC = () => {
                     </Form.Item>
 
                     <Form.Item label={<Text strong>Ngày sinh</Text>}>
-                      <DatePicker className="w-100" />
+                      <DatePicker className="rounded p-2 w-100" />
                     </Form.Item>
 
                     <Form.Item label={<Text strong>Số điện thoại</Text>}>
-                      <Input suffix={<CloseOutlined />} />
+                      <Input
+                        className="rounded p-2"
+                        defaultValue="0123465789"
+                        suffix={<CloseOutlined />}
+                      />
                     </Form.Item>
 
                     <Form.Item label={<Text strong>Email</Text>}>
-                      <Input suffix={<CloseOutlined />} />
+                      <Input
+                        className="rounded p-2"
+                        defaultValue="dong123@gmail.com"
+                        suffix={<CloseOutlined />}
+                      />
                     </Form.Item>
                   </Form>
                 </Col>
