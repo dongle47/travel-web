@@ -18,7 +18,7 @@ const Login: React.FC = () => {
   const [passwordVisible, setPasswordVisible] = React.useState(false);
 
   return (
-    <div className="text-white">
+    <div className="text-white primary-font">
       <div className="bg-image"></div>
 
       <Button
@@ -26,17 +26,26 @@ const Login: React.FC = () => {
         type="text"
         icon={<ArrowLeftOutlined />}
       >
-        <Text className="text-white fs-5">Quay về trang chủ</Text>
+        <Text className="text-white fs-6">Quay về trang chủ</Text>
       </Button>
 
-      <div className="bg-text text-white">
+      <div className="bg-text text-white rounded">
         <Row>
           <Col>
             <img style={{ width: "50%" }} alt="" src={logo} />
           </Col>
         </Row>
 
-        <Row className="mt-3 rounded" justify="center">
+        <Row justify="center">
+          <Text
+            style={{ fontSize: "0.8rem" }}
+            className="text-white-50 fw-light mb-4"
+          >
+            Đăng nhập để sử dụng dịch vụ
+          </Text>
+        </Row>
+
+        <Row className="" justify="center">
           <Form className="login-form ">
             <Form.Item className="">
               <Input
@@ -46,7 +55,7 @@ const Login: React.FC = () => {
                   padding: "0.5rem",
                   width: "13rem",
                 }}
-                className="border-0 rounded"
+                className="border-0 rounded m-0"
                 placeholder="Nhập số điện thoại"
                 defaultValue=""
                 prefix={<PhoneOutlined />}
@@ -82,13 +91,17 @@ const Login: React.FC = () => {
         </Row>
 
         <Row justify="center">
-          <Button className="text-white" type="text">
+          <Button
+            style={{ fontSize: "0.8rem" }}
+            className="text-white"
+            type="text"
+          >
             Quên mật khẩu?
           </Button>
         </Row>
 
         <Row justify="center">
-          <Text className="text-white">
+          <Text style={{ fontSize: "0.8rem" }} className="text-white">
             Chưa có tài khoản? <span style={{ color: "#FD7E14" }}>Đăng ký</span>
           </Text>
         </Row>
