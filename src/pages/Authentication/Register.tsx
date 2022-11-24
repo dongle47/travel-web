@@ -12,8 +12,29 @@ import styled from "styled-components";
 import logo from "../../assets/img/logo1.png";
 import "./Authentication.scss";
 
+import postRegister from "../../api/apiAccount";
+import apiAccount from "../../api/apiAccount";
+
 const { Title, Text } = Typography;
 const Register: React.FC = () => {
+
+  const onFinish = async (values: any) => {
+    const param = {
+      phone: values.phone,
+      password: values.password,
+    };
+
+    await apiAccount
+      .postRegister(param)
+      .then((res) => {
+        console.log(res);
+        console.log("Success:", values);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  };
+
   return (
     <div>
       <div className="text-white primary-font">
@@ -44,8 +65,8 @@ const Register: React.FC = () => {
           </Row>
 
           <Row className="" justify="center">
-            <Form className="login-form ">
-              <Form.Item className="">
+            <Form className="login-form" onFinish={onFinish}>
+              <Form.Item className="" name="phone">
                 <Input
                   style={{
                     backgroundColor: "rgba(0,0,0, 0.4)",
@@ -59,7 +80,8 @@ const Register: React.FC = () => {
                   prefix={<PhoneOutlined />}
                 />
               </Form.Item>
-              <Form.Item className="">
+
+              <Form.Item className="" name="password">
                 <Input.Password
                   style={{
                     backgroundColor: "rgba(0,0,0, 0.4)",
@@ -72,7 +94,8 @@ const Register: React.FC = () => {
                   prefix={<LockOutlined />}
                 />
               </Form.Item>
-              <Form.Item className="">
+
+              <Form.Item className="" name="passwordConfirm">
                 <Input.Password
                   style={{
                     backgroundColor: "rgba(0,0,0, 0.4)",
@@ -85,6 +108,7 @@ const Register: React.FC = () => {
                   prefix={<LockOutlined />}
                 />
               </Form.Item>
+
               <Form.Item>
                 <Button
                   style={{
