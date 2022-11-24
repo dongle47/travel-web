@@ -11,7 +11,7 @@ import {
 } from "@ant-design/icons";
 
 const { Title, Text } = Typography;
-import logo from "../assets/img/GameOn.png";
+import logo from "../assets/img/logo1.png";
 
 const Footer: React.FC = () => {
   return (
