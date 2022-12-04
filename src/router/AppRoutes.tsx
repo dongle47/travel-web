@@ -14,7 +14,8 @@ const AppRoutes: React.FC = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/main" element={<Main />} />
-        <Route path="/detail" element={<DetailPlace />} />
+        <Route path="/detail-place" element={<DetailPlace />} />
+        <Route path="/detail-place/:id" element={<DetailPlace />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

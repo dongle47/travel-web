@@ -137,6 +137,7 @@ const Map: React.FC = () => {
 
         {places.map((item) => (
           <MapMarker
+            id={item.id}
             title={item.name}
             position={[item.lat, item.lng]}
             thumbnail={item.thumbnail}

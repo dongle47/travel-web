@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import "./DetailPlace.scss";
 
 import { Header, Footer, Comment } from "../../components";
@@ -9,8 +10,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-// import required modules
-import { Pagination, Navigation } from "swiper";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -67,7 +66,12 @@ const getBase64 = (file: RcFile): Promise<string> =>
     reader.onerror = (error) => reject(error);
   });
 
+
+
 const DetailPlace: React.FC = () => {
+  const {id} = useParams()
+  console.log(id)
+
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");

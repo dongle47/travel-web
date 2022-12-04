@@ -41,7 +41,7 @@ const MapMarker: React.FC<IProps> = ({
         eventHandlers={{
           mouseover: (event) => event.target.openPopup(),
           click: (event) => {
-            window.open("/detail");
+            window.open(`/detail-place/${id}`);
           },
         }}
       >
@@ -63,7 +63,12 @@ const MapMarker: React.FC<IProps> = ({
                 <Title className="font-1" level={5}>
                   {title}
                 </Title>
-                <Rate style={{ width: "10rem", height:'2rem' }} allowHalf defaultValue={3.5} disabled />
+                <Rate
+                  style={{ width: "10rem", height: "2rem" }}
+                  allowHalf
+                  defaultValue={3.5}
+                  disabled
+                />
                 <Text className="font-1">{address}</Text>
               </Col>
               <Col className="mr-0" span={8}>
