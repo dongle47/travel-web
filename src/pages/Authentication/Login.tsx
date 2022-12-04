@@ -19,7 +19,6 @@ import "./Authentication.scss";
 const { Title, Text } = Typography;
 
 const Login: React.FC = () => {
-  const [passwordVisible, setPasswordVisible] = React.useState(false);
 
   return (
     <div className="text-white primary-font">
