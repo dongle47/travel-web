@@ -3,29 +3,57 @@ import {
   EyeInvisibleOutlined,
   EyeTwoTone,
   LockOutlined,
+  MailOutlined,
   MobileOutlined,
   PhoneOutlined,
 } from "@ant-design/icons";
+
+import { Link } from "react-router-dom";
+
+import { toast } from "react-toastify";
 import { Button, Col, Form, Input, Row, Typography } from "antd";
 import React from "react";
 import styled from "styled-components";
 import logo from "../../assets/img/logo1.png";
 import "./Authentication.scss";
 
+import postRegister from "../../api/apiAccount";
+import apiAccount from "../../api/apiAccount";
+
 const { Title, Text } = Typography;
 const Register: React.FC = () => {
+  const onFinish = async (values: any) => {
+    const param = {
+      email: values.email,
+      password: values.password,
+    };
+
+    await apiAccount
+      .postRegister(param)
+      .then((res) => {
+        console.log(res.message);
+
+        toast.success(`${res.message}`);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  };
+
   return (
     <div>
       <div className="text-white primary-font">
         <div className="bg-image"></div>
 
-        <Button
-          className="bg-btn d-flex align-items-center justify-content-center"
-          type="text"
-          icon={<ArrowLeftOutlined />}
-        >
-          <Text className="text-white fs-6">Quay về trang chủ</Text>
-        </Button>
+        <Link to={"/"}>
+          <Button
+            className="bg-btn d-flex align-items-center justify-content-center"
+            type="text"
+            icon={<ArrowLeftOutlined />}
+          >
+            <Text className="text-white fs-6">Quay về trang chủ</Text>
+          </Button>
+        </Link>
 
         <div className="bg-text text-white rounded">
           <Row>
@@ -44,8 +72,8 @@ const Register: React.FC = () => {
           </Row>
 
           <Row className="" justify="center">
-            <Form className="login-form ">
-              <Form.Item className="">
+            <Form className="login-form" onFinish={onFinish}>
+              <Form.Item className="" name="email">
                 <Input
                   style={{
                     backgroundColor: "rgba(0,0,0, 0.4)",
@@ -55,11 +83,11 @@ const Register: React.FC = () => {
                   }}
                   className="border-0 rounded m-0"
                   placeholder="Nhập số điện thoại"
-                  defaultValue=""
-                  prefix={<PhoneOutlined />}
+                  prefix={<MailOutlined />}
                 />
               </Form.Item>
-              <Form.Item className="">
+
+              <Form.Item className="" name="password">
                 <Input.Password
                   style={{
                     backgroundColor: "rgba(0,0,0, 0.4)",
@@ -72,7 +100,8 @@ const Register: React.FC = () => {
                   prefix={<LockOutlined />}
                 />
               </Form.Item>
-              <Form.Item className="">
+
+              <Form.Item className="" name="passwordConfirm">
                 <Input.Password
                   style={{
                     backgroundColor: "rgba(0,0,0, 0.4)",
@@ -85,6 +114,7 @@ const Register: React.FC = () => {
                   prefix={<LockOutlined />}
                 />
               </Form.Item>
+
               <Form.Item>
                 <Button
                   style={{
@@ -104,7 +134,9 @@ const Register: React.FC = () => {
           <Row justify="center">
             <Text style={{ fontSize: "0.8rem" }} className="text-white">
               Đã có tài khoản?{" "}
-              <span style={{ color: "#FD7E14" }}>Đăng nhập</span>
+              <Link to={"/login"}>
+                <span style={{ color: "#FD7E14" }}> Đăng nhập</span>
+              </Link>
             </Text>
           </Row>
         </div>

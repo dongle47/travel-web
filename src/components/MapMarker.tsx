@@ -63,7 +63,7 @@ const MapMarker: React.FC<IProps> = ({
                 <Title className="font-1" level={5}>
                   {title}
                 </Title>
-                <Rate style={{ width: "10rem" }} allowHalf defaultValue={3.5} />
+                <Rate style={{ width: "10rem", height:'2rem' }} allowHalf defaultValue={3.5} disabled />
                 <Text className="font-1">{address}</Text>
               </Col>
               <Col className="mr-0" span={8}>

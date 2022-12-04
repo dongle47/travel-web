@@ -3,9 +3,13 @@ import {
   EyeInvisibleOutlined,
   EyeTwoTone,
   LockOutlined,
+  MailOutlined,
   MobileOutlined,
   PhoneOutlined,
 } from "@ant-design/icons";
+
+import { Link } from "react-router-dom";
+
 import { Button, Col, Form, Input, Row, Typography } from "antd";
 import React from "react";
 import styled from "styled-components";
@@ -15,19 +19,20 @@ import "./Authentication.scss";
 const { Title, Text } = Typography;
 
 const Login: React.FC = () => {
-  const [passwordVisible, setPasswordVisible] = React.useState(false);
 
   return (
     <div className="text-white primary-font">
       <div className="bg-image"></div>
 
-      <Button
-        className="bg-btn d-flex align-items-center justify-content-center"
-        type="text"
-        icon={<ArrowLeftOutlined />}
-      >
-        <Text className="text-white fs-6">Quay về trang chủ</Text>
-      </Button>
+      <Link to={"/"}>
+        <Button
+          className="bg-btn d-flex align-items-center justify-content-center"
+          type="text"
+          icon={<ArrowLeftOutlined />}
+        >
+          <Text className="text-white fs-6">Quay về trang chủ</Text>
+        </Button>
+      </Link>
 
       <div className="bg-text text-white rounded">
         <Row>
@@ -58,7 +63,7 @@ const Login: React.FC = () => {
                 className="border-0 rounded m-0"
                 placeholder="Nhập số điện thoại"
                 defaultValue=""
-                prefix={<PhoneOutlined />}
+                prefix={<MailOutlined />}
               />
             </Form.Item>
             <Form.Item className="">
@@ -102,7 +107,10 @@ const Login: React.FC = () => {
 
         <Row justify="center">
           <Text style={{ fontSize: "0.8rem" }} className="text-white">
-            Chưa có tài khoản? <span style={{ color: "#FD7E14" }}>Đăng ký</span>
+            Chưa có tài khoản?
+            <Link to={"/register"}>
+              <span style={{ color: "#FD7E14" }}> Đăng ký</span>
+            </Link>
           </Text>
         </Row>
       </div>

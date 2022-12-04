@@ -1,7 +1,9 @@
 import React from "react";
 
+import { Link } from "react-router-dom";
+
 import { Typography, Row, Col, Space, Button } from "antd";
-import logo from "../assets/img/GameOn.png";
+import logo from "../assets/img/logo1.png";
 
 import {
   InstagramOutlined,
@@ -35,17 +37,23 @@ const Header: React.FC = () => {
             TRAVEL
           </Button>
           <Col>
-            <img height={50} src={logo} alt="" />
+            <Link to={"/"}>
+              <img height={50} src={logo} alt="" />
+            </Link>
           </Col>
           <Button size="small" type="text">
             BLOG
           </Button>
-          <Button size="small" type="text">
-            CỬA HÀNG
-          </Button>
-          <Button size="small" type="text">
-            ELEMENTS
-          </Button>
+          <Link to={"/login"}>
+            <Button size="small" type="text">
+              ĐĂNG NHẬP
+            </Button>
+          </Link>
+          <Link to={"/register"}>
+            <Button size="small" type="text">
+              ĐĂNG KÝ
+            </Button>
+          </Link>
         </Row>
       </Col>
       <Col>
