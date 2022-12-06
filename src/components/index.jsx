@@ -5,7 +5,15 @@ import MapMarker from "./MapMarker";
 import ControllingGroup from "./ControllingGroup";
 import ControlMarker from "./ControlMarker";
 import ControlPolygon from "./ControlPolygon";
-import Comment from "./Comment";
+import Comments from "./Comments";
 import RelyComment from "./RelyComment";
 
-export { Header, Footer, Map, MapMarker, ControlPolygon, Comment, RelyComment };
+export {
+  Header,
+  Footer,
+  Map,
+  MapMarker,
+  ControlPolygon,
+  Comments,
+  RelyComment,
+};

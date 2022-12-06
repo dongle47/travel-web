@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import "./DetailPlace.scss";
 
-import { Header, Footer, Comment } from "../../components";
+import { Header, Footer, Comments } from "../../components";
+
+import Media from "./Media";
+import Summary from "./Summary";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -66,11 +69,9 @@ const getBase64 = (file: RcFile): Promise<string> =>
     reader.onerror = (error) => reject(error);
   });
 
-
-
 const DetailPlace: React.FC = () => {
-  const {id} = useParams()
-  console.log(id)
+  const { id } = useParams();
+  console.log(id);
 
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
@@ -276,33 +277,7 @@ const DetailPlace: React.FC = () => {
             className="d-flex justify-content-center"
             span={6}
           >
-            <Space
-              className="trapezoid pt-5"
-              direction="vertical"
-              align="center"
-              size={20}
-            >
-              <Row className="mt-3" justify="center">
-                <Space direction="vertical" align="center" size={3}>
-                  <EnvironmentOutlined className="text-white fs-3" />
-                  <Text className="text-white fw-lighter">Lượt check in</Text>
-                </Space>
-              </Row>
-
-              <Row justify="center">
-                <Space direction="vertical" align="center" size={3}>
-                  <MessageOutlined className="text-white fs-3" />
-                  <Text className="text-white fw-lighter">Lượt đánh giá</Text>
-                </Space>
-              </Row>
-
-              <Row justify="center">
-                <Space direction="vertical" align="center" size={3}>
-                  <StarOutlined className="text-white fs-3" />
-                  <Text className="text-white fw-lighter">Số sao</Text>
-                </Space>
-              </Row>
-            </Space>
+            <Summary />
           </Col>
 
           <Col className="position-relative" span={10}>
@@ -320,67 +295,7 @@ const DetailPlace: React.FC = () => {
           </Col>
         </Row>
 
-        <Image.PreviewGroup>
-          <Row
-            style={{
-              textAlign: "center",
-              marginTop: "5rem",
-              width: "100%",
-              height: "700px",
-              padding: "0 0 0 5rem",
-            }}
-            justify="start"
-            align="top"
-            gutter={25}
-          >
-            <Col className="h-100" span={9}>
-              <Image
-                style={{}}
-                className="w-100 vh-100"
-                src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/08/brazil-single-2-2.jpg"
-              />
-            </Col>
-
-            <Col className="h-100" span={6}>
-              <Space className="vh-100" direction="vertical" size={20}>
-                <Image
-                  // style={{ width: "100%", height: "40%" }}
-                  className="w-100"
-                  src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/09/blog-post-h6-img2.jpg"
-                />
-                <Image
-                  // style={{ width: "100%", height: "40%" }}
-                  className="w-100"
-                  src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/09/blog-post-h6-img2.jpg"
-                />
-              </Space>
-            </Col>
-
-            <Col className="h-100" span={4}>
-              <Space className="vh-100" direction="vertical" size={15}>
-                {[0, 1, 2, 3].map((item) => (
-                  <Image
-                    style={{ width: "15rem", height: "7rem" }}
-                    className=""
-                    src="https://prod-virtuoso.dotcmscloud.com/dA/188da7ea-f44f-4b9c-92f9-6a65064021c1/previewImage/PowerfulReasons_hero.jpg"
-                  />
-                ))}
-              </Space>
-            </Col>
-
-            <Col className="h-100" span={4}>
-              <Space className="vh-100" direction="vertical" size={15}>
-                {[0, 1, 2, 3].map((item) => (
-                  <Image
-                    style={{ width: "6rem", height: "6rem" }}
-                    className=""
-                    src="https://vcdn1-dulich.vnecdn.net/2022/06/03/cauvang-1654247842-9403-1654247849.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=Swd6JjpStebEzT6WARcoOA"
-                  />
-                ))}
-              </Space>
-            </Col>
-          </Row>
-        </Image.PreviewGroup>
+        <Media />
 
         <div
           style={{
@@ -492,7 +407,7 @@ const DetailPlace: React.FC = () => {
           </Divider>
 
           <Row className="w-100" justify="center">
-            <Comment />
+            <Comments />
 
             <Row
               style={{ width: "75%", marginBottom: "5rem", marginLeft: "9rem" }}

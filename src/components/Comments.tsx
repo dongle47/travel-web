@@ -1,5 +1,5 @@
 import React from "react";
-import { RelyComment } from "../components";
+import { RelyComment } from ".";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -27,7 +27,7 @@ import Icon, {
 
 const { Title, Text } = Typography;
 
-const Comment: React.FC = () => {
+const Comments: React.FC = () => {
   return (
     <>
       <Row
@@ -153,4 +153,4 @@ const Comment: React.FC = () => {
   );
 };
 
-export default Comment;
+export default Comments;
