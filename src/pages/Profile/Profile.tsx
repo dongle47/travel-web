@@ -28,20 +28,6 @@ import {
 } from "antd";
 
 import Icon, {
-  CommentOutlined,
-  FullscreenExitOutlined,
-  StarOutlined,
-  ArrowLeftOutlined,
-  ArrowRightOutlined,
-  StarTwoTone,
-  PlayCircleOutlined,
-  StarFilled,
-  LikeTwoTone,
-  DislikeTwoTone,
-  CheckOutlined,
-  LikeFilled,
-  LikeOutlined,
-  DislikeOutlined,
   PlusOutlined,
   UserOutlined,
   BellOutlined,

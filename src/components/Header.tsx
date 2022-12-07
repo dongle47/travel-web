@@ -1,8 +1,10 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import { Link } from "react-router-dom";
 
 import { Typography, Row, Col, Space, Button } from "antd";
+
 import logo from "../assets/img/logo1.png";
 
 import {
@@ -12,11 +14,18 @@ import {
   YoutubeFilled,
   RedditOutlined,
   GlobalOutlined,
+  UserOutlined,
 } from "@ant-design/icons";
 
 const { Text } = Typography;
 
 const Header: React.FC = () => {
+  const dispatch = useDispatch();
+
+  const user = useSelector((state: any) => state.auth.user);
+
+  console.log("user: ", user);
+
   return (
     <Row className="header-homepage" justify="space-between" align="middle">
       <Col>
@@ -44,16 +53,29 @@ const Header: React.FC = () => {
           <Button size="small" type="text">
             BLOG
           </Button>
-          <Link to={"/login"}>
-            <Button size="small" type="text">
-              ĐĂNG NHẬP
+
+          {user ? (
+            <Button
+              className="d-flex align-items-center"
+              type="text"
+              icon={<UserOutlined />}
+            >
+              {user.user_name}
             </Button>
-          </Link>
-          <Link to={"/register"}>
-            <Button size="small" type="text">
-              ĐĂNG KÝ
-            </Button>
-          </Link>
+          ) : (
+            <>
+              <Link to={"/login"}>
+                <Button size="small" type="text">
+                  ĐĂNG NHẬP
+                </Button>
+              </Link>
+              <Link to={"/register"}>
+                <Button size="small" type="text">
+                  ĐĂNG KÝ
+                </Button>
+              </Link>
+            </>
+          )}
         </Row>
       </Col>
       <Col>

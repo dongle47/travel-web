@@ -13,6 +13,8 @@ import {
 
 import styled from "styled-components";
 import logo from "../../assets/img/logo1.png";
+import { loginSuccess } from "../../slices/authSlice";
+import { toast } from "react-toastify";
 
 const { Title, Text } = Typography;
 
@@ -29,6 +31,9 @@ const Login: React.FC = () => {
       .postLogin(params)
       .then((res) => {
         const { accessToken, refreshToken } = res.data.token;
+        const user = res.data;
+        dispatch(loginSuccess({ accessToken, refreshToken, ...user }));
+        toast.success(`Xin chào ${user.user_name || ""}`);
       })
       .catch((err) => console.log(err));
   };
