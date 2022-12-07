@@ -15,10 +15,21 @@ import React from "react";
 import styled from "styled-components";
 import logo from "../../assets/img/logo1.png";
 import "./Authentication.scss";
+import apiAccount from "../../api/apiAccount";
 
 const { Title, Text } = Typography;
 
 const Login: React.FC = () => {
+  const onFinish = async (value: any) => {
+    const params = {
+      user_name: value.email,
+      password: value.password,
+    };
+    await apiAccount
+      .postLogin(params)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div className="text-white primary-font">
@@ -51,8 +62,8 @@ const Login: React.FC = () => {
         </Row>
 
         <Row className="" justify="center">
-          <Form className="login-form ">
-            <Form.Item className="">
+          <Form className="login-form" onFinish={onFinish}>
+            <Form.Item className="" name="email">
               <Input
                 style={{
                   backgroundColor: "rgba(0,0,0, 0.4)",
@@ -61,12 +72,13 @@ const Login: React.FC = () => {
                   width: "13rem",
                 }}
                 className="border-0 rounded m-0"
-                placeholder="Nhập số điện thoại"
+                placeholder="Nhập email"
                 defaultValue=""
                 prefix={<MailOutlined />}
               />
             </Form.Item>
-            <Form.Item className="">
+
+            <Form.Item className="" name="password">
               <Input.Password
                 style={{
                   backgroundColor: "rgba(0,0,0, 0.4)",
@@ -79,6 +91,7 @@ const Login: React.FC = () => {
                 prefix={<LockOutlined />}
               />
             </Form.Item>
+
             <Form.Item>
               <Button
                 style={{
