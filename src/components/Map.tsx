@@ -15,7 +15,7 @@ import ControllingGroup from "./ControllingGroup";
 import ControlMarker from "./ControlMarker";
 import ControlPolygon from "./ControlPolygon";
 
-import apiPlaces from "../api/apiPlaces";
+import apiPlaces from "../apis/apiPlaces";
 import { Url } from "url";
 
 interface point {

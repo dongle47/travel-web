@@ -1,6 +1,6 @@
 import { axiosClient } from "./axiosClient";
 
-const apiAccount = {
+const apiAuth = {
   postRegister: async (params: any) => {
     const res = await axiosClient.post("/user-service/user/register", params);
     return res.data;
@@ -11,4 +11,4 @@ const apiAccount = {
   },
 };
 
-export default apiAccount;
+export default apiAuth;

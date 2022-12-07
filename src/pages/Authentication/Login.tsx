@@ -1,33 +1,35 @@
+import React from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import apiAuth from "../../apis/apiAuth";
+
+import "./Authentication.scss";
+import { Button, Col, Form, Input, Row, Typography } from "antd";
 import {
   ArrowLeftOutlined,
-  EyeInvisibleOutlined,
-  EyeTwoTone,
   LockOutlined,
   MailOutlined,
-  MobileOutlined,
-  PhoneOutlined,
 } from "@ant-design/icons";
 
-import { Link } from "react-router-dom";
-
-import { Button, Col, Form, Input, Row, Typography } from "antd";
-import React from "react";
 import styled from "styled-components";
 import logo from "../../assets/img/logo1.png";
-import "./Authentication.scss";
-import apiAccount from "../../api/apiAccount";
 
 const { Title, Text } = Typography;
 
 const Login: React.FC = () => {
+  const dispatch = useDispatch();
+
   const onFinish = async (value: any) => {
     const params = {
       user_name: value.email,
       password: value.password,
     };
-    await apiAccount
+
+    await apiAuth
       .postLogin(params)
-      .then((res) => console.log(res))
+      .then((res) => {
+        const { accessToken, refreshToken } = res.data.token;
+      })
       .catch((err) => console.log(err));
   };
 

@@ -4,6 +4,7 @@ import jwt_decode from "jwt-decode";
 // const baseURL='https://playerhostedapitest.herokuapp.com/api/'
 //const baseURL='http://localhost:5000/api'
 const baseURL = "https://travel-api.huytx.com/stag/";
+
 export const axiosClient = axios.create({
   baseURL: baseURL,
   headers: {
@@ -13,7 +14,7 @@ export const axiosClient = axios.create({
   paramsSerializer: (params) => queryString.stringify(params),
 });
 
-// const refreshToken = async (user) => {
+// const refreshToken = async (user: any) => {
 //   const res = await axiosClient.post(
 //     "/auth/refreshtoken",
 //     { refreshToken: user.refreshToken },
@@ -21,12 +22,3 @@ export const axiosClient = axios.create({
 //   );
 //   return res.data;
 // };
-
-// export const axiosClientWithToken = axios.create({
-//   baseURL: baseURL,
-//   headers: {
-//     "Content-Type": "application/json",
-//   },
-//   withCredentials: true,
-//   paramsSerializer: (params) => queryString.stringify(params),
-// });

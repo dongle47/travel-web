@@ -17,7 +17,7 @@ import styled from "styled-components";
 import logo from "../../assets/img/logo1.png";
 import "./Authentication.scss";
 
-import apiAccount from "../../api/apiAccount";
+import apiAccount from "../../apis/apiAuth";
 
 const { Title, Text } = Typography;
 const Register: React.FC = () => {
