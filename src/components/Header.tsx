@@ -4,6 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { Typography, Row, Col, Space, Button } from "antd";
+import { useNavigate } from "react-router-dom";
+
+import { logoutSuccess } from "../slices/authSlice";
 
 import logo from "../assets/img/logo1.png";
 
@@ -16,15 +19,22 @@ import {
   GlobalOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import { toast } from "react-toastify";
 
 const { Text } = Typography;
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const user = useSelector((state: any) => state.auth.user);
 
   console.log("user: ", user);
+
+  const handleLogout = () => {
+    dispatch(logoutSuccess());
+    navigate("/");
+  };
 
   return (
     <Row className="header-homepage" justify="space-between" align="middle">
@@ -55,13 +65,19 @@ const Header: React.FC = () => {
           </Button>
 
           {user ? (
-            <Button
-              className="d-flex align-items-center"
-              type="text"
-              icon={<UserOutlined />}
-            >
-              {user.user_name}
-            </Button>
+            <>
+              <Button
+                className="d-flex align-items-center"
+                type="text"
+                icon={<UserOutlined />}
+                onClick={() => navigate("/profile")}
+              >
+                {user.user_name}
+              </Button>
+              <Button type="text" onClick={handleLogout}>
+                Đăng xuất
+              </Button>
+            </>
           ) : (
             <>
               <Link to={"/login"}>
