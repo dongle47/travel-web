@@ -8,7 +8,7 @@ const apiPlaces = {
     const res = await axiosClient.get("/place-service/place/list");
     return res.data;
   },
-  getPlace: async (id: string) => {
+  getPlace: async (id: any) => {
     const res = await axiosClient.get(`/place-service/place/detail/${id}`);
     return res.data;
   },

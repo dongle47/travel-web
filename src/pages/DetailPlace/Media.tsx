@@ -1,7 +1,15 @@
 import React from "react";
 import { Row, Col, Space, Divider, Image, Modal } from "antd";
 
-const Media: React.FC = () => {
+interface urlImage {
+  id?: string;
+  url: string;
+}
+interface IProps {
+  images: urlImage[];
+}
+
+const Media: React.FC<IProps> = ({ images }) => {
   return (
     <div>
       <Image.PreviewGroup>
@@ -22,6 +30,7 @@ const Media: React.FC = () => {
               style={{}}
               className="w-100 vh-100"
               src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/08/brazil-single-2-2.jpg"
+              // src={images[0].url}
             />
           </Col>
 

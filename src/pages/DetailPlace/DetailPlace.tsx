@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./DetailPlace.scss";
 
@@ -31,8 +31,6 @@ import {
   Rate,
 } from "antd";
 
-import type { RcFile, UploadProps } from "antd/es/upload";
-
 import Icon, {
   CommentOutlined,
   PlayCircleOutlined,
@@ -43,32 +41,55 @@ import Icon, {
 import ggMapIcon from "../../assets/img/Google_Maps.svg.png";
 import { url } from "inspector";
 import TextArea from "antd/lib/input/TextArea";
+import apiPlaces from "../../api/apiPlaces";
 
 const { Title, Text } = Typography;
 
-const contentStyle: React.CSSProperties = {
-  height: "160px",
-  color: "#fff",
-  lineHeight: "160px",
-  textAlign: "center",
-  background: "#364d79",
-};
-
-const getBase64 = (file: RcFile): Promise<string> =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result as string);
-    reader.onerror = (error) => reject(error);
-  });
+interface urlImage {
+  url: string;
+}
+interface place {
+  name: string;
+  place_type: {
+    name: string;
+  };
+  place_img: urlImage[];
+}
 
 const DetailPlace: React.FC = () => {
   const { id } = useParams();
-  console.log(id);
+
+  const [place, setPlace] = useState<place>({
+    name: "",
+    place_type: { name: "" },
+    place_img: [
+      {
+        url: "https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/08/brazil-single-2-2.jpg",
+      },
+      {
+        url: "https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/08/brazil-single-2-2.jpg",
+      },
+    ],
+  });
+
+  useEffect(() => {
+    const getDetailPlace = async () => {
+      apiPlaces
+        .getPlace(id)
+        .then((res) => {
+          setPlace(res.data);
+        })
+        .catch((err) => console.log(err));
+    };
+    getDetailPlace();
+  }, []);
+
+  // console.log(place.place_img);
 
   return (
     <div style={{ minHeight: "200rem" }} className="primary-font">
       <Header />
+
       <Row style={{}} className="mb-5">
         <Row
           style={{ marginTop: "5rem" }}
@@ -87,13 +108,13 @@ const DetailPlace: React.FC = () => {
               className="h-50 ms-5 p-5 position-absolute"
             >
               <Text style={{ fontSize: "1.6rem" }} className="text-white">
-                HIKING & TREKKING
+                {place.place_type.name}
               </Text>
               <Title
                 style={{ fontSize: "2.8rem" }}
                 className="text-white fw-light m-0 mt-4"
               >
-                Hike the amazing mountains
+                {place.name}
               </Title>
             </div>
             <div
@@ -146,14 +167,14 @@ const DetailPlace: React.FC = () => {
           <Col span={6}>
             <Space style={{}} className="" direction="vertical" size={15}>
               <Text style={{ fontSize: "2rem" }} className="" strong>
-                Tên địa điểm
+                {place.name}
               </Text>
               <Text
                 style={{ fontSize: "1.2rem", color: "#FF7424" }}
                 className="mt-0"
                 strong
               >
-                Loại địa điểm
+                {place.place_type.name}
               </Text>
 
               <Text style={{ fontSize: "0.9rem" }}>
@@ -202,7 +223,7 @@ const DetailPlace: React.FC = () => {
           </Col>
         </Row>
 
-        <Media />
+        <Media images={place.place_img} />
 
         <div
           style={{
