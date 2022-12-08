@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import apiAuth from "../../apis/apiAuth";
 
 import "./Authentication.scss";
@@ -20,6 +20,7 @@ const { Title, Text } = Typography;
 
 const Login: React.FC = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onFinish = async (value: any) => {
     const params = {
@@ -34,6 +35,7 @@ const Login: React.FC = () => {
         const user = res.data;
         dispatch(loginSuccess({ accessToken, refreshToken, ...user }));
         toast.success(`Xin chào ${user.user_name || ""}`);
+        navigate("/");
       })
       .catch((err) => console.log(err));
   };
