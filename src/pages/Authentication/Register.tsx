@@ -17,8 +17,7 @@ import styled from "styled-components";
 import logo from "../../assets/img/logo1.png";
 import "./Authentication.scss";
 
-import postRegister from "../../api/apiAccount";
-import apiAccount from "../../api/apiAccount";
+import apiAccount from "../../apis/apiAuth";
 
 const { Title, Text } = Typography;
 const Register: React.FC = () => {
@@ -82,7 +81,7 @@ const Register: React.FC = () => {
                     width: "13rem",
                   }}
                   className="border-0 rounded m-0"
-                  placeholder="Nhập số điện thoại"
+                  placeholder="Nhập email"
                   prefix={<MailOutlined />}
                 />
               </Form.Item>

@@ -1,7 +1,16 @@
 import React, { useState } from "react";
 import "./Profile.scss";
+import { useDispatch, useSelector } from "react-redux";
+
+import { toast } from "react-toastify";
+
+import { logoutSuccess } from "../../slices/authSlice";
+
+import apiAccount from "../../apis/apiAccount";
 
 import { Header, Footer } from "../../components/";
+
+import { useNavigate } from "react-router-dom";
 
 import {
   Layout,
@@ -18,41 +27,17 @@ import {
   RadioChangeEvent,
   DatePicker,
   Form,
-  Cascader,
-  Checkbox,
-  InputNumber,
-  Select,
-  Switch,
-  TreeSelect,
   Upload,
 } from "antd";
 
 import Icon, {
-  CommentOutlined,
-  FullscreenExitOutlined,
-  StarOutlined,
-  ArrowLeftOutlined,
-  ArrowRightOutlined,
-  StarTwoTone,
-  PlayCircleOutlined,
-  StarFilled,
-  LikeTwoTone,
-  DislikeTwoTone,
-  CheckOutlined,
-  LikeFilled,
-  LikeOutlined,
-  DislikeOutlined,
   PlusOutlined,
   UserOutlined,
   BellOutlined,
   HeartOutlined,
   LockOutlined,
   ExportOutlined,
-  LaptopOutlined,
-  NotificationOutlined,
   CloseOutlined,
-  ManOutlined,
-  SearchOutlined,
   EnvironmentOutlined,
 } from "@ant-design/icons";
 
@@ -64,62 +49,25 @@ const { Title, Text } = Typography;
 const { SubMenu } = Menu;
 
 const Profile: React.FC = () => {
-  const [value, setValue] = useState(1);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector((state: any) => state.auth.user);
 
-  const onChange = (e: RadioChangeEvent) => {
-    console.log("radio checked", e.target.value);
-    setValue(e.target.value);
+  console.log(user);
+
+  const handleLogout = () => {
+    dispatch(logoutSuccess);
+    navigate("/");
+    toast.info("Đăng xuất thành công");
   };
 
   const onChangeDate: DatePickerProps["onChange"] = (date, dateString) => {
     console.log(date, dateString);
   };
 
-  // const items2: MenuProps["items"] = [
-  //   UserOutlined,
-  //   LaptopOutlined,
-  //   NotificationOutlined,
-  // ].map((icon, index) => {
-  //   const key = String(index + 1);
-
-  //   return {
-  //     key: `sub${key}`,
-  //     icon: React.createElement(icon),
-  //     label: `subnav ${key}`,
-  //   };
-  // });
-  const items2: MenuProps["items"] = [
-    {
-      key: "1",
-      icon: React.createElement(UserOutlined),
-      label: "Thông tin cá nhân",
-    },
-    {
-      key: "2",
-      icon: React.createElement(EnvironmentOutlined),
-      label: "Lịch sử check in",
-    },
-    {
-      key: "3",
-      icon: React.createElement(BellOutlined),
-      label: "Thông báo của tôi",
-    },
-    {
-      key: "4",
-      icon: React.createElement(HeartOutlined),
-      label: "Địa điểm yêu thích",
-    },
-    {
-      key: "5",
-      icon: React.createElement(LockOutlined),
-      label: "Đổi mật khẩu",
-    },
-    {
-      key: "6",
-      icon: React.createElement(ExportOutlined),
-      label: "Đăng xuất",
-    },
-  ];
+  const onFinish = async (values: any) => {
+    console.log(values);
+  };
 
   return (
     <Layout
@@ -177,7 +125,7 @@ const Profile: React.FC = () => {
               mode="inline"
               defaultSelectedKeys={["1"]}
               defaultOpenKeys={["sub1"]}
-              items={items2}
+              items={itemsMenu}
             ></Menu>
           </Sider>
 
@@ -193,15 +141,23 @@ const Profile: React.FC = () => {
               <Row className="w-100" justify="start">
                 <Col span={12}>
                   <Form
+                    id="info-form"
                     labelCol={{ span: 7 }}
                     wrapperCol={{ span: 22 }}
                     layout="vertical"
+                    onFinish={onFinish}
                   >
-                    <Form.Item label={<Text strong>Họ tên</Text>}>
-                      <Input suffix={<CloseOutlined />} />
+                    <Form.Item
+                      name="fullName"
+                      label={<Text strong>Họ tên</Text>}
+                    >
+                      <Input
+                        defaultValue={user.full_name}
+                        suffix={<CloseOutlined />}
+                      />
                     </Form.Item>
 
-                    <Form.Item label={<Text strong>Giới tính</Text>}>
+                    <Form.Item name="sex" label={<Text strong>Giới tính</Text>}>
                       <Radio.Group>
                         <Radio className="text-center" value="male">
                           Nam
@@ -215,16 +171,28 @@ const Profile: React.FC = () => {
                       </Radio.Group>
                     </Form.Item>
 
-                    <Form.Item label={<Text strong>Ngày sinh</Text>}>
+                    <Form.Item
+                      name="dateBirth"
+                      label={<Text strong>Ngày sinh</Text>}
+                    >
                       <DatePicker className="w-100" />
                     </Form.Item>
 
-                    <Form.Item label={<Text strong>Số điện thoại</Text>}>
-                      <Input suffix={<CloseOutlined />} />
+                    <Form.Item
+                      name="phone"
+                      label={<Text strong>Số điện thoại</Text>}
+                    >
+                      <Input
+                        defaultValue={user.phone}
+                        suffix={<CloseOutlined />}
+                      />
                     </Form.Item>
 
-                    <Form.Item label={<Text strong>Email</Text>}>
-                      <Input suffix={<CloseOutlined />} />
+                    <Form.Item name="email" label={<Text strong>Email</Text>}>
+                      <Input
+                        defaultValue={user.email}
+                        suffix={<CloseOutlined />}
+                      />
                     </Form.Item>
                   </Form>
                 </Col>
@@ -232,7 +200,7 @@ const Profile: React.FC = () => {
                 <Col span={12}>
                   <Row className="h-100" justify="center" align="middle">
                     <Space direction="vertical" align="center">
-                      <div className="position-relative">
+                      <div className="position-relative mb-2">
                         <Avatar
                           size={150}
                           src="https://wegotthiscovered.com/wp-content/uploads/2022/08/Vegeta.jpeg"
@@ -247,16 +215,18 @@ const Profile: React.FC = () => {
                         />
                       </div>
 
-                      <Title className="" level={3}>
+                      {/* <Title className="" level={3}>
                         Tên người dùng
-                      </Title>
+                      </Title> */}
                       <Button
                         style={{
                           backgroundColor: "#FD7E14",
                           width: "8rem",
                           height: "2.5rem",
                         }}
-                        className="text-white rounded "
+                        className="text-white rounded"
+                        form="info-form"
+                        htmlType="submit"
                       >
                         <Text
                           style={{ fontSize: "0.8rem" }}
@@ -280,3 +250,36 @@ const Profile: React.FC = () => {
 };
 
 export default Profile;
+
+const itemsMenu: MenuProps["items"] = [
+  {
+    key: "1",
+    icon: React.createElement(UserOutlined),
+    label: "Thông tin cá nhân",
+  },
+  {
+    key: "2",
+    icon: React.createElement(EnvironmentOutlined),
+    label: "Lịch sử check in",
+  },
+  {
+    key: "3",
+    icon: React.createElement(BellOutlined),
+    label: "Thông báo của tôi",
+  },
+  {
+    key: "4",
+    icon: React.createElement(HeartOutlined),
+    label: "Địa điểm yêu thích",
+  },
+  {
+    key: "5",
+    icon: React.createElement(LockOutlined),
+    label: "Đổi mật khẩu",
+  },
+  {
+    key: "6",
+    icon: React.createElement(ExportOutlined),
+    label: "Đăng xuất",
+  },
+];

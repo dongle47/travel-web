@@ -108,13 +108,13 @@ const DetailPlace: React.FC = () => {
               className="h-50 ms-5 p-5 position-absolute"
             >
               <Text style={{ fontSize: "1.6rem" }} className="text-white">
-                {place.place_type.name}
+                Loại địa điểm
               </Text>
               <Title
                 style={{ fontSize: "2.8rem" }}
                 className="text-white fw-light m-0 mt-4"
               >
-                {place.name}
+                Tên địa điểm
               </Title>
             </div>
             <div
@@ -167,14 +167,14 @@ const DetailPlace: React.FC = () => {
           <Col span={6}>
             <Space style={{}} className="" direction="vertical" size={15}>
               <Text style={{ fontSize: "2rem" }} className="" strong>
-                {place.name}
+                Tên địa điểm
               </Text>
               <Text
                 style={{ fontSize: "1.2rem", color: "#FF7424" }}
                 className="mt-0"
                 strong
               >
-                {place.place_type.name}
+                Loại địa điểm
               </Text>
 
               <Text style={{ fontSize: "0.9rem" }}>
@@ -223,7 +223,68 @@ const DetailPlace: React.FC = () => {
           </Col>
         </Row>
 
-        <Media images={place.place_img} />
+        <Image.PreviewGroup>
+          <Row
+            style={{
+              textAlign: "center",
+              marginTop: "5rem",
+              width: "100%",
+              height: "700px",
+              padding: "0 0 0 5rem",
+            }}
+            justify="center"
+            align="top"
+            gutter={20}
+          >
+            <Col className="h-100" span={9}>
+              <Image
+                style={{}}
+                className="w-100 vh-100"
+                src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/08/brazil-single-2-2.jpg"
+                // src={images[0].url}
+              />
+            </Col>
+
+            <Col className="h-100" span={6}>
+              <Space className="vh-100" direction="vertical" size={20}>
+                <Image
+                  // style={{ width: "100%", height: "40%" }}
+                  className="w-100"
+                  src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/09/blog-post-h6-img2.jpg"
+                />
+                <Image
+                  // style={{ width: "100%", height: "40%" }}
+                  className="w-100"
+                  src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/09/blog-post-h6-img2.jpg"
+                />
+              </Space>
+            </Col>
+
+            <Col className="h-100" span={5}>
+              <Space className="vh-100" direction="vertical" size={15}>
+                {[0, 1, 2, 3].map((item) => (
+                  <Image
+                    style={{ width: "15rem", height: "7rem" }}
+                    className=""
+                    src="https://prod-virtuoso.dotcmscloud.com/dA/188da7ea-f44f-4b9c-92f9-6a65064021c1/previewImage/PowerfulReasons_hero.jpg"
+                  />
+                ))}
+              </Space>
+            </Col>
+
+            <Col className="h-100" span={2}>
+              <Space className="vh-100" direction="vertical" size={15}>
+                {[0, 1, 2, 3].map((item) => (
+                  <Image
+                    style={{ width: "6rem", height: "6rem" }}
+                    className=""
+                    src="https://vcdn1-dulich.vnecdn.net/2022/06/03/cauvang-1654247842-9403-1654247849.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=Swd6JjpStebEzT6WARcoOA"
+                  />
+                ))}
+              </Space>
+            </Col>
+          </Row>
+        </Image.PreviewGroup>
 
         <div
           style={{

@@ -1,24 +1,44 @@
+import React from "react";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import apiAuth from "../../apis/apiAuth";
+
+import "./Authentication.scss";
+import { Button, Col, Form, Input, Row, Typography } from "antd";
 import {
   ArrowLeftOutlined,
-  EyeInvisibleOutlined,
-  EyeTwoTone,
   LockOutlined,
   MailOutlined,
-  MobileOutlined,
-  PhoneOutlined,
 } from "@ant-design/icons";
 
-import { Link } from "react-router-dom";
-
-import { Button, Col, Form, Input, Row, Typography } from "antd";
-import React from "react";
 import styled from "styled-components";
 import logo from "../../assets/img/logo1.png";
-import "./Authentication.scss";
+import { loginSuccess } from "../../slices/authSlice";
+import { toast } from "react-toastify";
 
 const { Title, Text } = Typography;
 
 const Login: React.FC = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const onFinish = async (value: any) => {
+    const params = {
+      user_name: value.email,
+      password: value.password,
+    };
+
+    await apiAuth
+      .postLogin(params)
+      .then((res) => {
+        const { accessToken, refreshToken } = res.data.token;
+        const user = res.data;
+        dispatch(loginSuccess({ accessToken, refreshToken, ...user }));
+        toast.success(`Xin chào ${user.user_name || ""}`);
+        navigate("/");
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div className="text-white primary-font">
@@ -51,8 +71,8 @@ const Login: React.FC = () => {
         </Row>
 
         <Row className="" justify="center">
-          <Form className="login-form ">
-            <Form.Item className="">
+          <Form className="login-form" onFinish={onFinish}>
+            <Form.Item className="" name="email">
               <Input
                 style={{
                   backgroundColor: "rgba(0,0,0, 0.4)",
@@ -61,12 +81,13 @@ const Login: React.FC = () => {
                   width: "13rem",
                 }}
                 className="border-0 rounded m-0"
-                placeholder="Nhập số điện thoại"
+                placeholder="Nhập email"
                 defaultValue=""
                 prefix={<MailOutlined />}
               />
             </Form.Item>
-            <Form.Item className="">
+
+            <Form.Item className="" name="password">
               <Input.Password
                 style={{
                   backgroundColor: "rgba(0,0,0, 0.4)",
@@ -79,6 +100,7 @@ const Login: React.FC = () => {
                 prefix={<LockOutlined />}
               />
             </Form.Item>
+
             <Form.Item>
               <Button
                 style={{
