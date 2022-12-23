@@ -16,6 +16,7 @@ import ControlMarker from "./ControlMarker";
 import ControlPolygon from "./ControlPolygon";
 
 import apiPlaces from "../apis/apiPlaces";
+import { SearchBar } from "./";
 import { Url } from "url";
 
 interface point {
@@ -134,6 +135,8 @@ const Map: React.FC = () => {
         scrollWheelZoom={true}
       >
         {/* <ControlMarker data={[groupA, groupB]} /> */}
+
+        <SearchBar />
 
         {places.map((item) => (
           <MapMarker

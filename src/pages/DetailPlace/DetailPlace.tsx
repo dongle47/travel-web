@@ -38,7 +38,6 @@ import Icon, {
   EllipsisOutlined,
 } from "@ant-design/icons";
 
-import ggMapIcon from "../../assets/img/Google_Maps.svg.png";
 import { url } from "inspector";
 import TextArea from "antd/lib/input/TextArea";
 import apiPlaces from "../../apis/apiPlaces";
