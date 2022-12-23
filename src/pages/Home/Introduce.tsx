@@ -41,7 +41,7 @@ const Introduce: React.FC = () => {
           <img
             style={{ borderRadius: "0.5rem", filter: "brightness(80%)" }}
             alt=""
-            src="https://scontent.fsgn5-3.fna.fbcdn.net/v/t1.15752-9/307679541_1527331077693905_5452152073450292985_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=ae9488&_nc_ohc=t8MxmmmBGZ4AX8wCexj&tn=fMTxUtGiWhtZ5nW4&_nc_ht=scontent.fsgn5-3.fna&oh=03_AdR_jXFLCUzREl6DN6jJ0FMVGnNaDgEXQoiTekmysq1P1g&oe=6375A105"
+            src="https://cdna.artstation.com/p/assets/images/images/030/790/238/large/sergey-vasnev-stations2.jpg?1601653727"
             width="100%"
             height="100%"
           />
@@ -50,7 +50,7 @@ const Introduce: React.FC = () => {
           <img
             style={{ borderRadius: "0.5rem", filter: "brightness(80%)" }}
             alt=""
-            src="https://scontent.fsgn5-8.fna.fbcdn.net/v/t1.15752-9/310983640_5717766861615549_6444556240082191301_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=ae9488&_nc_ohc=724Im6s_w8MAX8nuOic&_nc_ht=scontent.fsgn5-8.fna&oh=03_AdSUqYaf_3iD2eS6kMhVfWRnA7k-GoE3cgBBni3uutXzxw&oe=637812AE"
+            src="https://images.unsplash.com/photo-1585016495481-91613a3ab1bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80"
             width="100%"
             height="100%"
           />

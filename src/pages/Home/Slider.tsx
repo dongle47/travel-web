@@ -1,4 +1,5 @@
 import { ArrowLeftOutlined, ArrowRightOutlined } from "@ant-design/icons";
+import "./Home.scss";
 import { Button, Col, Row } from "antd";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -33,7 +34,7 @@ const Slider: React.FC = () => {
           alt=""
         />
         <Link to="./main">
-          <Button className="position-absolute explore-btn">
+          <Button className="position-absolute explore-btn rounded-0">
             TRẢI NGHIỆM NGAY
           </Button>
         </Link>
@@ -41,6 +42,7 @@ const Slider: React.FC = () => {
       <Col style={{ position: "absolute", left: 67 }}>
         <Button
           style={{ width: "4rem" }}
+          className="rounded-0"
           size="large"
           icon={<ArrowLeftOutlined />}
         ></Button>
@@ -48,6 +50,7 @@ const Slider: React.FC = () => {
       <Col style={{ position: "absolute", right: 67 }}>
         <Button
           style={{ width: "4rem" }}
+          className="rounded-0"
           size="large"
           icon={<ArrowRightOutlined />}
         ></Button>

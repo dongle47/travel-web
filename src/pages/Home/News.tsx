@@ -50,6 +50,7 @@ const News: React.FC = () => {
       >
         <Col span={12}>
           <Card
+            className="border"
             hoverable
             cover={
               <img
@@ -82,9 +83,11 @@ const News: React.FC = () => {
             </Space>
           </Card>
         </Col>
+
         <Col span={6}>
           <Space direction="vertical" size={20}>
             <Card
+              className="border"
               hoverable
               cover={
                 <img
@@ -128,7 +131,7 @@ const News: React.FC = () => {
 
         <Col span={6}>
           {[0, 1, 2, 3, 4, 5].map((item) => (
-            <Card hoverable size="small">
+            <Card className="border" hoverable size="small">
               <Title level={5}>Title</Title>
               <Text className="secondFont" type="secondary">
                 description
