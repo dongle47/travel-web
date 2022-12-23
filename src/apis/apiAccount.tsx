@@ -1,7 +1,5 @@
 import { axiosClient } from "./axiosClient";
 
-const apiAccount = {
-  
-};
+const apiAccount = {};
 
 export default apiAccount;
