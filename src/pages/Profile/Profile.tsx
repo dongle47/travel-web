@@ -151,10 +151,7 @@ const Profile: React.FC = () => {
                       name="fullName"
                       label={<Text strong>Họ tên</Text>}
                     >
-                      <Input
-                        defaultValue={user.full_name}
-                        suffix={<CloseOutlined />}
-                      />
+                      <Input defaultValue={user.full_name} allowClear />
                     </Form.Item>
 
                     <Form.Item name="sex" label={<Text strong>Giới tính</Text>}>
@@ -182,17 +179,11 @@ const Profile: React.FC = () => {
                       name="phone"
                       label={<Text strong>Số điện thoại</Text>}
                     >
-                      <Input
-                        defaultValue={user.phone}
-                        suffix={<CloseOutlined />}
-                      />
+                      <Input defaultValue={user.phone} allowClear />
                     </Form.Item>
 
                     <Form.Item name="email" label={<Text strong>Email</Text>}>
-                      <Input
-                        defaultValue={user.email}
-                        suffix={<CloseOutlined />}
-                      />
+                      <Input defaultValue={user.email} allowClear />
                     </Form.Item>
                   </Form>
                 </Col>

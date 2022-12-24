@@ -11,7 +11,6 @@ import {
   MailOutlined,
 } from "@ant-design/icons";
 
-import styled from "styled-components";
 import logo from "../../assets/img/logo1.png";
 import { loginSuccess } from "../../slices/authSlice";
 import { toast } from "react-toastify";
@@ -82,8 +81,9 @@ const Login: React.FC = () => {
                 }}
                 className="border-0 rounded m-0"
                 placeholder="Nhập email"
-                defaultValue=""
                 prefix={<MailOutlined />}
+                defaultValue=""
+                allowClear
               />
             </Form.Item>
 

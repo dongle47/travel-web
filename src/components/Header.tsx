@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { Link } from "react-router-dom";
 
-import { Typography, Row, Col, Space, Button } from "antd";
+import { Typography, Row, Col, Space, Button, MenuProps, Dropdown } from "antd";
 import { useNavigate } from "react-router-dom";
 
 import { logoutSuccess } from "../slices/authSlice";
@@ -18,10 +18,23 @@ import {
   RedditOutlined,
   GlobalOutlined,
   UserOutlined,
+  DownOutlined,
 } from "@ant-design/icons";
+
 import { toast } from "react-toastify";
 
 const { Text } = Typography;
+
+const items: MenuProps["items"] = [
+  {
+    label: <a href="https://www.antgroup.com">Tiếng Việt</a>,
+    key: "0",
+  },
+  {
+    label: <a href="https://www.aliyun.com">Tiếng Anh</a>,
+    key: "1",
+  },
+];
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
@@ -39,14 +52,22 @@ const Header: React.FC = () => {
   return (
     <Row className="header-homepage" justify="space-between" align="middle">
       <Col>
-        <Space>
-          <GlobalOutlined style={{ fontSize: "1.5rem", color: "grey" }} />
-          <Text>Ngôn ngữ</Text>
-        </Space>
+        <Dropdown menu={{ items }} trigger={["click"]}>
+          <a
+            style={{ textDecoration: "none" }}
+            onClick={(e) => e.preventDefault()}
+          >
+            <Space>
+              <GlobalOutlined style={{ fontSize: "1.5rem", color: "grey" }} />
+              <Text>Ngôn ngữ</Text>
+            </Space>
+          </a>
+        </Dropdown>
       </Col>
-      <Col span={15}>
-        <Row justify="space-evenly" align="middle">
-          <Button size="small" type="text">
+
+      <Col>
+        <Row justify="center" align="middle">
+          <Button size="small" type="text" href="/">
             TRANG CHỦ
           </Button>
           <Button size="small" type="text">
@@ -94,6 +115,7 @@ const Header: React.FC = () => {
           )}
         </Row>
       </Col>
+
       <Col>
         <Space style={{ color: "grey" }} size="middle">
           <InstagramOutlined />

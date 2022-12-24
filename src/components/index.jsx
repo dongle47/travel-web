@@ -7,6 +7,7 @@ import ControlMarker from "./ControlMarker";
 import ControlPolygon from "./ControlPolygon";
 import Comments from "./Comments";
 import RelyComment from "./RelyComment";
+import SearchBar from "./SearchBar";
 
 export {
   Header,
@@ -16,4 +17,5 @@ export {
   ControlPolygon,
   Comments,
   RelyComment,
+  SearchBar,
 };

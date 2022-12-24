@@ -4,10 +4,8 @@ import "swiper/css";
 import "react-toastify/dist/ReactToastify.css";
 
 import "./assets/style/App.scss";
-// import './assets/style/_custome.scss'
+import "./assets/style/_custome.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import "antd/dist/antd.css";
 
 import AppRoutes from "./router/AppRoutes";
 import { ToastContainer } from "react-toastify";
