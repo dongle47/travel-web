@@ -8,16 +8,16 @@ import Media from "./Media";
 import Summary from "./Summary";
 import Rating from "./Rating";
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import ReactReadMoreReadLess from "react-read-more-read-less";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import ReactReadMoreReadLess from "react-read-more-read-less";
 
 import {
   Typography,
