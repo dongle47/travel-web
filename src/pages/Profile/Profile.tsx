@@ -2,13 +2,9 @@ import React, { useState } from "react";
 import "./Profile.scss";
 import { useDispatch, useSelector } from "react-redux";
 
-import ImageUploading from "react-images-uploading";
-
 import { toast } from "react-toastify";
 
 import { logoutSuccess } from "../../slices/authSlice";
-
-import apiAccount from "../../apis/apiAccount";
 
 import { Header, Footer } from "../../components/";
 
@@ -29,103 +25,34 @@ import {
   Space,
   Avatar,
   Typography,
-  Button,
-  Input,
-  Radio,
-  RadioChangeEvent,
-  DatePicker,
-  Form,
-  Upload,
-  Modal,
 } from "antd";
 
 import Icon, {
-  PlusOutlined,
   UserOutlined,
   BellOutlined,
   HeartOutlined,
   LockOutlined,
   ExportOutlined,
-  CloseOutlined,
   EnvironmentOutlined,
 } from "@ant-design/icons";
 
 import type { DatePickerProps, MenuProps } from "antd";
-import TextArea from "antd/lib/input/TextArea";
-import MenuItem from "antd/es/menu/MenuItem";
 
 const { Content, Sider } = Layout;
 const { Title, Text } = Typography;
 const { SubMenu } = Menu;
 
 const Profile: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-
   const handleLogout = () => {
     dispatch(logoutSuccess());
     navigate("/");
   };
 
-  const [uploading, setUploading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector((state: any) => state.auth.user);
-  const [image, setImage] = useState([]);
-  const [images, setImages] = React.useState([]);
-  const onChange = (imageList: any, addUpdateIndex: any) => {
-    // data for submit
-    console.log(imageList, addUpdateIndex);
-    setImage(imageList);
-  };
-
-  const handleUploadAvatar = () => {
-    if (image.length === 0) {
-      toast.warning("Vui lòng chọn ảnh");
-      return;
-    }
-    if (uploading) {
-      toast.warning(
-        "Hình ảnh đang được cập nhật, vui lòng không thao tác quá nhiều lần"
-      );
-      return;
-    }
-    setUploading(true);
-    // let param = { file: image[0].file };
-    // apiProfile
-    //   .putUploadAvatar(param)
-    //   .then((res) => {
-    //     toast.success("Cập nhật ảnh đại diện thành công");
-    //     getUserProfile();
-    //   })
-    //   .catch((error) => {
-    //     toast.error("Cập nhật ảnh đại diện thất bại");
-    //   })
-    //   .finally(() => {
-    //     setModalUploadAvatar(false);
-    //     setUploading(false);
-    //   });
-  };
-
-  console.log(user);
 
   const onChangeDate: DatePickerProps["onChange"] = (date, dateString) => {
     console.log(date, dateString);
-  };
-
-  const onFinish = async (values: any) => {
-    console.log(values);
   };
 
   return (
@@ -199,8 +126,6 @@ const Profile: React.FC = () => {
               }}
               mode="inline"
               defaultSelectedKeys={["1"]}
-              // defaultOpenKeys={["sub1"]}
-              // items={itemsMenu}
             >
               {itemsMenu?.map((item: any) => (
                 <Menu.Item key={item.key}>
@@ -459,10 +384,4 @@ const itemsMenu: any = [
     label: "Đổi mật khẩu",
     link: "change-password",
   },
-  // {
-  //   key: "6",
-  //   icon: React.createElement(ExportOutlined),
-  //   label: "Đăng xuất",
-  //   link: "logout",
-  // },
 ];

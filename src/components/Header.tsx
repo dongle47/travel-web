@@ -91,7 +91,7 @@ const Header: React.FC = () => {
                 className="d-flex align-items-center"
                 type="text"
                 icon={<UserOutlined />}
-                onClick={() => navigate("/profile")}
+                onClick={() => navigate("/profile/user-information")}
               >
                 {user.user_name}
               </Button>
