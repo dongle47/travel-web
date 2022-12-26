@@ -6,11 +6,15 @@ import { toast } from "react-toastify";
 
 import { logoutSuccess } from "../../slices/authSlice";
 
-import apiAccount from "../../apis/apiAccount";
-
 import { Header, Footer } from "../../components/";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Routes, Route, Link } from "react-router-dom";
+
+import HistoryCheckIn from "./HistoryCheckIn";
+import FavoritePlaces from "./FavoritePlaces";
+import Notification from "./Notification";
+import ChangePassword from "./ChangePassword";
+import UserInformation from "./UserInformation";
 
 import {
   Layout,
@@ -21,52 +25,34 @@ import {
   Space,
   Avatar,
   Typography,
-  Button,
-  Input,
-  Radio,
-  RadioChangeEvent,
-  DatePicker,
-  Form,
-  Upload,
 } from "antd";
 
 import Icon, {
-  PlusOutlined,
   UserOutlined,
   BellOutlined,
   HeartOutlined,
   LockOutlined,
   ExportOutlined,
-  CloseOutlined,
   EnvironmentOutlined,
 } from "@ant-design/icons";
 
 import type { DatePickerProps, MenuProps } from "antd";
-import TextArea from "antd/lib/input/TextArea";
 
 const { Content, Sider } = Layout;
 const { Title, Text } = Typography;
 const { SubMenu } = Menu;
 
 const Profile: React.FC = () => {
+  const handleLogout = () => {
+    dispatch(logoutSuccess());
+    navigate("/");
+  };
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector((state: any) => state.auth.user);
-
-  console.log(user);
-
-  const handleLogout = () => {
-    dispatch(logoutSuccess);
-    navigate("/");
-    toast.info("Đăng xuất thành công");
-  };
 
   const onChangeDate: DatePickerProps["onChange"] = (date, dateString) => {
     console.log(date, dateString);
-  };
-
-  const onFinish = async (values: any) => {
-    console.log(values);
   };
 
   return (
@@ -104,7 +90,23 @@ const Profile: React.FC = () => {
 
           <Col span={5} offset={3}>
             <Row>
-              <Title level={4}>Thông tin cá nhân</Title>
+              <Title level={4}>
+                {window.location.href.includes("user-information")
+                  ? "Thông tin cá nhân"
+                  : ""}
+                {window.location.href.includes("history-check-in")
+                  ? "Lịch sử Check-in"
+                  : ""}
+                {window.location.href.includes("notification")
+                  ? "Thông báo của tôi"
+                  : ""}
+                {window.location.href.includes("favorite-places")
+                  ? "Địa điểm yêu thích"
+                  : ""}
+                {window.location.href.includes("change-password")
+                  ? "Đổi mật khẩu"
+                  : ""}
+              </Title>
             </Row>
           </Col>
         </Row>
@@ -124,9 +126,20 @@ const Profile: React.FC = () => {
               }}
               mode="inline"
               defaultSelectedKeys={["1"]}
-              defaultOpenKeys={["sub1"]}
-              items={itemsMenu}
-            ></Menu>
+            >
+              {itemsMenu?.map((item: any) => (
+                <Menu.Item key={item.key}>
+                  {item.icon}
+                  <span>{item.label}</span>
+                  <Link to={item.link} />
+                </Menu.Item>
+              ))}
+              <Menu.Item key="6" onClick={handleLogout}>
+                <ExportOutlined />
+                <span>Đăng xuất</span>
+                <Link to="/" />
+              </Menu.Item>
+            </Menu>
           </Sider>
 
           <Layout style={{ backgroundColor: "#fff", padding: "1.5rem 2rem" }}>
@@ -138,7 +151,7 @@ const Profile: React.FC = () => {
                 minHeight: 280,
               }}
             >
-              <Row className="w-100" justify="start">
+              {/* <Row className="w-100" justify="start">
                 <Col span={12}>
                   <Form
                     id="info-form"
@@ -203,12 +216,102 @@ const Profile: React.FC = () => {
                           shape="circle"
                           size="small"
                           icon={<PlusOutlined className="text-white" />}
+                          onClick={showModal}
                         />
                       </div>
+                      <Modal
+                        title="Basic Modal"
+                        open={isModalOpen}
+                        onOk={handleOk}
+                        onCancel={handleCancel}
+                      >
+                        <ImageUploading
+                          value={image}
+                          onChange={onChange}
+                          dataURLKey="data_url"
+                          acceptType={["jpg"]}
+                        >
+                          {({
+                            imageList,
+                            onImageUpload,
+                            onImageUpdate,
+                            onImageRemove,
+                            isDragging,
+                            dragProps,
+                          }) => (
+                            // write your building UI
+                            <div className="upload__image-wrapper">
+                              {imageList.length === 0 ? (
+                                <Row
+                                  style={{
+                                    width: "100%",
+                                    height: "30rem",
+                                    border: "2px dashed grey",
+                                    borderRadius: "5px",
+                                  }}
+                                  // style={isDragging ? { color: "red" } : null}
+                                  justify="center"
+                                  align="middle"
+                                  onClick={onImageUpload}
+                                  {...dragProps}
+                                >
+                                  <Text
+                                    style={{
+                                      marginLeft: "auto",
+                                      marginRight: "auto",
+                                      color: "blue",
+                                    }}
+                                  >
+                                    Nhấn để chọn hoặc kéo thả hình ảnh vào khung
+                                    này.
+                                  </Text>
+                                </Row>
+                              ) : null}
 
-                      {/* <Title className="" level={3}>
-                        Tên người dùng
-                      </Title> */}
+                              {imageList.map((image, i) => (
+                                <Row
+                                  key={i}
+                                  style={{
+                                    width: "100%",
+                                    height: "30rem",
+                                    borderRadius: "5px",
+                                  }}
+                                  // spacing={3}
+                                  className="image-item"
+                                >
+                                  <img
+                                    style={{
+                                      width: "25rem",
+                                      height: "25rem",
+                                      alignSelf: "center",
+                                    }}
+                                    src={image.data_url}
+                                    alt=""
+                                  />
+                                  <Row
+                                    className="image-item__btn-wrapper"
+                                    justify="center"
+                                  >
+                                    <Button
+                                      style={{ width: "50%" }}
+                                      onClick={() => onImageRemove(0)}
+                                    >
+                                      Hủy bỏ
+                                    </Button>
+                                    <Button
+                                      style={{ width: "50%" }}
+                                      onClick={handleUploadAvatar}
+                                    >
+                                      {uploading} Lưu thay đổi
+                                    </Button>
+                                  </Row>
+                                </Row>
+                              ))}
+                            </div>
+                          )}
+                        </ImageUploading>
+                      </Modal>
+
                       <Button
                         style={{
                           backgroundColor: "#FD7E14",
@@ -229,7 +332,15 @@ const Profile: React.FC = () => {
                     </Space>
                   </Row>
                 </Col>
-              </Row>
+              </Row> */}
+
+              <Routes>
+                <Route path="user-information" element={<UserInformation />} />
+                <Route path="history-check-in" element={<HistoryCheckIn />} />
+                <Route path="notification" element={<Notification />} />
+                <Route path="favorite-places" element={<FavoritePlaces />} />
+                <Route path="change-password" element={<ChangePassword />} />
+              </Routes>
             </Content>
           </Layout>
         </Layout>
@@ -242,35 +353,35 @@ const Profile: React.FC = () => {
 
 export default Profile;
 
-const itemsMenu: MenuProps["items"] = [
+const itemsMenu: any = [
   {
     key: "1",
     icon: React.createElement(UserOutlined),
     label: "Thông tin cá nhân",
+    link: "user-information",
   },
   {
     key: "2",
     icon: React.createElement(EnvironmentOutlined),
     label: "Lịch sử check in",
+    link: "history-check-in",
   },
   {
     key: "3",
     icon: React.createElement(BellOutlined),
     label: "Thông báo của tôi",
+    link: "notification",
   },
   {
     key: "4",
     icon: React.createElement(HeartOutlined),
     label: "Địa điểm yêu thích",
+    link: "favorite-places",
   },
   {
     key: "5",
     icon: React.createElement(LockOutlined),
     label: "Đổi mật khẩu",
-  },
-  {
-    key: "6",
-    icon: React.createElement(ExportOutlined),
-    label: "Đăng xuất",
+    link: "change-password",
   },
 ];
