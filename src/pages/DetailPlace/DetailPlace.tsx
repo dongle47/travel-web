@@ -13,37 +13,14 @@ import Video from "./Video";
 // @ts-ignore
 import ReactReadMoreReadLess from "react-read-more-read-less";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import {
-  Typography,
-  Row,
-  Col,
-  Space,
-  Button,
-  Divider,
-  Avatar,
-  Image,
-  Rate,
-  Modal,
-} from "antd";
+import { Typography, Row, Col, Space, Button, Divider } from "antd";
 
-import Icon, {
-  CommentOutlined,
-  PlayCircleOutlined,
-  StarFilled,
-  EllipsisOutlined,
-} from "@ant-design/icons";
-
-import { url } from "inspector";
-import TextArea from "antd/lib/input/TextArea";
 import apiPlaces from "../../apis/apiPlaces";
-import { Player } from "video-react";
 
 const { Title, Text } = Typography;
 
@@ -150,7 +127,7 @@ const DetailPlace: React.FC = () => {
                 </Text>
                 <Button
                   style={{ width: "10rem", height: "2.5rem" }}
-                  className=""
+                  className="rounded-0"
                 >
                   LEARN MORE
                 </Button>
