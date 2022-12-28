@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { RelyComment, ButtonLikeCmt } from ".";
+import { ReplyComment, ButtonLikeCmt } from ".";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -153,8 +153,9 @@ const Comments: React.FC = () => {
 
           {/* trả lời */}
           <div>
-            <RelyComment />
-            <RelyComment />
+            <ReplyComment status={0} />
+            <ReplyComment status={1} />
+            <ReplyComment status={-1} />
           </div>
           {/* end trả lời */}
         </Col>

@@ -6,9 +6,10 @@ import ControllingGroup from "./ControllingGroup";
 import ControlMarker from "./ControlMarker";
 import ControlPolygon from "./ControlPolygon";
 import Comments from "./Comments";
-import RelyComment from "./RelyComment";
+import ReplyComment from "./ReplyComment";
 import SearchBar from "./SearchBar";
 import ButtonLikeCmt from "./ButtonLikeCmt";
+import ButtonLikeReplyCmt from "./ButtonLikeReplyCmt";
 
 export {
   Header,
@@ -17,7 +18,8 @@ export {
   MapMarker,
   ControlPolygon,
   Comments,
-  RelyComment,
+  ReplyComment,
   SearchBar,
   ButtonLikeCmt,
+  ButtonLikeReplyCmt,
 };
