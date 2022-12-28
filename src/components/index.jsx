@@ -10,6 +10,7 @@ import ReplyComment from "./ReplyComment";
 import SearchBar from "./SearchBar";
 import ButtonLikeCmt from "./ButtonLikeCmt";
 import ButtonLikeReplyCmt from "./ButtonLikeReplyCmt";
+import ButtonPlaceType from "./ButtonPlaceType";
 
 export {
   Header,
@@ -22,4 +23,5 @@ export {
   SearchBar,
   ButtonLikeCmt,
   ButtonLikeReplyCmt,
+  ButtonPlaceType,
 };

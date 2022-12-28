@@ -10,7 +10,7 @@ import Introduce from "./Introduce";
 
 import News from "./News";
 
-import { Typography, Row, Col, Card, Space, Button } from "antd";
+import { Typography, Row, Col, Card, Space, Button, Divider } from "antd";
 
 import {
   FacebookFilled,
@@ -101,8 +101,8 @@ const Homepage: React.FC = () => {
           <Space size={10}>
             {placeType.map((item) => (
               <Card
-                className="pt-3"
                 style={{ width: "10rem" }}
+                className="pt-3 rounded-0"
                 size="small"
                 hoverable
                 cover={<img alt="example" src={item.imgSrc} />}
@@ -166,6 +166,8 @@ const Homepage: React.FC = () => {
 
         <Introduce />
       </div>
+
+      <Divider />
 
       <Footer />
     </div>
