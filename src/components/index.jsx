@@ -5,7 +5,7 @@ import MapMarker from "./MapMarker";
 import ControllingGroup from "./ControllingGroup";
 import ControlMarker from "./ControlMarker";
 import ControlPolygon from "./ControlPolygon";
-import Comments from "./Comments";
+import Comment from "./Comment";
 import ReplyComment from "./ReplyComment";
 import SearchBar from "./SearchBar";
 import ButtonLikeCmt from "./ButtonLikeCmt";
@@ -17,7 +17,7 @@ export {
   Map,
   MapMarker,
   ControlPolygon,
-  Comments,
+  Comment,
   ReplyComment,
   SearchBar,
   ButtonLikeCmt,

@@ -29,7 +29,7 @@ const { Title, Text } = Typography;
 
 const { TextArea } = Input;
 
-const Comments: React.FC = () => {
+const Comment: React.FC = () => {
   const [value, setValue] = useState("");
 
   const [replyVisibility, setReplyVisibility] = useState(false);
@@ -187,4 +187,4 @@ const Comments: React.FC = () => {
   );
 };
 
-export default Comments;
+export default Comment;
