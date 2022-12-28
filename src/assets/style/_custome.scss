@@ -16,6 +16,12 @@
 
 
 // search-bar
+.search-bar{
+    position: fixed;
+    z-index: 1000;
+    margin: 1rem;
+}
+
 .ant-input-affix-wrapper{
     height: 2.5rem !important;
 }
@@ -26,3 +32,8 @@
 }
 
 // end search-bar
+
+// btn place type
+
+
+// end btn place type

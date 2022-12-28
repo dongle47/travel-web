@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import "./DetailPlace.scss";
+import { useSelector } from "react-redux";
 import {
   Typography,
   Row,
@@ -19,16 +21,9 @@ import ReactReadMoreReadLess from "react-read-more-read-less";
 import type { RcFile, UploadProps } from "antd/es/upload";
 import type { UploadFile } from "antd/es/upload/interface";
 import TextArea from "antd/lib/input/TextArea";
+import { useNavigate, useParams } from "react-router-dom";
 
 const { Title, Text } = Typography;
-
-const contentStyle: React.CSSProperties = {
-  height: "160px",
-  color: "#fff",
-  lineHeight: "160px",
-  textAlign: "center",
-  background: "#364d79",
-};
 
 const getBase64 = (file: RcFile): Promise<string> =>
   new Promise((resolve, reject) => {
@@ -48,18 +43,6 @@ const Rating: React.FC = () => {
   const [value, setValue] = useState("");
   const [fileList, setFileList] = useState<UploadFile[]>([
     {
-      uid: "-1",
-      name: "image.png",
-      status: "done",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-    {
-      uid: "-2",
-      name: "image.png",
-      status: "done",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-    {
       uid: "-3",
       name: "image.png",
       status: "done",
@@ -69,13 +52,6 @@ const Rating: React.FC = () => {
       uid: "-4",
       name: "image.png",
       status: "done",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-    {
-      uid: "-xxx",
-      percent: 50,
-      name: "image.png",
-      status: "uploading",
       url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
     },
     {
@@ -125,95 +101,137 @@ const Rating: React.FC = () => {
     setOpen(false);
   };
 
+  const [statusCheckIn, setStatusCheckIn] = useState(-1);
+
+  const user = useSelector((state: any) => state.auth.user);
+
+  const historyCheckIn: any = ["sdad", "dsada"];
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (user) {
+      if (historyCheckIn.includes(id)) setStatusCheckIn(1);
+      else setStatusCheckIn(0);
+    } else {
+      setStatusCheckIn(-1);
+    }
+  }, []);
+
+  const navigate = useNavigate();
+
   return (
-    <Row className="m-0" justify="center" align="middle" gutter={100}>
-      <Col>
-        <img
-          className="rounded-circle"
-          height={500}
-          width={400}
-          alt=""
-          src="https://prod-virtuoso.dotcmscloud.com/dA/188da7ea-f44f-4b9c-92f9-6a65064021c1/previewImage/PowerfulReasons_hero.jpg"
-        />
-      </Col>
-      <Col>
-        <Space direction="vertical" align="center">
-          <Text className="fs-3 text-center" strong>
-            Bạn đã check in{" "}
-            <CheckOutlined className="text-success fs-3 font-weight-bold" />
-          </Text>
-          <Text className="fs-3" strong>
-            Hãy <span style={{ color: "#FF7424" }}>đánh giá</span> ngay
-          </Text>
+    <Row className="m-0 mt-5" justify="center" align="middle" gutter={100}>
+      <Space direction="vertical" align="center">
+        <Text className="fs-1 text-center" strong>
+          {statusCheckIn === -1 && "Bạn chưa đăng nhập"}{" "}
+          {statusCheckIn === 0 && "Bạn chưa check in địa điểm này"}{" "}
+          {statusCheckIn === 1 && "Bạn đã check in"}{" "}
+          <CheckOutlined className="text-success fs-3 font-weight-bold" />
+        </Text>
+
+        <Text className="fs-1" strong>
+          {statusCheckIn === -1 && (
+            <>
+              Hãy <span style={{ color: "#FF7424" }}>đăng nhập</span> để có thể
+              check in và đánh giá
+            </>
+          )}
+          {statusCheckIn === 0 && (
+            <>
+              Hãy <span style={{ color: "#FF7424" }}>check in</span> ngay
+            </>
+          )}
+          {statusCheckIn === 1 && (
+            <>
+              Hãy <span style={{ color: "#FF7424" }}>đánh giá</span> ngay
+            </>
+          )}
+        </Text>
+
+        {statusCheckIn === -1 && (
           <Button
-            style={{
-              backgroundColor: "#FF7424",
-              width: "10rem",
-              height: "3rem",
-            }}
-            className="border-0 mt-3"
+            className="border-0 mt-3 btn-rating"
+            type="primary"
+            onClick={() => navigate("/login")}
+          >
+            <Text className="text-white fs-5" strong>
+              Đăng nhập
+            </Text>
+          </Button>
+        )}
+        {statusCheckIn === 0 && (
+          <Button
+            className="border-0 mt-3 btn-rating"
+            type="primary"
+            onClick={() => navigate("/")}
+          >
+            <Text className="text-white fs-5" strong>
+              Check in
+            </Text>
+          </Button>
+        )}
+        {statusCheckIn === 1 && (
+          <Button
+            className="border-0 mt-3 btn-rating"
             type="primary"
             onClick={showModal}
           >
-            <Text className="text-white" strong>
+            <Text className="text-white fs-5" strong>
               Đánh giá
             </Text>
           </Button>
+        )}
+      </Space>
+
+      <Modal
+        open={open}
+        title="Đánh giá"
+        onOk={handleOk}
+        onCancel={handleCancel}
+        footer={[
+          <Button key="back" onClick={handleCancel}>
+            Thoát
+          </Button>,
+          <Button
+            key="submit"
+            type="primary"
+            loading={loading}
+            onClick={handleOk}
+          >
+            Xác nhận
+          </Button>,
+        ]}
+      >
+        <Space direction="vertical" size={15}>
+          <Rate allowHalf defaultValue={2.5} />
+          <TextArea
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            placeholder="Viết bình luận"
+            autoSize={{ minRows: 3, maxRows: 5 }}
+          />
+
+          <Upload
+            action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            listType="picture-card"
+            fileList={fileList}
+            onPreview={handlePreview}
+            onChange={handleChange}
+          >
+            {fileList.length >= 8 ? null : uploadButton}
+          </Upload>
 
           <Modal
-            open={open}
-            title="Đánh giá"
-            onOk={handleOk}
-            onCancel={handleCancel}
-            footer={[
-              <Button key="back" onClick={handleCancel}>
-                Thoát
-              </Button>,
-              <Button
-                key="submit"
-                type="primary"
-                loading={loading}
-                onClick={handleOk}
-              >
-                Xác nhận
-              </Button>,
-            ]}
+            open={previewOpen}
+            title={previewTitle}
+            footer={null}
+            onCancel={handleCancelUpload}
           >
-            <Space direction="vertical" size={15}>
-              <Rate allowHalf defaultValue={2.5} />
-              <TextArea
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
-                placeholder="Viết bình luận"
-                autoSize={{ minRows: 3, maxRows: 5 }}
-              />
-
-              <Upload
-                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                listType="picture-card"
-                fileList={fileList}
-                onPreview={handlePreview}
-                onChange={handleChange}
-              >
-                {fileList.length >= 8 ? null : uploadButton}
-              </Upload>
-
-              <Modal
-                open={previewOpen}
-                title={previewTitle}
-                footer={null}
-                onCancel={handleCancelUpload}
-              >
-                <img
-                  alt="example"
-                  style={{ width: "100%" }}
-                  src={previewImage}
-                />
-              </Modal>
-            </Space>
+            <img alt="example" style={{ width: "100%" }} src={previewImage} />
           </Modal>
         </Space>
-      </Col>
+      </Modal>
     </Row>
   );
 };

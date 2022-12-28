@@ -1,45 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./DetailPlace.scss";
 
-import { Header, Footer, Comments } from "../../components";
+import { Header, Footer, Comment } from "../../components";
 
-import Media from "./Media";
+import Images from "./Images";
 import Summary from "./Summary";
 import Rating from "./Rating";
+import Video from "./Video";
 
-import { Swiper, SwiperSlide } from "swiper/react";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import ReactReadMoreReadLess from "react-read-more-read-less";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import ReactReadMoreReadLess from "react-read-more-read-less";
+import { Typography, Row, Col, Space, Button, Divider } from "antd";
 
-import {
-  Typography,
-  Row,
-  Col,
-  Space,
-  Button,
-  Divider,
-  Avatar,
-  Image,
-  Rate,
-} from "antd";
-
-import Icon, {
-  CommentOutlined,
-  PlayCircleOutlined,
-  StarFilled,
-  EllipsisOutlined,
-} from "@ant-design/icons";
-
-import { url } from "inspector";
-import TextArea from "antd/lib/input/TextArea";
 import apiPlaces from "../../apis/apiPlaces";
 
 const { Title, Text } = Typography;
@@ -82,8 +62,6 @@ const DetailPlace: React.FC = () => {
     };
     getDetailPlace();
   }, []);
-
-  // console.log(place.place_img);
 
   return (
     <div style={{ minHeight: "200rem" }} className="primary-font">
@@ -149,7 +127,7 @@ const DetailPlace: React.FC = () => {
                 </Text>
                 <Button
                   style={{ width: "10rem", height: "2.5rem" }}
-                  className=""
+                  className="rounded-0"
                 >
                   LEARN MORE
                 </Button>
@@ -185,7 +163,7 @@ const DetailPlace: React.FC = () => {
 
               <Button
                 style={{ width: "15rem", height: "3rem" }}
-                className="bg-black mt-2"
+                className="bg-black mt-2 rounded-0"
               >
                 <Text className="text-white fs-6">Check in</Text>
                 <i
@@ -208,21 +186,11 @@ const DetailPlace: React.FC = () => {
           </Col>
 
           <Col className="position-relative" span={10}>
-            <img
-              width={480}
-              className="video-detail"
-              height={500}
-              alt=""
-              src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/08/brazil-single-2-2.jpg"
-            />
-            <PlayCircleOutlined
-              style={{ fontSize: "4rem", top: "43%", right: "43%" }}
-              className="position-absolute text-white"
-            />
+            <Video />
           </Col>
         </Row>
 
-        <Media images={place.place_img} />
+        <Images images={place.place_img} />
 
         <div
           style={{
@@ -248,7 +216,7 @@ const DetailPlace: React.FC = () => {
           </Divider>
 
           <Row className="w-100" justify="center">
-            <Comments />
+            <Comment />
           </Row>
         </div>
 

@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./assets/style/App.scss";
 import "./assets/style/_custome.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import "video-react/dist/video-react.css";
 import AppRoutes from "./router/AppRoutes";
 import { ToastContainer } from "react-toastify";
 

@@ -5,9 +5,12 @@ import MapMarker from "./MapMarker";
 import ControllingGroup from "./ControllingGroup";
 import ControlMarker from "./ControlMarker";
 import ControlPolygon from "./ControlPolygon";
-import Comments from "./Comments";
-import RelyComment from "./RelyComment";
+import Comment from "./Comment";
+import ReplyComment from "./ReplyComment";
 import SearchBar from "./SearchBar";
+import ButtonLikeCmt from "./ButtonLikeCmt";
+import ButtonLikeReplyCmt from "./ButtonLikeReplyCmt";
+import ButtonPlaceType from "./ButtonPlaceType";
 
 export {
   Header,
@@ -15,7 +18,10 @@ export {
   Map,
   MapMarker,
   ControlPolygon,
-  Comments,
-  RelyComment,
+  Comment,
+  ReplyComment,
   SearchBar,
+  ButtonLikeCmt,
+  ButtonLikeReplyCmt,
+  ButtonPlaceType,
 };

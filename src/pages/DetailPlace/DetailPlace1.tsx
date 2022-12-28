@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./DetailPlace.scss";
 
-import { Header, Footer, Comments } from "../../components";
+import { Header, Footer, Comment } from "../../components";
 
-import Media from "./Media";
+import Media from "./Images";
 import Summary from "./Summary";
 import Rating from "./Rating";
 
@@ -310,7 +310,7 @@ const DetailPlace: React.FC = () => {
           </Divider>
 
           <Row className="w-100" justify="center">
-            <Comments />
+            <Comment />
 
             <Row
               style={{ width: "75%", marginBottom: "5rem", marginLeft: "9rem" }}

@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
+
+import { ButtonLikeReplyCmt } from ".";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -21,7 +23,11 @@ import {
 
 const { Title, Text } = Typography;
 
-const RelyComment: React.FC = () => {
+interface IProps {
+  status: -1 | 0 | 1;
+}
+
+const RelyComment: React.FC<IProps> = ({ status }) => {
   return (
     <>
       <Row style={{ width: "90%" }} className="mt-3" align="top" gutter={10}>
@@ -82,9 +88,9 @@ const RelyComment: React.FC = () => {
           </Row>
 
           <Row className="">
-            <Space>
+            {/* <Space>
               <Button
-                style={{ width: "5rem" }}
+                style={{ width: "4.5rem" }}
                 type="primary"
                 size="small"
                 shape="round"
@@ -93,7 +99,7 @@ const RelyComment: React.FC = () => {
                 Like
               </Button>
               <Button
-                style={{ width: "5rem" }}
+                style={{ width: "4.5rem" }}
                 type="primary"
                 size="small"
                 shape="round"
@@ -102,7 +108,8 @@ const RelyComment: React.FC = () => {
               >
                 Dislike
               </Button>
-            </Space>
+            </Space> */}
+            <ButtonLikeReplyCmt status={status} />
           </Row>
         </Col>
       </Row>

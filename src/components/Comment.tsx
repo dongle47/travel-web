@@ -1,5 +1,5 @@
-import React from "react";
-import { RelyComment } from ".";
+import React, { useState } from "react";
+import { ReplyComment, ButtonLikeCmt } from ".";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -27,7 +27,13 @@ import Icon, {
 
 const { Title, Text } = Typography;
 
-const Comments: React.FC = () => {
+const { TextArea } = Input;
+
+const Comment: React.FC = () => {
+  const [value, setValue] = useState("");
+
+  const [replyVisibility, setReplyVisibility] = useState(false);
+
   return (
     <>
       <Row
@@ -101,35 +107,62 @@ const Comments: React.FC = () => {
             </Space>
           </Image.PreviewGroup>
 
+          {replyVisibility && (
+            <div style={{ padding: "0.8rem" }} className="mt-4 border rounded">
+              <Row
+                className="w-100 mb-1"
+                justify="space-between"
+                align="middle"
+              >
+                <Space>
+                  <Avatar
+                    size={40}
+                    src="https://wegotthiscovered.com/wp-content/uploads/2022/08/Vegeta-1200x900.jpeg"
+                  />
+                  <Text
+                    style={{ fontSize: "0.8rem" }}
+                    className="text-align-center"
+                    strong
+                  >
+                    Tên người dùng
+                  </Text>
+                </Space>
+
+                <Text className="text-secondary">Ngày đăng</Text>
+              </Row>
+
+              <div>
+                <TextArea
+                  placeholder="Nhập bình luận"
+                  autoSize={{ minRows: 2, maxRows: 6 }}
+                  // value={value}
+                  // onChange={(e) => setValue(e.target.value)}
+                />
+              </div>
+
+              <Row className="mt-1" justify="end">
+                <Button style={{ width: "18%" }} className="me-2" type="text">
+                  Huỷ
+                </Button>
+                <Button style={{ backgroundColor: "#69B9C7", width: "20%" }}>
+                  <Text className="text-white">Trả lời</Text>
+                </Button>
+              </Row>
+            </div>
+          )}
+
           {/* trả lời */}
           <div>
-            <RelyComment />
-            <RelyComment />
+            <ReplyComment status={0} />
+            <ReplyComment status={1} />
+            <ReplyComment status={-1} />
           </div>
           {/* end trả lời */}
         </Col>
 
         <Col className="d-flex justify-content-center" span={3}>
           <Space direction="vertical">
-            <Button
-              style={{ width: "5.5rem", marginTop: "2rem" }}
-              type="primary"
-              size="small"
-              shape="round"
-              ghost
-            >
-              Like
-            </Button>
-            <Button
-              style={{ width: "5.5rem" }}
-              type="primary"
-              size="small"
-              shape="round"
-              ghost
-              danger
-            >
-              Dislike
-            </Button>
+            <ButtonLikeCmt status={0} />
 
             <Button
               style={{ width: "5.5rem" }}
@@ -137,6 +170,7 @@ const Comments: React.FC = () => {
               type="text"
               size="large"
               icon={<CommentOutlined className="fs-4 text-secondary" />}
+              onClick={() => setReplyVisibility((prev) => !prev)}
             >
               <Text style={{ fontSize: "0.9rem" }} className="text-secondary">
                 Trả lời
@@ -153,4 +187,4 @@ const Comments: React.FC = () => {
   );
 };
 
-export default Comments;
+export default Comment;

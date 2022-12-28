@@ -47,13 +47,13 @@ const SearchBar: React.FC = () => {
   return (
     <div style={{}} className="bg-white search-bar rounded">
       <AutoComplete
-        style={{ width: 250 }}
+        style={{ width: 350 }}
         popupClassName="certain-category-search-dropdown"
-        dropdownMatchSelectWidth={305}
+        dropdownMatchSelectWidth={350}
         options={options}
       >
         <Search
-          style={{ width: 305 }}
+          style={{ width: 350 }}
           addonBefore={<MenuOutlined />}
           placeholder="Tìm kiếm"
           allowClear
