@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { RelyComment } from ".";
+import { RelyComment, ButtonLikeCmt } from ".";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -127,9 +127,7 @@ const Comments: React.FC = () => {
                     Tên người dùng
                   </Text>
                 </Space>
-                {/* <Col span={4}>
-                <Text>Ngày đăng</Text>
-              </Col> */}
+
                 <Text className="text-secondary">Ngày đăng</Text>
               </Row>
 
@@ -163,25 +161,7 @@ const Comments: React.FC = () => {
 
         <Col className="d-flex justify-content-center" span={3}>
           <Space direction="vertical">
-            <Button
-              style={{ width: "5.5rem", marginTop: "2rem" }}
-              type="primary"
-              size="small"
-              shape="round"
-              ghost
-            >
-              Like
-            </Button>
-            <Button
-              style={{ width: "5.5rem" }}
-              type="primary"
-              size="small"
-              shape="round"
-              ghost
-              danger
-            >
-              Dislike
-            </Button>
+            <ButtonLikeCmt status={0} />
 
             <Button
               style={{ width: "5.5rem" }}

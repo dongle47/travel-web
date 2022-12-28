@@ -8,6 +8,7 @@ import ControlPolygon from "./ControlPolygon";
 import Comments from "./Comments";
 import RelyComment from "./RelyComment";
 import SearchBar from "./SearchBar";
+import ButtonLikeCmt from "./ButtonLikeCmt";
 
 export {
   Header,
@@ -18,4 +19,5 @@ export {
   Comments,
   RelyComment,
   SearchBar,
+  ButtonLikeCmt,
 };

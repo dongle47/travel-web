@@ -133,7 +133,8 @@ const Rating: React.FC = () => {
         <Text className="fs-1" strong>
           {statusCheckIn === -1 && (
             <>
-              Hãy <span style={{ color: "#FF7424" }}>đăng nhập</span> ngay
+              Hãy <span style={{ color: "#FF7424" }}>đăng nhập</span> để có thể
+              check in và đánh giá
             </>
           )}
           {statusCheckIn === 0 && (
