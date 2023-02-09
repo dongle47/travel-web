@@ -1,14 +1,15 @@
+import { ListPlaceItem, ListResponse } from "../models/common";
 import { axiosClient } from "./axiosClient";
 
 const apiPlaces = {
-  getPlaces: async () => {
-    const res = await axiosClient.get("/place-service/place/list");
-    return res.data;
+  getPlaces(): Promise<ListResponse<ListPlaceItem[]>> {
+    const url = "/place-service/place/list";
+    return axiosClient.get(url);
   },
 
-  getPlace: async (id: any) => {
-    const res = await axiosClient.get(`/place-service/place/detail/${id}`);
-    return res.data;
+  getPlace(id: string) {
+    const url = `/place-service/place/detail/${id}`;
+    return axiosClient.get(url);
   },
 };
 

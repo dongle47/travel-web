@@ -22,3 +22,13 @@ export interface ResponseRegister{
 export interface ResponseLogin{
     data: User
 }
+
+export interface ListResponse<T>{
+    data: T
+}
+
+export interface ListPlaceItem{
+    id: string;
+    code: string;
+    name: string;
+}
