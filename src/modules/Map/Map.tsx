@@ -1,20 +1,25 @@
 import React, { useEffect, useRef, useState } from "react";
 import "leaflet/dist/leaflet.css";
 
+import "./Map.scss";
+
 import { MapContainer, TileLayer, ZoomControl, useMap } from "react-leaflet";
 
 import { latLng, LatLng, LocationEvent, latLngBounds } from "leaflet";
 
-import tileLayer from "../utils/tileLayer";
+import { tileLayer } from "../../utils";
+
 import L from "leaflet";
 
-import MapMarker from "./MapMarker";
-import ControllingGroup from "./ControllingGroup";
-import ControlMarker from "./ControlMarker";
-import ControlPolygon from "./ControlPolygon";
+import MapMarker from "./components/MapMarker";
+import ControllingGroup from "./components/ControllingGroup";
 
-import apiPlaces from "../apis/placesApi";
-import { SearchBar, ButtonPlaceType } from "./";
+// import ControlMarker from "./ControlMarker";
+// import ControlPolygon from "./ControlPolygon";
+
+import apiPlaces from "../../apis/placesApi";
+import { SearchBar, ButtonPlaceType } from "../../components";
+import { Place } from "../../models/place";
 
 interface point {
   lat: number;
@@ -37,7 +42,7 @@ const GetCoordinates = () => {
     if (!map) return;
     const info = L.DomUtil.create("div", "legend");
 
-    const positon = L.Control.extend({
+    const position = L.Control.extend({
       options: {
         position: "bottomleft",
       },
@@ -52,41 +57,28 @@ const GetCoordinates = () => {
       info.textContent = e.latlng.toString();
     });
 
-    map.addControl(new positon());
+    map.addControl(new position());
   }, [map]);
 
   return null;
 };
 
-interface IProps {
-  map: any;
-}
-
-interface place {
-  id: string;
-  name: string;
-  address: string;
-  lat: number;
-  lng: number;
-  thumbnail: string;
-}
-
 const Map: React.FC = () => {
-  const [places, setPlaces] = useState<place[]>([]);
+  const [places, setPlaces] = useState<any>([]);
 
   useEffect(() => {
     const getData = async () => {
       await apiPlaces
         .getPlaces()
         .then((res) => {
-          const arrPlace: place[] = [];
+          const arrPlace: any = [];
 
-          res.data.forEach((item: any) => {
+          res.data.forEach((item) => {
             const { id, name, address, lat, lng, thumbnail } = item;
             const newPlace = { id, name, address, lat, lng, thumbnail };
             arrPlace.push(newPlace);
           });
-          setPlaces((prev) => (prev = arrPlace));
+          setPlaces((prev: any) => (prev = arrPlace));
         })
         .catch((err) => console.log("err", err));
     };
@@ -95,7 +87,7 @@ const Map: React.FC = () => {
   }, []);
 
   return (
-    <>
+    <div className="container-map">
       <MapContainer
         className="vh-100 vw-100"
         zoomControl={false}
@@ -109,8 +101,9 @@ const Map: React.FC = () => {
 
         {/* <ButtonPlaceType /> */}
 
-        {places.map((item) => (
+        {places.map((item: any) => (
           <MapMarker
+            key={item.id}
             id={item.id}
             title={item.name}
             position={[item.lat, item.lng]}
@@ -130,7 +123,7 @@ const Map: React.FC = () => {
         <Button className="refresh-btn">Test Button</Button>
         <Button className="refresh-btn">Home Button</Button> */}
       </MapContainer>
-    </>
+    </div>
   );
 };
 

@@ -1,16 +1,16 @@
-import axios from "axios";
-import queryString from "query-string";
-
+import { Response } from "../models/common";
+import { Place } from "../models/place";
 import { axiosClient } from "./axiosClient";
 
 const apiPlaces = {
-  getPlaces: async () => {
-    const res = await axiosClient.get("/place-service/place/list");
-    return res.data;
+  getPlaces(): Promise<Response<Place[]>> {
+    const url = "/place-service/place/list";
+    return axiosClient.get(url);
   },
-  getPlace: async (id: any) => {
-    const res = await axiosClient.get(`/place-service/place/detail/${id}`);
-    return res.data;
+
+  getPlace(id: string): Promise<Response<Place>> {
+    const url = `/place-service/place/detail/${id}`;
+    return axiosClient.get(url);
   },
 };
 

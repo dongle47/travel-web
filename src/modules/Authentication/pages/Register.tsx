@@ -1,11 +1,7 @@
 import {
   ArrowLeftOutlined,
-  EyeInvisibleOutlined,
-  EyeTwoTone,
   LockOutlined,
   MailOutlined,
-  MobileOutlined,
-  PhoneOutlined,
 } from "@ant-design/icons";
 
 import { Link } from "react-router-dom";
@@ -13,16 +9,18 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Button, Col, Form, Input, Row, Typography } from "antd";
 import React from "react";
-import styled from "styled-components";
+
 import logo from "../../../assets/img/logo1.png";
+
 import "./Authentication.scss";
 
 import apiAccount from "../../../apis/authApi";
+import { RegisterParams } from "../../../models/common";
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 const Register: React.FC = () => {
   const onFinish = async (values: any) => {
-    const param = {
+    const param: RegisterParams = {
       email: values.email,
       password: values.password,
     };
@@ -30,8 +28,6 @@ const Register: React.FC = () => {
     await apiAccount
       .postRegister(param)
       .then((res) => {
-        console.log(res.message);
-
         toast.success(`${res.message}`);
       })
       .catch((err) => {

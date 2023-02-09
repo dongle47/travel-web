@@ -9,10 +9,6 @@ import Summary from "./Summary";
 import Rating from "./Rating";
 import Video from "./Video";
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import ReactReadMoreReadLess from "react-read-more-read-less";
-
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -21,47 +17,38 @@ import "swiper/css/navigation";
 import { Typography, Row, Col, Space, Button, Divider } from "antd";
 
 import apiPlaces from "../../apis/placesApi";
+import { Place } from "../../models/place";
 
 const { Title, Text } = Typography;
-
-interface urlImage {
-  url: string;
-}
-interface place {
-  name: string;
-  place_type: {
-    name: string;
-  };
-  place_img: urlImage[];
-}
 
 const DetailPlace: React.FC = () => {
   const { id } = useParams();
 
-  const [place, setPlace] = useState<place>({
+  const [place, setPlace] = useState<Place>({
+    id: "",
+    thumbnail: "",
     name: "",
-    place_type: { name: "" },
-    place_img: [
-      {
-        url: "https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/08/brazil-single-2-2.jpg",
-      },
-      {
-        url: "https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/08/brazil-single-2-2.jpg",
-      },
-    ],
+    place_type_id: "",
+    lat: 0,
+    lng: 0,
+    address: "",
+    place_img: [],
+    review: [],
   });
 
   useEffect(() => {
     const getDetailPlace = async () => {
-      apiPlaces
-        .getPlace(id)
-        .then((res) => {
-          setPlace(res.data);
-        })
-        .catch((err) => console.log(err));
+      if (id) {
+        apiPlaces
+          .getPlace(id)
+          .then((res) => {
+            setPlace((prev) => (prev = res.data));
+          })
+          .catch((err) => console.log(err));
+      }
     };
     getDetailPlace();
-  }, []);
+  }, [id]);
 
   return (
     <div style={{ minHeight: "200rem" }} className="primary-font">
@@ -85,7 +72,7 @@ const DetailPlace: React.FC = () => {
               className="h-50 ms-5 p-5 position-absolute"
             >
               <Text style={{ fontSize: "1.6rem" }} className="text-white">
-                {place.place_type.name}
+                {place.place_type?.name}
               </Text>
               <Title
                 style={{ fontSize: "2.8rem" }}
@@ -151,7 +138,7 @@ const DetailPlace: React.FC = () => {
                 className="mt-0"
                 strong
               >
-                {place.place_type.name}
+                {place.place_type?.name}
               </Text>
 
               <Text style={{ fontSize: "0.9rem" }}>

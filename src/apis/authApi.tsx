@@ -1,13 +1,21 @@
+import {
+  LoginParams,
+  RegisterParams,
+  ResponseLogin,
+  ResponseRegister,
+} from "../models/common";
+import { User } from "../models/user";
 import { axiosClient } from "./axiosClient";
 
 const authApi = {
-  postRegister: async (params: any) => {
-    const res = await axiosClient.post("/user-service/user/register", params);
-    return res.data;
+  postRegister(params: RegisterParams): Promise<ResponseRegister> {
+    const url = "/user-service/user/register";
+    return axiosClient.post(url, params);
   },
-  postLogin: async (params: any) => {
-    const res = await axiosClient.post("/user-service/user/login", params);
-    return res.data;
+
+  postLogin(params: LoginParams): Promise<ResponseLogin> {
+    const url = "/user-service/user/login";
+    return axiosClient.post(url, params);
   },
 };
 
