@@ -20,7 +20,7 @@ import "swiper/css/navigation";
 
 import { Typography, Row, Col, Space, Button, Divider } from "antd";
 
-import apiPlaces from "../../apis/apiPlaces";
+import apiPlaces from "../../apis/placesApi";
 
 const { Title, Text } = Typography;
 

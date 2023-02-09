@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import apiAuth from "../../apis/apiAuth";
 
 import "./Authentication.scss";
 import { Button, Col, Form, Input, Row, Typography } from "antd";
@@ -11,9 +10,10 @@ import {
   MailOutlined,
 } from "@ant-design/icons";
 
-import logo from "../../assets/img/logo1.png";
-import { loginSuccess } from "../../slices/authSlice";
+import logo from "../../../assets/img/logo1.png";
 import { toast } from "react-toastify";
+import { authActions } from "../authSlice";
+import authApi from "../../../apis/authApi";
 
 const { Title, Text } = Typography;
 
@@ -27,16 +27,18 @@ const Login: React.FC = () => {
       password: value.password,
     };
 
-    await apiAuth
+    await authApi
       .postLogin(params)
-      .then((res) => {
+      .then((res: any) => {
         const { accessToken, refreshToken } = res.data.token;
         const user = res.data;
-        dispatch(loginSuccess({ accessToken, refreshToken, ...user }));
+        dispatch(
+          authActions.loginSuccess({ accessToken, refreshToken, ...user })
+        );
         toast.success(`Xin chào ${user.user_name || ""}`);
         navigate("/");
       })
-      .catch((err) => console.log(err));
+      .catch((err: any) => console.log(err));
   };
 
   return (
