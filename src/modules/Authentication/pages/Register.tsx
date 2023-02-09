@@ -18,11 +18,12 @@ import logo from "../../../assets/img/logo1.png";
 import "./Authentication.scss";
 
 import apiAccount from "../../../apis/authApi";
+import { RegisterParams } from "../../../models/common";
 
 const { Title, Text } = Typography;
 const Register: React.FC = () => {
   const onFinish = async (values: any) => {
-    const param = {
+    const param: RegisterParams = {
       email: values.email,
       password: values.password,
     };

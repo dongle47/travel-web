@@ -14,6 +14,7 @@ import logo from "../../../assets/img/logo1.png";
 import { toast } from "react-toastify";
 import { authActions } from "../authSlice";
 import authApi from "../../../apis/authApi";
+import { LoginParams } from "../../../models/common";
 
 const { Title, Text } = Typography;
 
@@ -22,7 +23,7 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
 
   const onFinish = async (value: any) => {
-    const params = {
+    const params: LoginParams = {
       user_name: value.email,
       password: value.password,
     };
@@ -30,6 +31,7 @@ const Login: React.FC = () => {
     await authApi
       .postLogin(params)
       .then((res: any) => {
+        console.log(res);
         const { accessToken, refreshToken } = res.data.token;
         const user = res.data;
         dispatch(
