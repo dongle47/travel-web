@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Row, Col, Space, Image } from "antd";
 import { PlaceImg } from "../../models/place";
 interface IProps {
-  images: PlaceImg[] | null;
+  images: PlaceImg[];
 }
 
 const Images: React.FC<IProps> = ({ images }) => {
@@ -10,17 +10,16 @@ const Images: React.FC<IProps> = ({ images }) => {
   const [arrImgLen, setArrImgLen] = useState(0);
 
   useEffect(() => {
-    if (images) {
-      const imgsUrl = images.map((item) => item.url);
+    const imgsUrl = images.map((item) => item.url);
 
-      const arrImgLen = imgsUrl.length;
+    const arrImgLen = imgsUrl.length;
 
-      for (let i = 0; i < 11 - arrImgLen; i++) {
-        imgsUrl.push("");
-      }
-      setArrImgUrl(imgsUrl);
-      setArrImgLen(arrImgLen);
+    for (let i = 0; i < 11 - arrImgLen; i++) {
+      imgsUrl.push("");
     }
+
+    setArrImgUrl(imgsUrl);
+    setArrImgLen(arrImgLen);
   }, [images]);
 
   return (
@@ -51,8 +50,8 @@ const Images: React.FC<IProps> = ({ images }) => {
               <Space className="vh-100" direction="vertical" size={20}>
                 {arrImgUrl
                   .slice(1, 3)
-                  .filter((item: any) => item !== "")
-                  .map((item: any, index) => (
+                  .filter((item) => item !== "")
+                  .map((item, index) => (
                     <Image key={index} className="w-100" src={item} />
                   ))}
               </Space>
@@ -62,8 +61,8 @@ const Images: React.FC<IProps> = ({ images }) => {
               <Space className="vh-100" direction="vertical" size={15}>
                 {arrImgUrl
                   .slice(3, 8)
-                  .filter((item: any) => item !== "")
-                  .map((item: any, index: any) => (
+                  .filter((item) => item !== "")
+                  .map((item, index) => (
                     <Image key={index} className="w-100" src={item} />
                   ))}
               </Space>
@@ -73,8 +72,8 @@ const Images: React.FC<IProps> = ({ images }) => {
               <Space className="vh-100" direction="vertical" size={15}>
                 {arrImgUrl
                   .slice(8, 12)
-                  .filter((item: any) => item !== "")
-                  .map((item: any, index) => (
+                  .filter((item) => item !== "")
+                  .map((item, index) => (
                     <Image key={index} className="w-100" src={item} />
                   ))}
               </Space>
