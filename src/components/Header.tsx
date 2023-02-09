@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { Typography, Row, Col, Space, Button, MenuProps, Dropdown } from "antd";
 import { useNavigate } from "react-router-dom";
 
-import { logoutSuccess } from "../slices/authSlice";
+import { logoutSuccess } from "../modules/Authentication/authSlice";
 
 import logo from "../assets/img/logo1.png";
 

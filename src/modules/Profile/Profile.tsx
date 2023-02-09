@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { toast } from "react-toastify";
 
-import { logoutSuccess } from "../../slices/authSlice";
+import { logoutSuccess } from "../Authentication/authSlice";
 
 import { Header, Footer } from "../../components";
 
