@@ -53,12 +53,14 @@ const DetailPlace: React.FC = () => {
 
   useEffect(() => {
     const getDetailPlace = async () => {
-      apiPlaces
-        .getPlace(id)
-        .then((res) => {
-          setPlace(res.data);
-        })
-        .catch((err) => console.log(err));
+      if (id) {
+        apiPlaces
+          .getPlace(id)
+          .then((res) => {
+            setPlace(res.data);
+          })
+          .catch((err) => console.log(err));
+      }
     };
     getDetailPlace();
   }, []);

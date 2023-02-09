@@ -26,9 +26,3 @@ export interface ResponseLogin{
 export interface ListResponse<T>{
     data: T
 }
-
-export interface ListPlaceItem{
-    id: string;
-    code: string;
-    name: string;
-}

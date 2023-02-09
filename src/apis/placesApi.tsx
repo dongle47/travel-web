@@ -1,8 +1,8 @@
-import { ListPlaceItem, ListResponse } from "../models/common";
+import { ListResponse } from "../models/common";
 import { axiosClient } from "./axiosClient";
 
 const apiPlaces = {
-  getPlaces(): Promise<ListResponse<ListPlaceItem[]>> {
+  getPlaces(): Promise<ListResponse<[]>> {
     const url = "/place-service/place/list";
     return axiosClient.get(url);
   },
