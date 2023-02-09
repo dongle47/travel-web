@@ -1,5 +1,4 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 import "./Authentication.scss";
@@ -15,11 +14,12 @@ import { toast } from "react-toastify";
 import { authActions } from "../authSlice";
 import authApi from "../../../apis/authApi";
 import { LoginParams } from "../../../models/common";
+import { useAppDispatch } from "../../../hooks";
 
 const { Title, Text } = Typography;
 
 const Login: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const onFinish = async (value: any) => {
@@ -31,11 +31,10 @@ const Login: React.FC = () => {
     await authApi
       .postLogin(params)
       .then((res) => {
-        const { access_token, refresh_token } = res.data.token;
         const user = res.data;
-        dispatch(
-          authActions.loginSuccess({ access_token, refresh_token, ...user })
-        );
+
+        dispatch(authActions.loginSuccess(user));
+
         toast.success(`Xin chào ${user.user_name || ""}`);
         navigate("/");
       })
