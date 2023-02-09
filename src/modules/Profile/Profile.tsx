@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 import { logoutSuccess } from "../../slices/authSlice";
 
-import { Header, Footer } from "../../components/";
+import { Header, Footer } from "../../components";
 
 import { useNavigate, Routes, Route, Link } from "react-router-dom";
 

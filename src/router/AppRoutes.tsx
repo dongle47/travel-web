@@ -1,13 +1,13 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
-import Home from "../pages/Home/Home";
-import Main from "../pages/Main/Main";
-import DetailPlace from "../pages/DetailPlace/DetailPlace";
-import DetailPlace1 from "../pages/DetailPlace/DetailPlace1";
-import Profile from "../pages/Profile/Profile";
-import Login from "../pages/Authentication/Login";
-import Register from "../pages/Authentication/Register";
+import Home from "../modules/Home/Home";
+import Main from "../modules/Main/Main";
+import DetailPlace from "../modules/DetailPlace/DetailPlace";
+import DetailPlace1 from "../modules/DetailPlace/DetailPlace1";
+import Profile from "../modules/Profile/Profile";
+import Login from "../modules/Authentication/Login";
+import Register from "../modules/Authentication/Register";
 
 const AppRoutes: React.FC = () => {
   return (

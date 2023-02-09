@@ -13,7 +13,7 @@ import ControllingGroup from "./ControllingGroup";
 import ControlMarker from "./ControlMarker";
 import ControlPolygon from "./ControlPolygon";
 
-import apiPlaces from "../apis/apiPlaces";
+import apiPlaces from "../apis/placesApi";
 import { SearchBar, ButtonPlaceType } from "./";
 
 interface point {
