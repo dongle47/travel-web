@@ -6,8 +6,8 @@ import Main from "../modules/Main/Main";
 import DetailPlace from "../modules/DetailPlace/DetailPlace";
 import DetailPlace1 from "../modules/DetailPlace/DetailPlace1";
 import Profile from "../modules/Profile/Profile";
-import Login from "../modules/Authentication/Login";
-import Register from "../modules/Authentication/Register";
+import Login from "../modules/Authentication/pages/Login";
+import Register from "../modules/Authentication/pages/Register";
 
 const AppRoutes: React.FC = () => {
   return (

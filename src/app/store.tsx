@@ -1,4 +1,10 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import {
+  Action,
+  combineReducers,
+  configureStore,
+  ThunkAction,
+} from "@reduxjs/toolkit";
+
 import authReducer from "../modules/Authentication/authSlice";
 
 import createSagaMiddleware from "redux-saga";
@@ -40,3 +46,12 @@ export const store = configureStore({
 sagaMiddleware.run(rootSaga);
 
 export const persistor = persistStore(store);
+
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>;

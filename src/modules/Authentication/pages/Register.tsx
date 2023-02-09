@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 import { Button, Col, Form, Input, Row, Typography } from "antd";
 import React from "react";
 import styled from "styled-components";
-import logo from "../../assets/img/logo1.png";
+import logo from "../../../assets/img/logo1.png";
 import "./Authentication.scss";
 
 import apiAccount from "../../../apis/authApi";

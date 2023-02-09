@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { toast } from "react-toastify";
 
-import { logoutSuccess } from "../Authentication/authSlice";
-
 import { Header, Footer } from "../../components";
 
 import { useNavigate, Routes, Route, Link } from "react-router-dom";
@@ -37,6 +35,7 @@ import Icon, {
 } from "@ant-design/icons";
 
 import type { DatePickerProps, MenuProps } from "antd";
+import { authActions } from "../Authentication/authSlice";
 
 const { Content, Sider } = Layout;
 const { Title, Text } = Typography;
@@ -44,7 +43,7 @@ const { SubMenu } = Menu;
 
 const Profile: React.FC = () => {
   const handleLogout = () => {
-    dispatch(logoutSuccess());
+    dispatch(authActions.logoutSuccess());
     navigate("/");
   };
 

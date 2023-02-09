@@ -6,8 +6,6 @@ import { Link } from "react-router-dom";
 import { Typography, Row, Col, Space, Button, MenuProps, Dropdown } from "antd";
 import { useNavigate } from "react-router-dom";
 
-import { logoutSuccess } from "../modules/Authentication/authSlice";
-
 import logo from "../assets/img/logo1.png";
 
 import {
@@ -22,6 +20,7 @@ import {
 } from "@ant-design/icons";
 
 import { toast } from "react-toastify";
+import { authActions } from "../modules/Authentication/authSlice";
 
 const { Text } = Typography;
 
@@ -45,7 +44,7 @@ const Header: React.FC = () => {
   console.log("user: ", user);
 
   const handleLogout = () => {
-    dispatch(logoutSuccess());
+    dispatch(authActions.logoutSuccess());
     navigate("/");
   };
 
