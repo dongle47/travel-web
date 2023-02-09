@@ -17,13 +17,13 @@ export interface Place{
     id: string;
     thumbnail: string;
     name: string;
-    place_type_id: string;
-    place_type: PlaceType;
+    place_type_id?: string;
+    place_type?: PlaceType;
     lat: number;
     lng: number;
-    address: number;
-    place_img: PlaceImg[];
-    review: Review[];
-    created_at: string;
-    updated_at: string;
+    address: string;
+    place_img?: PlaceImg[];
+    review?: Review[];
+    created_at?: string;
+    updated_at?: string;
 }

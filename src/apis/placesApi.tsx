@@ -1,13 +1,14 @@
-import { ListResponse } from "../models/common";
+import { Response } from "../models/common";
+import { Place } from "../models/place";
 import { axiosClient } from "./axiosClient";
 
 const apiPlaces = {
-  getPlaces(): Promise<ListResponse<[]>> {
+  getPlaces(): Promise<Response<Place[]>> {
     const url = "/place-service/place/list";
     return axiosClient.get(url);
   },
 
-  getPlace(id: string) {
+  getPlace(id: string): Promise<Response<Place>> {
     const url = `/place-service/place/detail/${id}`;
     return axiosClient.get(url);
   },

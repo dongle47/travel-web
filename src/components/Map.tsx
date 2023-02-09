@@ -15,6 +15,7 @@ import ControlPolygon from "./ControlPolygon";
 
 import apiPlaces from "../apis/placesApi";
 import { SearchBar, ButtonPlaceType } from "./";
+import { Place } from "../models/place";
 
 interface point {
   lat: number;
@@ -58,30 +59,17 @@ const GetCoordinates = () => {
   return null;
 };
 
-interface IProps {
-  map: any;
-}
-
-interface place {
-  id: string;
-  name: string;
-  address: string;
-  lat: number;
-  lng: number;
-  thumbnail: string;
-}
-
 const Map: React.FC = () => {
-  const [places, setPlaces] = useState<place[]>([]);
+  const [places, setPlaces] = useState<Place[]>([]);
 
   useEffect(() => {
     const getData = async () => {
       await apiPlaces
         .getPlaces()
         .then((res) => {
-          const arrPlace: place[] = [];
+          const arrPlace: Place[] = [];
 
-          res.data.forEach((item: any) => {
+          res.data.forEach((item) => {
             const { id, name, address, lat, lng, thumbnail } = item;
             const newPlace = { id, name, address, lat, lng, thumbnail };
             arrPlace.push(newPlace);

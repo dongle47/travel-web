@@ -23,6 +23,6 @@ export interface ResponseLogin{
     data: User
 }
 
-export interface ListResponse<T>{
+export interface Response<T>{
     data: T
 }

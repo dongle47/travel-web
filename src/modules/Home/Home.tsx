@@ -1,6 +1,5 @@
 import React from "react";
 import "./Home.scss";
-import { Link } from "react-router-dom";
 
 import { Header, Footer } from "../../components";
 
@@ -10,16 +9,7 @@ import Introduce from "./Introduce";
 
 import News from "./News";
 
-import { Typography, Row, Col, Card, Space, Button, Divider } from "antd";
-
-import {
-  FacebookFilled,
-  ArrowLeftOutlined,
-  ArrowRightOutlined,
-  TwitterSquareFilled,
-  RedditSquareFilled,
-} from "@ant-design/icons";
-import { Slide } from "react-toastify";
+import { Typography, Row, Card, Space, Button, Divider } from "antd";
 
 const { Title, Text } = Typography;
 const { Meta } = Card;
@@ -63,7 +53,7 @@ const placeType = [
   },
 ];
 
-const sugestPlace = [
+const suggestPlace = [
   {
     imgSrc:
       "https://image.thanhnien.vn/w1024/Uploaded/2022/kbfluaa/2021_11_02/qn-mua-may-7180.jpeg",
@@ -99,8 +89,9 @@ const Homepage: React.FC = () => {
 
         <Row style={{ marginTop: "5rem" }} justify="center" align="middle">
           <Space size={10}>
-            {placeType.map((item) => (
+            {placeType.map((item, index) => (
               <Card
+                key={index}
                 style={{ width: "10rem" }}
                 className="pt-3 rounded-0"
                 size="small"
@@ -126,8 +117,9 @@ const Homepage: React.FC = () => {
 
         <Row style={{ marginTop: "2rem" }} justify="center">
           <Space size={15}>
-            {sugestPlace.map((item) => (
+            {suggestPlace.map((item, index) => (
               <Card
+                key={index}
                 hoverable
                 style={{ width: 250, textAlign: "center" }}
                 cover={

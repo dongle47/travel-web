@@ -130,8 +130,8 @@ const News: React.FC = () => {
         </Col>
 
         <Col span={6}>
-          {[0, 1, 2, 3, 4, 5].map((item) => (
-            <Card className="border" hoverable size="small">
+          {[0, 1, 2, 3, 4, 5].map((item, index) => (
+            <Card key={index} className="border" hoverable size="small">
               <Title level={5}>Title</Title>
               <Text className="secondFont" type="secondary">
                 description

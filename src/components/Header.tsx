@@ -41,8 +41,6 @@ const Header: React.FC = () => {
 
   const user = useSelector((state: any) => state.auth.user);
 
-  console.log("user: ", user);
-
   const handleLogout = () => {
     dispatch(authActions.logoutSuccess());
     navigate("/");
