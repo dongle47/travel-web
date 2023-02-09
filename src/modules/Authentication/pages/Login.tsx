@@ -15,6 +15,7 @@ import { toast } from "react-toastify";
 import { authActions } from "../authSlice";
 import authApi from "../../../apis/authApi";
 import { LoginParams } from "../../../models/common";
+import { User } from "../../../models/user";
 
 const { Title, Text } = Typography;
 
@@ -31,11 +32,10 @@ const Login: React.FC = () => {
     await authApi
       .postLogin(params)
       .then((res: any) => {
-        console.log(res);
-        const { accessToken, refreshToken } = res.data.token;
-        const user = res.data;
+        const { access_token, refresh_token } = res.token;
+        const user = res;
         dispatch(
-          authActions.loginSuccess({ accessToken, refreshToken, ...user })
+          authActions.loginSuccess({ access_token, refresh_token, ...user })
         );
         toast.success(`Xin chào ${user.user_name || ""}`);
         navigate("/");
