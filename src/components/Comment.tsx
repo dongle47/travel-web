@@ -96,8 +96,9 @@ const Comment: React.FC = () => {
 
           <Image.PreviewGroup>
             <Space>
-              {[0, 1, 2].map((item) => (
+              {[0, 1, 2].map((item, index) => (
                 <Image
+                  key={index}
                   style={{ marginRight: "1rem" }}
                   width={120}
                   height={120}

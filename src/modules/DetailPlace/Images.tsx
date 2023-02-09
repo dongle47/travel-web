@@ -1,21 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Row, Col, Space, Image } from "antd";
 import { PlaceImg } from "../../models/place";
 interface IProps {
-  images: PlaceImg[] | undefined;
+  images: PlaceImg[] | null;
 }
 
 const Images: React.FC<IProps> = ({ images }) => {
-  const [arrImg, setArrImg] = useState<any>([]);
+  const [arrImgUrl, setArrImgUrl] = useState<string[]>([]);
+  const [arrImgLen, setArrImgLen] = useState(0);
 
-  if (images) {
-    const imgsUrl = images.map((item) => item.url);
-    setArrImg(imgsUrl);
-  }
-  const arrImgLen = arrImg.length;
-  for (let i = 0; i < 11 - arrImgLen; i++) {
-    arrImg.push("");
-  }
+  useEffect(() => {
+    if (images) {
+      const imgsUrl = images.map((item) => item.url);
+
+      const arrImgLen = imgsUrl.length;
+
+      for (let i = 0; i < 11 - arrImgLen; i++) {
+        imgsUrl.push("");
+      }
+      setArrImgUrl(imgsUrl);
+      setArrImgLen(arrImgLen);
+    }
+  }, [images]);
 
   return (
     <div>
@@ -34,8 +40,8 @@ const Images: React.FC<IProps> = ({ images }) => {
             gutter={20}
           >
             <Col className="h-100" span={9}>
-              {arrImg[0] !== "" ? (
-                <Image style={{}} className="w-100 vh-100" src={arrImg[0]} />
+              {arrImgUrl[0] !== "" ? (
+                <Image style={{}} className="w-100 vh-100" src={arrImgUrl[0]} />
               ) : (
                 <></>
               )}
@@ -43,33 +49,33 @@ const Images: React.FC<IProps> = ({ images }) => {
 
             <Col className="h-100" span={6}>
               <Space className="vh-100" direction="vertical" size={20}>
-                {arrImg
+                {arrImgUrl
                   .slice(1, 3)
                   .filter((item: any) => item !== "")
-                  .map((item: any) => (
-                    <Image className="w-100" src={item} />
+                  .map((item: any, index) => (
+                    <Image key={index} className="w-100" src={item} />
                   ))}
               </Space>
             </Col>
 
             <Col className="h-100" span={5}>
               <Space className="vh-100" direction="vertical" size={15}>
-                {arrImg
+                {arrImgUrl
                   .slice(3, 8)
                   .filter((item: any) => item !== "")
                   .map((item: any, index: any) => (
-                    <Image className="w-100" src={item} />
+                    <Image key={index} className="w-100" src={item} />
                   ))}
               </Space>
             </Col>
 
             <Col className="h-100" span={2}>
               <Space className="vh-100" direction="vertical" size={15}>
-                {arrImg
+                {arrImgUrl
                   .slice(8, 12)
                   .filter((item: any) => item !== "")
-                  .map((item: any) => (
-                    <Image className="w-100" src={item} />
+                  .map((item: any, index) => (
+                    <Image key={index} className="w-100" src={item} />
                   ))}
               </Space>
             </Col>

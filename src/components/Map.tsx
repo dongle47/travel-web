@@ -38,7 +38,7 @@ const GetCoordinates = () => {
     if (!map) return;
     const info = L.DomUtil.create("div", "legend");
 
-    const positon = L.Control.extend({
+    const position = L.Control.extend({
       options: {
         position: "bottomleft",
       },
@@ -53,28 +53,28 @@ const GetCoordinates = () => {
       info.textContent = e.latlng.toString();
     });
 
-    map.addControl(new positon());
+    map.addControl(new position());
   }, [map]);
 
   return null;
 };
 
 const Map: React.FC = () => {
-  const [places, setPlaces] = useState<Place[]>([]);
+  const [places, setPlaces] = useState<any>([]);
 
   useEffect(() => {
     const getData = async () => {
       await apiPlaces
         .getPlaces()
         .then((res) => {
-          const arrPlace: Place[] = [];
+          const arrPlace: any = [];
 
           res.data.forEach((item) => {
             const { id, name, address, lat, lng, thumbnail } = item;
             const newPlace = { id, name, address, lat, lng, thumbnail };
             arrPlace.push(newPlace);
           });
-          setPlaces((prev) => (prev = arrPlace));
+          setPlaces((prev: any) => (prev = arrPlace));
         })
         .catch((err) => console.log("err", err));
     };
@@ -97,8 +97,9 @@ const Map: React.FC = () => {
 
         {/* <ButtonPlaceType /> */}
 
-        {places.map((item) => (
+        {places.map((item: any) => (
           <MapMarker
+            key={item.id}
             id={item.id}
             title={item.name}
             position={[item.lat, item.lng]}

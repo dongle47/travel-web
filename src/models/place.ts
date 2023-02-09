@@ -22,7 +22,7 @@ export interface Place{
     lat: number;
     lng: number;
     address: string;
-    place_img?: PlaceImg[];
+    place_img: PlaceImg[] | null;
     review?: Review[];
     created_at?: string;
     updated_at?: string;
