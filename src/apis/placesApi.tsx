@@ -1,6 +1,3 @@
-import axios from "axios";
-import queryString from "query-string";
-
 import { axiosClient } from "./axiosClient";
 
 const apiPlaces = {
@@ -8,6 +5,7 @@ const apiPlaces = {
     const res = await axiosClient.get("/place-service/place/list");
     return res.data;
   },
+
   getPlace: async (id: any) => {
     const res = await axiosClient.get(`/place-service/place/detail/${id}`);
     return res.data;

@@ -18,3 +18,7 @@ export interface ResponseRegister{
     message: string;
     data: User
 }
+
+export interface ResponseLogin{
+    data: User
+}

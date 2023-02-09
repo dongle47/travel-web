@@ -1,6 +1,7 @@
 import {
   LoginParams,
   RegisterParams,
+  ResponseLogin,
   ResponseRegister,
 } from "../models/common";
 import { User } from "../models/user";
@@ -12,7 +13,7 @@ const authApi = {
     return axiosClient.post(url, params);
   },
 
-  postLogin(params: LoginParams): Promise<User> {
+  postLogin(params: LoginParams): Promise<ResponseLogin> {
     const url = "/user-service/user/login";
     return axiosClient.post(url, params);
   },

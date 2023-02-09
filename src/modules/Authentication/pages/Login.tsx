@@ -15,7 +15,6 @@ import { toast } from "react-toastify";
 import { authActions } from "../authSlice";
 import authApi from "../../../apis/authApi";
 import { LoginParams } from "../../../models/common";
-import { User } from "../../../models/user";
 
 const { Title, Text } = Typography;
 
@@ -31,9 +30,9 @@ const Login: React.FC = () => {
 
     await authApi
       .postLogin(params)
-      .then((res: any) => {
-        const { access_token, refresh_token } = res.token;
-        const user = res;
+      .then((res) => {
+        const { access_token, refresh_token } = res.data.token;
+        const user = res.data;
         dispatch(
           authActions.loginSuccess({ access_token, refresh_token, ...user })
         );
