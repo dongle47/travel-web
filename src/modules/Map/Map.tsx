@@ -1,21 +1,25 @@
 import React, { useEffect, useRef, useState } from "react";
 import "leaflet/dist/leaflet.css";
 
+import "./Map.scss";
+
 import { MapContainer, TileLayer, ZoomControl, useMap } from "react-leaflet";
 
 import { latLng, LatLng, LocationEvent, latLngBounds } from "leaflet";
 
-import tileLayer from "../utils/tileLayer";
+import { tileLayer } from "../../utils";
+
 import L from "leaflet";
 
-import MapMarker from "./MapMarker";
-import ControllingGroup from "./ControllingGroup";
-import ControlMarker from "./ControlMarker";
-import ControlPolygon from "./ControlPolygon";
+import MapMarker from "./components/MapMarker";
+import ControllingGroup from "./components/ControllingGroup";
 
-import apiPlaces from "../apis/placesApi";
-import { SearchBar, ButtonPlaceType } from "./";
-import { Place } from "../models/place";
+// import ControlMarker from "./ControlMarker";
+// import ControlPolygon from "./ControlPolygon";
+
+import apiPlaces from "../../apis/placesApi";
+import { SearchBar, ButtonPlaceType } from "../../components";
+import { Place } from "../../models/place";
 
 interface point {
   lat: number;
@@ -83,7 +87,7 @@ const Map: React.FC = () => {
   }, []);
 
   return (
-    <>
+    <div className="container-map">
       <MapContainer
         className="vh-100 vw-100"
         zoomControl={false}
@@ -119,7 +123,7 @@ const Map: React.FC = () => {
         <Button className="refresh-btn">Test Button</Button>
         <Button className="refresh-btn">Home Button</Button> */}
       </MapContainer>
-    </>
+    </div>
   );
 };
 

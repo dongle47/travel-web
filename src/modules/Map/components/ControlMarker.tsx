@@ -5,7 +5,7 @@ import MapMarker from "./MapMarker";
 import { TileLayer, LayersControl, FeatureGroup } from "react-leaflet";
 import { latLng, LatLng, LocationEvent } from "leaflet";
 
-import tileLayer from "../utils/tileLayer";
+import { tileLayer } from "../../../utils/";
 import L from "leaflet";
 
 interface point {

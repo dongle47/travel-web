@@ -1,23 +1,9 @@
 import React from "react";
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-  LayersControl,
-  FeatureGroup,
-  ZoomControl,
-  Polygon,
-  useMapEvent,
-  useMapEvents,
-  useMap,
-  Pane,
-  Circle,
-  ImageOverlay,
-} from "react-leaflet";
+import { LayersControl, FeatureGroup, Polygon } from "react-leaflet";
 import { latLng, LatLng, LocationEvent } from "leaflet";
 
-import tileLayer from "../utils/tileLayer";
+import { tileLayer } from "../../../utils";
+
 import L from "leaflet";
 
 const River: [number, number][] = [

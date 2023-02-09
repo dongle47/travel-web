@@ -10,7 +10,7 @@ const { Title, Text } = Typography;
 
 import { BookOutlined, EnvironmentFilled, StarFilled } from "@ant-design/icons";
 
-import iconmarker from "../assets/img/marker-icon.png";
+import iconmarker from "../../../assets/img/marker-icon.png";
 
 const iconMarker = new Icon({
   iconUrl: iconmarker,

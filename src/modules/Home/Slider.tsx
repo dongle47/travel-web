@@ -33,7 +33,7 @@ const Slider: React.FC = () => {
           src="https://backpacktraveler.qodeinteractive.com/wp-content/uploads/2018/09/logo-bottom-1.png"
           alt=""
         />
-        <Link to="./main">
+        <Link to="./map">
           <Button className="position-absolute explore-btn rounded-0">
             TRẢI NGHIỆM NGAY
           </Button>
