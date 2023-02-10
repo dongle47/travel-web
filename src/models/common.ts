@@ -8,10 +8,10 @@ export interface LoginParams{
 export interface RegisterParams{
     email: string,
     password: string,
-    avatar?: string,
-    date_of_birth?: string,
-    full_name?: string,
-    phone?: string
+    avatar: "",
+    date_of_birth: "",
+    full_name: "",
+    phone: ""
 }
 
 export interface ResponseMessage<T>{

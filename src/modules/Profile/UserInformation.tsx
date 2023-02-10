@@ -94,22 +94,18 @@ const UserInformation: React.FC = () => {
             name="full_name"
             label={<Text strong>Họ tên</Text>}
           >
-            <Input
-              // defaultValue={user?.full_name}
-              allowClear
-            />
+            <Input allowClear />
           </Form.Item>
 
           <Form.Item
             initialValue={
-              user?.date_of_birth !== "string"
+              user?.date_of_birth
                 ? dayjs(user?.date_of_birth, "DD/MM/YYYY")
                 : null
             }
             name="date_of_birth"
             label={<Text strong>Ngày sinh</Text>}
           >
-            {/* <DatePicker className="w-100" /> */}
             <DatePicker
               className="w-100"
               // defaultValue={dayjs("01/01/2015", "DD/MM/YYYY")}

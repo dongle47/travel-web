@@ -23,6 +23,10 @@ const Register: React.FC = () => {
     const param: RegisterParams = {
       email: values.email,
       password: values.password,
+      avatar: "",
+      date_of_birth: "",
+      full_name: "",
+      phone: "",
     };
 
     await apiAccount
