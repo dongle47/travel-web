@@ -22,6 +22,8 @@ import { PlusOutlined } from "@ant-design/icons";
 const { Title, Text } = Typography;
 
 import type { DatePickerProps, MenuProps } from "antd";
+import { useAppSelector } from "../../hooks";
+import { selectUser } from "../Authentication/authSlice";
 
 const UserInformation: React.FC = () => {
   const [image, setImage] = useState([]);
@@ -65,7 +67,7 @@ const UserInformation: React.FC = () => {
     setUploading(true);
   };
 
-  const user = useSelector((state: any) => state.auth.user);
+  const user = useAppSelector(selectUser);
 
   return (
     <Row className="w-100" justify="start">
@@ -78,7 +80,7 @@ const UserInformation: React.FC = () => {
           onFinish={onFinish}
         >
           <Form.Item name="fullName" label={<Text strong>Họ tên</Text>}>
-            <Input defaultValue={user.full_name} allowClear />
+            <Input defaultValue={user?.full_name} allowClear />
           </Form.Item>
 
           <Form.Item name="sex" label={<Text strong>Giới tính</Text>}>
@@ -100,11 +102,11 @@ const UserInformation: React.FC = () => {
           </Form.Item>
 
           <Form.Item name="phone" label={<Text strong>Số điện thoại</Text>}>
-            <Input defaultValue={user.phone} allowClear />
+            <Input defaultValue={user?.phone} allowClear />
           </Form.Item>
 
           <Form.Item name="email" label={<Text strong>Email</Text>}>
-            <Input defaultValue={user.email} allowClear />
+            <Input defaultValue={user?.email} allowClear />
           </Form.Item>
         </Form>
       </Col>

@@ -1,14 +1,16 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 import { User } from "../../models/user";
+import { stat } from "fs";
 
 interface AuthState {
   isLoggedIn: boolean;
-  currentUser?: User;
+  currentUser: User | null;
 }
 
 const initialState: AuthState = {
   isLoggedIn: false,
+  currentUser: null,
 };
 
 export const authSlice = createSlice({
@@ -21,7 +23,7 @@ export const authSlice = createSlice({
     },
 
     logoutSuccess: (state) => {
-      state.currentUser = undefined;
+      state.currentUser = null;
       state.isLoggedIn = false;
     },
   },
@@ -30,9 +32,15 @@ export const authSlice = createSlice({
 //actions
 export const authActions = authSlice.actions;
 
-//selector
+//selectors
 export const selectUser = (state: RootState) => state.auth.currentUser;
 export const selectIsLoggedIn = (state: RootState) => state.auth.isLoggedIn;
+export const selectAccessToken = (state: RootState) =>
+  state.auth.currentUser?.token.access_token;
+export const selectRefreshToken = (state: RootState) =>
+  state.auth.currentUser?.token.refresh_token;
+export const selectExpiredToken = (state: RootState) =>
+  state.auth.currentUser?.token.expired_time;
 
 //reducer
 const authReducer = authSlice.reducer;

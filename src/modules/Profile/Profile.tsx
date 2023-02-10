@@ -36,19 +36,20 @@ import Icon, {
 
 import type { DatePickerProps, MenuProps } from "antd";
 import { authActions } from "../Authentication/authSlice";
+import { useAppDispatch } from "../../hooks";
 
 const { Content, Sider } = Layout;
 const { Title, Text } = Typography;
 const { SubMenu } = Menu;
 
 const Profile: React.FC = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   const handleLogout = () => {
     dispatch(authActions.logoutSuccess());
     navigate("/");
   };
-
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const onChangeDate: DatePickerProps["onChange"] = (date, dateString) => {
     console.log(date, dateString);
