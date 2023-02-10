@@ -1,3 +1,6 @@
+import { selectAccessToken } from './../modules/Authentication/authSlice';
+import { useAppSelector } from './../hooks/index';
+import { useSelector } from 'react-redux';
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import queryString from "query-string";
 const baseURL = "https://travel-api.huytx.com/stag/";
@@ -13,8 +16,20 @@ export const axiosClient = axios.create({
 
 // Add a request interceptor
 axiosClient.interceptors.request.use(
-  function (config: AxiosRequestConfig) {
+  function (config: any) {
     // Do something before request is sent
+   const localWeb = localStorage.getItem('persist:trave-web')
+
+   if(localWeb){
+      const persistStorage = JSON.parse(localWeb)
+      const authStorage = JSON.parse(persistStorage.auth)
+
+      if(authStorage.isLoggedIn){
+        const token = authStorage.currentUser.token
+        console.log(token)
+        config.headers.Authorization = `Bearer ${token.access_token}`
+      }
+   }
     return config;
   },
   function (error) {
