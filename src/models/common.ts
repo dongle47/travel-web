@@ -14,13 +14,9 @@ export interface RegisterParams{
     phone?: string
 }
 
-export interface ResponseRegister{
+export interface ResponseMessage<T>{
     message: string;
-    data: User
-}
-
-export interface ResponseLogin{
-    data: User
+    data: T;
 }
 
 export interface Response<T>{
