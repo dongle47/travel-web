@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import ImageUploading from "react-images-uploading";
-
+import dayjs from "dayjs";
 import {
   Avatar,
   Button,
@@ -24,6 +24,7 @@ const { Title, Text } = Typography;
 import type { DatePickerProps, MenuProps } from "antd";
 import { useAppSelector } from "../../hooks";
 import { selectUser } from "../Authentication/authSlice";
+import profileApi from "../../apis/profileApi";
 
 const UserInformation: React.FC = () => {
   const [image, setImage] = useState([]);
@@ -34,7 +35,7 @@ const UserInformation: React.FC = () => {
     setIsModalOpen(true);
   };
 
-  const handleCancel = () => {
+  const handleCancelModal = () => {
     setIsModalOpen(false);
   };
 
@@ -49,8 +50,17 @@ const UserInformation: React.FC = () => {
   };
 
   const onFinish = async (values: any) => {
+    if (values.date_of_birth)
+      values.date_of_birth = dayjs(values.date_of_birth).format("DD/MM/YYYY");
     console.log(values);
+    profileApi
+      .updateProfile(values)
+      .then((res) => {
+        toast.success(res.message);
+      })
+      .catch((err) => console.log(err));
   };
+
   const [uploading, setUploading] = useState(false);
 
   const handleUploadAvatar = () => {
@@ -79,34 +89,54 @@ const UserInformation: React.FC = () => {
           layout="vertical"
           onFinish={onFinish}
         >
-          <Form.Item name="fullName" label={<Text strong>Họ tên</Text>}>
-            <Input defaultValue={user?.full_name} allowClear />
+          <Form.Item
+            initialValue={user?.full_name}
+            name="full_name"
+            label={<Text strong>Họ tên</Text>}
+          >
+            <Input
+              // defaultValue={user?.full_name}
+              allowClear
+            />
           </Form.Item>
 
-          <Form.Item name="sex" label={<Text strong>Giới tính</Text>}>
-            <Radio.Group>
-              <Radio className="text-center" value="male">
-                Nam
-              </Radio>
-              <Radio className="text-center" value="female">
-                Nữ
-              </Radio>
-              <Radio className="text-center" value="other">
-                Khác
-              </Radio>
-            </Radio.Group>
+          <Form.Item
+            initialValue={
+              user?.date_of_birth !== "string"
+                ? dayjs(user?.date_of_birth, "DD/MM/YYYY")
+                : null
+            }
+            name="date_of_birth"
+            label={<Text strong>Ngày sinh</Text>}
+          >
+            {/* <DatePicker className="w-100" /> */}
+            <DatePicker
+              className="w-100"
+              // defaultValue={dayjs("01/01/2015", "DD/MM/YYYY")}
+              format={"DD/MM/YYYY"}
+            />
           </Form.Item>
 
-          <Form.Item name="dateBirth" label={<Text strong>Ngày sinh</Text>}>
-            <DatePicker className="w-100" />
+          <Form.Item
+            initialValue={user?.phone === "string" ? "" : user?.phone}
+            name="phone"
+            label={<Text strong>Số điện thoại</Text>}
+          >
+            <Input
+              // defaultValue={user?.phone === "string" ? "" : user?.phone}
+              allowClear
+            />
           </Form.Item>
 
-          <Form.Item name="phone" label={<Text strong>Số điện thoại</Text>}>
-            <Input defaultValue={user?.phone} allowClear />
-          </Form.Item>
-
-          <Form.Item name="email" label={<Text strong>Email</Text>}>
-            <Input defaultValue={user?.email} allowClear />
+          <Form.Item
+            initialValue={user?.email}
+            name="email"
+            label={<Text strong>Email</Text>}
+          >
+            <Input
+              //  defaultValue={user?.email}
+              allowClear
+            />
           </Form.Item>
         </Form>
       </Col>
@@ -133,7 +163,7 @@ const UserInformation: React.FC = () => {
               style={{ top: "8%" }}
               title="Cập nhật ảnh đại diện"
               open={isModalOpen}
-              onCancel={handleCancel}
+              onCancel={handleCancelModal}
               footer={null}
             >
               <ImageUploading

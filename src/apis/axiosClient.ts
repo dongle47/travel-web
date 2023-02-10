@@ -26,7 +26,7 @@ axiosClient.interceptors.request.use(
 
       if(authStorage.isLoggedIn){
         const token = authStorage.currentUser.token
-        console.log(token)
+        // console.log(token)
         config.headers.Authorization = `Bearer ${token.access_token}`
       }
    }
