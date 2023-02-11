@@ -24,6 +24,7 @@ import TextArea from "antd/lib/input/TextArea";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppSelector } from "../../hooks";
 import { selectUser } from "../Authentication/authSlice";
+import uploadApi from "../../apis/uploadApi";
 
 const { Title, Text } = Typography;
 
@@ -37,33 +38,36 @@ const getBase64 = (file: RcFile): Promise<string> =>
 
 const Review: React.FC = () => {
   const navigate = useNavigate();
+  const user = useAppSelector(selectUser);
 
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");
+
+  const [rate, setRate] = useState(0);
 
   const [loading, setLoading] = useState(false);
   const [openReview, setOpenReview] = useState(false);
   const [valueReview, setValueReview] = useState("");
 
   const [fileList, setFileList] = useState<UploadFile[]>([
-    {
-      uid: "-3",
-      name: "image.png",
-      status: "done",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-    {
-      uid: "-4",
-      name: "image.png",
-      status: "done",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-    {
-      uid: "-5",
-      name: "image.png",
-      status: "error",
-    },
+    // {
+    //   uid: "-4",
+    //   name: "image.png",
+    //   status: "done",
+    //   url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
+    // },
+    // {
+    //   uid: "1000",
+    //   name: "rose",
+    //   status: "done",
+    //   url: "https://travel-api.huytx.com/stag/upload-service/files/avatar/ce508995-a9e4-11ed-98b0-0242c0a80002.jpeg",
+    // },
+    // {
+    //   uid: "-5",
+    //   name: "image.png",
+    //   status: "error",
+    // },
   ]);
 
   const uploadButton = (
@@ -91,15 +95,40 @@ const Review: React.FC = () => {
     );
   };
 
-  const handleChange: UploadProps["onChange"] = ({ fileList: newFileList }) =>
-    setFileList(newFileList);
+  const handleChangeImage: UploadProps["onChange"] = (
+    //   {
+    //   fileList: newFileList,
+    // }
+    value: any
+  ) => {
+    const fileObj = value.file.originFileObj;
+    uploadApi
+      .uploadAvatar({ file: fileObj, type: "review" })
+      .then((res) => {
+        const resImage = res.data;
+        const file: UploadFile = {
+          uid: resImage.id,
+          name: resImage.name,
+          status: "done",
+          url: resImage.full_path,
+        };
+        setFileList((prev) => [...prev, file]);
+      })
+      .catch((err) => console.log(err));
+  };
 
-  const handleOk = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setOpenReview(false);
-    }, 3000);
+  const handleSubmit = () => {
+    // setLoading(true);
+    // setTimeout(() => {
+    //   setLoading(false);
+    //   setOpenReview(false);
+    // }, 3000);
+    console.log("rate", rate);
+    console.log("content", valueReview);
+    console.log(
+      "image list",
+      fileList.map((item) => item.url)
+    );
   };
 
   const handleCancel = () => {
@@ -107,8 +136,6 @@ const Review: React.FC = () => {
   };
 
   const [statusCheckIn, setStatusCheckIn] = useState(-1);
-
-  const user = useAppSelector(selectUser);
 
   const historyCheckInId: any = ["sdad", "dsada"];
 
@@ -190,7 +217,7 @@ const Review: React.FC = () => {
       <Modal
         open={openReview}
         title="Đánh giá"
-        onOk={handleOk}
+        onOk={handleSubmit}
         onCancel={handleCancel}
         footer={[
           <Button key="back" onClick={handleCancel}>
@@ -200,14 +227,15 @@ const Review: React.FC = () => {
             key="submit"
             type="primary"
             loading={loading}
-            onClick={handleOk}
+            onClick={handleSubmit}
           >
             Xác nhận
           </Button>,
         ]}
       >
-        <Space direction="vertical" size={15}>
-          <Rate allowHalf defaultValue={2.5} />
+        <Space className="w-100" direction="vertical" size={15}>
+          <Rate allowHalf onChange={setRate} value={rate} />
+
           <TextArea
             value={valueReview}
             onChange={(e) => setValueReview(e.target.value)}
@@ -220,7 +248,7 @@ const Review: React.FC = () => {
             listType="picture-card"
             fileList={fileList}
             onPreview={handlePreview}
-            onChange={handleChange}
+            onChange={handleChangeImage}
           >
             {fileList.length >= 8 ? null : uploadButton}
           </Upload>

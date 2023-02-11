@@ -53,6 +53,8 @@ const UserInformation: React.FC = () => {
     setAvatarFile(imageList);
   };
 
+  console.log(avatarFile);
+
   const onFinish = async (values: any) => {
     if (values.date_of_birth)
       values.date_of_birth = dayjs(values.date_of_birth).format("DD/MM/YYYY");
