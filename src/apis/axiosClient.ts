@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import queryString from "query-string";
 import authApi from './authApi';
+import { store } from '../app/store';
 const baseURL = "https://travel-api.huytx.com/stag/";
 
 export const axiosClient = axios.create({
@@ -22,13 +23,11 @@ axiosClient.interceptors.request.use(
    const localWeb = localStorage.getItem('persist:trave-web')
 
    if(localWeb){
-      const persistStorage = JSON.parse(localWeb)
-      const authStorage = JSON.parse(persistStorage.auth)
+      const isLogged = store.getState().auth.isLoggedIn
+      const accessToken = store.getState().auth.currentUser?.token.access_token
 
-      if(authStorage.isLoggedIn){
-        const token = authStorage.currentUser.token
-        // console.log(token)
-        config.headers.Authorization = `Bearer ${token.access_token}`
+      if(isLogged){
+        config.headers.Authorization = `Bearer ${accessToken}`
       }
    }
     return config;
@@ -59,16 +58,20 @@ axiosClient.interceptors.response.use(
         const localWeb = localStorage.getItem('persist:trave-web')
 
         if(localWeb){
-          const persistStorage = JSON.parse(localWeb)
-          const authStorage = JSON.parse(persistStorage.auth)
-          const token = authStorage.currentUser.token
-          const refreshToken = token.refresh_token
+          const refreshToken = store.getState().auth.currentUser?.token.refresh_token
+          const state:any = store.getState()
 
-          // authApi.getRefreshToken(refreshToken).then(res => {
+          if(refreshToken){
+            authApi.getRefreshToken(refreshToken).then(res => {
+              state.auth.currentUser.token.access_token = res.data.token.access_token
 
-          // }).catch(err=> console.log(err))
-          
+              localStorage.setItem('persist:trave-web', JSON.stringify(state))
+            }).catch(err=> console.log(err))
+          }
 
+          // const newState:any = {...state}
+          // console.log(newState)
+          // newState.auth.currentUser.token.expired_time = 1
         }
         return axios(originalConfig)
       }
