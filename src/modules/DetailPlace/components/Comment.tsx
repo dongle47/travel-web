@@ -13,6 +13,7 @@ import {
   Avatar,
   Image,
   Input,
+  Rate,
 } from "antd";
 
 import Icon, {
@@ -20,15 +21,34 @@ import Icon, {
   StarFilled,
   EllipsisOutlined,
 } from "@ant-design/icons";
+import { useAppSelector } from "../../../hooks";
+import { selectUser } from "../../Authentication/authSlice";
 
 const { Title, Text } = Typography;
 
 const { TextArea } = Input;
+export interface ICommentProps {
+  avatar: string;
+  full_name: string;
+  rate: number;
+  description: string;
+  review_img: any;
+  created_at: string;
+}
 
-const Comment: React.FC = () => {
-  const [value, setValue] = useState("");
+const Comment: React.FC<ICommentProps> = ({
+  avatar,
+  full_name,
+  rate,
+  description,
+  review_img,
+  created_at,
+}) => {
+  const [valueAnswer, setValueAnswer] = useState("");
 
   const [replyVisibility, setReplyVisibility] = useState(false);
+
+  const user = useAppSelector(selectUser);
 
   return (
     <>
@@ -42,13 +62,16 @@ const Comment: React.FC = () => {
             <Col>
               <Avatar
                 size={50}
-                src="https://wegotthiscovered.com/wp-content/uploads/2022/08/Vegeta-1200x900.jpeg"
+                src={avatar}
+                // src="https://wegotthiscovered.com/wp-content/uploads/2022/08/Vegeta-1200x900.jpeg"
               />
             </Col>
             <Col>
               <Space direction="vertical" size={0}>
-                <Text strong>Tên người dùng</Text>
-                <Text className="text-secondary">Ngày đăng</Text>
+                <Text strong>{full_name}</Text>
+                <Text className="text-secondary">
+                  {created_at.slice(0, 10)}
+                </Text>
               </Space>
             </Col>
           </Row>
@@ -56,13 +79,14 @@ const Comment: React.FC = () => {
 
         <Col span={13}>
           <Row className="mb-1">
-            <Space size={3}>
+            {/* <Space size={3}>
               <StarFilled style={{ color: "#FFC107", fontSize: "1.2rem" }} />
               <StarFilled style={{ color: "#FFC107", fontSize: "1.2rem" }} />
               <StarFilled style={{ color: "#FFC107", fontSize: "1.2rem" }} />
               <StarFilled style={{ color: "#E0E0E3", fontSize: "1.2rem" }} />
               <StarFilled style={{ color: "#E0E0E3", fontSize: "1.2rem" }} />
-            </Space>
+            </Space> */}
+            <Rate disabled defaultValue={rate} allowHalf />
           </Row>
 
           <Row className="mb-1">
@@ -83,22 +107,28 @@ const Comment: React.FC = () => {
                 </Text>
               }
             >
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque,
-              debitis corrupti. Reprehenderit ullam modi excepturi eaque
-              dolorum. Dolorum sint asperiores ratione repellat fugit quam
-              dignissimos quibusdam. Ut, saepe? Dicta, laudantium.
+              {description}
             </ReactReadMoreReadLess>
           </Row>
 
           <Image.PreviewGroup>
             <Space>
-              {[0, 1, 2].map((item, index) => (
+              {/* {[0, 1, 2].map((item, index) => (
                 <Image
                   key={index}
                   style={{ marginRight: "1rem" }}
                   width={120}
                   height={120}
                   src="https://image.thanhnien.vn/w1024/Uploaded/2022/kbfluaa/2021_11_02/qn-mua-may-7180.jpeg"
+                />
+              ))} */}
+              {review_img.map((item: any, index: any) => (
+                <Image
+                  key={index}
+                  style={{ marginRight: "1rem" }}
+                  width={120}
+                  height={120}
+                  src={item.url}
                 />
               ))}
             </Space>
@@ -114,14 +144,15 @@ const Comment: React.FC = () => {
                 <Space>
                   <Avatar
                     size={40}
-                    src="https://wegotthiscovered.com/wp-content/uploads/2022/08/Vegeta-1200x900.jpeg"
+                    src={user?.avatar}
+                    // src="https://wegotthiscovered.com/wp-content/uploads/2022/08/Vegeta-1200x900.jpeg"
                   />
                   <Text
                     style={{ fontSize: "0.8rem" }}
                     className="text-align-center"
                     strong
                   >
-                    Tên người dùng
+                    {user?.full_name}
                   </Text>
                 </Space>
 
@@ -150,9 +181,9 @@ const Comment: React.FC = () => {
 
           {/* trả lời */}
           <div>
-            <ReplyComment status={0} />
+            {/* <ReplyComment status={0} />
             <ReplyComment status={1} />
-            <ReplyComment status={-1} />
+            <ReplyComment status={-1} /> */}
           </div>
           {/* end trả lời */}
         </Col>

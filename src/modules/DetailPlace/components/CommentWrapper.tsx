@@ -21,16 +21,28 @@ export default function CommentWrapper(props: any) {
       reviewApi
         .getReviews(id, { page: page, limit: 5 })
         .then((res) => {
-          console.log(res);
+          setListCmt(res.data.rows);
         })
         .catch((err) => console.log(err));
     }
   }, []);
 
+  console.log(listCmt);
+
   return (
     <div>
       <Row className="w-100" justify="center">
-        <Comment />
+        {/* <Comment avatar="" full_name="" /> */}
+        {listCmt.map((item) => (
+          <Comment
+            avatar={item.user.avatar}
+            full_name={item.user.full_name}
+            rate={item.rate}
+            description={item.description}
+            review_img={item.review_img}
+            created_at={item.created_at}
+          />
+        ))}
       </Row>
 
       <Row className="w-100 mt-5" justify="center" gutter={25}>
