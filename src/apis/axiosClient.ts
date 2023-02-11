@@ -66,6 +66,7 @@ axiosClient.interceptors.response.use(
               state.auth.currentUser.token.access_token = res.data.token.access_token
 
               localStorage.setItem('persist:trave-web', JSON.stringify(state))
+
             }).catch(err=> console.log(err))
           }
 
@@ -73,39 +74,10 @@ axiosClient.interceptors.response.use(
           // console.log(newState)
           // newState.auth.currentUser.token.expired_time = 1
         }
-        return axios(originalConfig)
+        return axiosClient(originalConfig)
       }
-
-
-    // if(error.response.status === 400 && !originalConfig._retry){
-    //     originalConfig._retry = true
-
-    //     // try {
-    //     //   const localWeb = localStorage.getItem('persist:trave-web')
-    //     //   if(localWeb){
-    //     //     const persistStorage = JSON.parse(localWeb)
-    //     //     const authStorage = JSON.parse(persistStorage.auth)
-    //     //     const token = authStorage.currentUser.token
-    //     //     const refreshToken = token.refresh_token
-
-    //     //     console.log(refreshToken)
-    //     //     error.config.headers.Authorization = `Bearer ${refreshToken}`
-
-    //     //     authApi.getRefreshToken().then(res => {
-    //     //       console.log('success',res)
-    //     //     }).catch(err => {
-    //     //       console.log('error', err)
-    //     //     })          
-
-    //     //   }
-
-    //     // } catch (error) {
-    //     //   console.log('error', error)
-    //     // }
-    // }
-      
     return Promise.reject(error);
-  }
+    }
   }
 );
 
@@ -115,3 +87,17 @@ export const axiosClientRefreshToken = axios.create({
     "Content-Type": "application/json",
   },
 })
+
+axiosClientRefreshToken.interceptors.response.use(
+  function (response: AxiosResponse) {
+    // Any status code that lie within the range of 2xx cause this function to trigger
+    // Do something with response data
+    return response.data;
+  },
+
+  function (error) {
+    if (error.response) {
+    return Promise.reject(error);
+  }
+  }
+);

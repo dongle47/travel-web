@@ -6,7 +6,7 @@ import { Header, Footer, Comment } from "../../components";
 
 import Images from "./Images";
 import Summary from "./Summary";
-import Rating from "./Rating";
+import Review from "./Review";
 import Video from "./Video";
 
 // Import Swiper styles
@@ -193,7 +193,7 @@ const DetailPlace: React.FC = () => {
           </Space>
 
           <Row className="m-0" justify="center" align="middle" gutter={100}>
-            <Rating />
+            <Review />
           </Row>
 
           <Divider style={{ borderTop: "#FF7424" }} className="mt-5 mb-5" plain>

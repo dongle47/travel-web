@@ -22,6 +22,8 @@ import type { RcFile, UploadProps } from "antd/es/upload";
 import type { UploadFile } from "antd/es/upload/interface";
 import TextArea from "antd/lib/input/TextArea";
 import { useNavigate, useParams } from "react-router-dom";
+import { useAppSelector } from "../../hooks";
+import { selectUser } from "../Authentication/authSlice";
 
 const { Title, Text } = Typography;
 
@@ -33,14 +35,17 @@ const getBase64 = (file: RcFile): Promise<string> =>
     reader.onerror = (error) => reject(error);
   });
 
-const Rating: React.FC = () => {
+const Review: React.FC = () => {
+  const navigate = useNavigate();
+
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");
 
   const [loading, setLoading] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("");
+  const [openReview, setOpenReview] = useState(false);
+  const [valueReview, setValueReview] = useState("");
+
   const [fileList, setFileList] = useState<UploadFile[]>([
     {
       uid: "-3",
@@ -69,7 +74,7 @@ const Rating: React.FC = () => {
   );
 
   const showModal = () => {
-    setOpen(true);
+    setOpenReview(true);
   };
 
   const handleCancelUpload = () => setPreviewOpen(false);
@@ -93,32 +98,30 @@ const Rating: React.FC = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      setOpen(false);
+      setOpenReview(false);
     }, 3000);
   };
 
   const handleCancel = () => {
-    setOpen(false);
+    setOpenReview(false);
   };
 
   const [statusCheckIn, setStatusCheckIn] = useState(-1);
 
-  const user = useSelector((state: any) => state.auth.user);
+  const user = useAppSelector(selectUser);
 
-  const historyCheckIn: any = ["sdad", "dsada"];
+  const historyCheckInId: any = ["sdad", "dsada"];
 
   const { id } = useParams();
 
   useEffect(() => {
     if (user) {
-      if (historyCheckIn.includes(id)) setStatusCheckIn(1);
-      else setStatusCheckIn(0);
+      if (historyCheckInId.includes(id)) setStatusCheckIn(1);
+      else setStatusCheckIn(1);
     } else {
       setStatusCheckIn(-1);
     }
   }, []);
-
-  const navigate = useNavigate();
 
   return (
     <Row className="m-0 mt-5" justify="center" align="middle" gutter={100}>
@@ -185,7 +188,7 @@ const Rating: React.FC = () => {
       </Space>
 
       <Modal
-        open={open}
+        open={openReview}
         title="Đánh giá"
         onOk={handleOk}
         onCancel={handleCancel}
@@ -206,8 +209,8 @@ const Rating: React.FC = () => {
         <Space direction="vertical" size={15}>
           <Rate allowHalf defaultValue={2.5} />
           <TextArea
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
+            value={valueReview}
+            onChange={(e) => setValueReview(e.target.value)}
             placeholder="Viết bình luận"
             autoSize={{ minRows: 3, maxRows: 5 }}
           />
@@ -236,4 +239,4 @@ const Rating: React.FC = () => {
   );
 };
 
-export default Rating;
+export default Review;
