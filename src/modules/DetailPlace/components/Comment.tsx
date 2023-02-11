@@ -13,10 +13,6 @@ import {
   Avatar,
   Image,
   Input,
-  AutoComplete,
-  Carousel,
-  Modal,
-  Upload,
 } from "antd";
 
 import Icon, {
