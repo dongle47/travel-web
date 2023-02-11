@@ -20,7 +20,8 @@ import {
 } from "@ant-design/icons";
 
 import { toast } from "react-toastify";
-import { authActions } from "../modules/Authentication/authSlice";
+import { authActions, selectUser } from "../modules/Authentication/authSlice";
+import { useAppDispatch, useAppSelector } from "../hooks";
 
 const { Text } = Typography;
 
@@ -36,10 +37,10 @@ const items: MenuProps["items"] = [
 ];
 
 const Header: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const user = useSelector((state: any) => state.auth.user);
+  const user = useAppSelector(selectUser);
 
   const handleLogout = () => {
     dispatch(authActions.logoutSuccess());

@@ -8,21 +8,26 @@ export interface LoginParams{
 export interface RegisterParams{
     email: string,
     password: string,
-    avatar?: string,
-    date_of_birth?: string,
-    full_name?: string,
-    phone?: string
+    avatar: "",
+    date_of_birth: "",
+    full_name: "",
+    phone: ""
 }
 
-export interface ResponseRegister{
+export interface ResponseMessage<T>{
     message: string;
-    data: User
-}
-
-export interface ResponseLogin{
-    data: User
+    data: T;
 }
 
 export interface Response<T>{
     data: T
+}
+
+export interface ImageUploaded{
+    full_path: string;
+    id: string;
+    name: string;
+    path: string;
+    size: number;
+    type: string;
 }

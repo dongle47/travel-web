@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import ImageUploading from "react-images-uploading";
-
+import dayjs from "dayjs";
 import {
   Avatar,
   Button,
@@ -19,12 +19,25 @@ import {
 
 import { PlusOutlined } from "@ant-design/icons";
 
+import nullAvatar from "../../assets/img/null-avatar.jpg";
+
 const { Title, Text } = Typography;
 
 import type { DatePickerProps, MenuProps } from "antd";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { authActions, selectUser } from "../Authentication/authSlice";
+import profileApi from "../../apis/profileApi";
+import uploadApi from "../../apis/uploadApi";
 
 const UserInformation: React.FC = () => {
-  const [image, setImage] = useState([]);
+  const dispatch = useAppDispatch();
+  const user = useAppSelector(selectUser);
+
+  const [avatarFile, setAvatarFile] = useState<any>([]);
+
+  const [avatarURL, setAvatarURL] = useState<string>(
+    user?.avatar ? user?.avatar : ""
+  );
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -32,27 +45,33 @@ const UserInformation: React.FC = () => {
     setIsModalOpen(true);
   };
 
-  const handleCancel = () => {
+  const handleCancelModal = () => {
     setIsModalOpen(false);
   };
 
   const onChange = (imageList: any, addUpdateIndex: any) => {
-    // data for submit
-    console.log(imageList, addUpdateIndex);
-    setImage(imageList);
-  };
-
-  const onChangeDate: DatePickerProps["onChange"] = (date, dateString) => {
-    console.log(date, dateString);
+    setAvatarFile(imageList);
   };
 
   const onFinish = async (values: any) => {
-    console.log(values);
+    if (values.date_of_birth)
+      values.date_of_birth = dayjs(values.date_of_birth).format("DD/MM/YYYY");
+    values.avatar = avatarURL;
+
+    profileApi
+      .updateProfile(values)
+      .then((res) => {
+        console.log(res);
+        toast.success(res.message);
+        dispatch(authActions.updateUser(values));
+      })
+      .catch((err) => console.log(err));
   };
+
   const [uploading, setUploading] = useState(false);
 
   const handleUploadAvatar = () => {
-    if (image.length === 0) {
+    if (avatarFile.length === 0) {
       toast.warning("Vui lòng chọn ảnh");
       return;
     }
@@ -63,9 +82,15 @@ const UserInformation: React.FC = () => {
       return;
     }
     setUploading(true);
-  };
 
-  const user = useSelector((state: any) => state.auth.user);
+    uploadApi
+      .uploadAvatar({ file: avatarFile[0].file, type: "avatar" })
+      .then((res) => {
+        setAvatarURL(res.data.full_path);
+        setIsModalOpen(false);
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <Row className="w-100" justify="start">
@@ -77,34 +102,40 @@ const UserInformation: React.FC = () => {
           layout="vertical"
           onFinish={onFinish}
         >
-          <Form.Item name="fullName" label={<Text strong>Họ tên</Text>}>
-            <Input defaultValue={user.full_name} allowClear />
+          <Form.Item
+            initialValue={user?.full_name}
+            name="full_name"
+            label={<Text strong>Họ tên</Text>}
+          >
+            <Input allowClear />
           </Form.Item>
 
-          <Form.Item name="sex" label={<Text strong>Giới tính</Text>}>
-            <Radio.Group>
-              <Radio className="text-center" value="male">
-                Nam
-              </Radio>
-              <Radio className="text-center" value="female">
-                Nữ
-              </Radio>
-              <Radio className="text-center" value="other">
-                Khác
-              </Radio>
-            </Radio.Group>
+          <Form.Item
+            initialValue={
+              user?.date_of_birth
+                ? dayjs(user?.date_of_birth, "DD/MM/YYYY")
+                : null
+            }
+            name="date_of_birth"
+            label={<Text strong>Ngày sinh</Text>}
+          >
+            <DatePicker className="w-100" format={"DD/MM/YYYY"} />
           </Form.Item>
 
-          <Form.Item name="dateBirth" label={<Text strong>Ngày sinh</Text>}>
-            <DatePicker className="w-100" />
+          <Form.Item
+            initialValue={user?.phone === "string" ? "" : user?.phone}
+            name="phone"
+            label={<Text strong>Số điện thoại</Text>}
+          >
+            <Input allowClear />
           </Form.Item>
 
-          <Form.Item name="phone" label={<Text strong>Số điện thoại</Text>}>
-            <Input defaultValue={user.phone} allowClear />
-          </Form.Item>
-
-          <Form.Item name="email" label={<Text strong>Email</Text>}>
-            <Input defaultValue={user.email} allowClear />
+          <Form.Item
+            initialValue={user?.email}
+            name="email"
+            label={<Text strong>Email</Text>}
+          >
+            <Input allowClear />
           </Form.Item>
         </Form>
       </Col>
@@ -113,10 +144,8 @@ const UserInformation: React.FC = () => {
         <Row className="h-100" justify="center" align="middle">
           <Space direction="vertical" align="center">
             <div className="position-relative mb-2">
-              <Avatar
-                size={150}
-                src="https://wegotthiscovered.com/wp-content/uploads/2022/08/Vegeta.jpeg"
-              />
+              <Avatar size={150} src={avatarURL ? avatarURL : nullAvatar} />
+
               <Button
                 style={{ right: "1rem" }}
                 className="position-absolute bottom-0"
@@ -131,11 +160,11 @@ const UserInformation: React.FC = () => {
               style={{ top: "8%" }}
               title="Cập nhật ảnh đại diện"
               open={isModalOpen}
-              onCancel={handleCancel}
+              onCancel={handleCancelModal}
               footer={null}
             >
               <ImageUploading
-                value={image}
+                value={avatarFile}
                 onChange={onChange}
                 dataURLKey="data_url"
                 acceptType={["jpg"]}

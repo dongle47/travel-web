@@ -23,7 +23,7 @@ import storage from "redux-persist/lib/storage";
 import rootSaga from "./rootSaga";
 
 const persistConfig = {
-  key: "root",
+  key: "trave-web",
   version: 1,
   storage,
 };
