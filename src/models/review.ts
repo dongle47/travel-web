@@ -17,5 +17,19 @@ export interface Review{
     user: User;
     rate: number;
     description: string;
+    review_img: Array<{
+        name: string;
+        url: string | undefined
+    }>;
+    child_review: any;
     created_at: string;
+}
+
+export interface ReviewPaginate{
+    limit: number;
+    page: number;
+    sort: string;
+    total_rows: number;
+    total_pages: number;
+    rows: Review[]
 }

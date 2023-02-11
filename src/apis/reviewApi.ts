@@ -1,13 +1,13 @@
 import { axiosClient } from './axiosClient';
-import { CreateReviewParams } from './../models/review';
-import { PaginateParams } from '../models/common';
+import { CreateReviewParams, ReviewPaginate } from './../models/review';
+import { PaginateParams, Response } from '../models/common';
 const reviewApi = {
     postReview(params: CreateReviewParams) : Promise<any>{
         const url = '/place-service/review/create'
         return axiosClient.post(url, params)
     },
 
-    getReviews(placeId:string, paginate: PaginateParams){
+    getReviews(placeId:string, paginate: PaginateParams): Promise<Response<ReviewPaginate>>{
         const url = `/place-service/review/list/${placeId}`
         return axiosClient.get(url, {
             params: {
