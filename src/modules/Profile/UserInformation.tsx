@@ -22,11 +22,12 @@ import { PlusOutlined } from "@ant-design/icons";
 const { Title, Text } = Typography;
 
 import type { DatePickerProps, MenuProps } from "antd";
-import { useAppSelector } from "../../hooks";
-import { selectUser } from "../Authentication/authSlice";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { authActions, selectUser } from "../Authentication/authSlice";
 import profileApi from "../../apis/profileApi";
 
 const UserInformation: React.FC = () => {
+  const dispatch = useAppDispatch();
   const [image, setImage] = useState([]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -52,11 +53,13 @@ const UserInformation: React.FC = () => {
   const onFinish = async (values: any) => {
     if (values.date_of_birth)
       values.date_of_birth = dayjs(values.date_of_birth).format("DD/MM/YYYY");
+    values.avatar = "";
     console.log(values);
     profileApi
       .updateProfile(values)
       .then((res) => {
         toast.success(res.message);
+        dispatch(authActions.updateUser(values));
       })
       .catch((err) => console.log(err));
   };
@@ -106,11 +109,7 @@ const UserInformation: React.FC = () => {
             name="date_of_birth"
             label={<Text strong>Ngày sinh</Text>}
           >
-            <DatePicker
-              className="w-100"
-              // defaultValue={dayjs("01/01/2015", "DD/MM/YYYY")}
-              format={"DD/MM/YYYY"}
-            />
+            <DatePicker className="w-100" format={"DD/MM/YYYY"} />
           </Form.Item>
 
           <Form.Item
@@ -118,10 +117,7 @@ const UserInformation: React.FC = () => {
             name="phone"
             label={<Text strong>Số điện thoại</Text>}
           >
-            <Input
-              // defaultValue={user?.phone === "string" ? "" : user?.phone}
-              allowClear
-            />
+            <Input allowClear />
           </Form.Item>
 
           <Form.Item
@@ -129,10 +125,7 @@ const UserInformation: React.FC = () => {
             name="email"
             label={<Text strong>Email</Text>}
           >
-            <Input
-              //  defaultValue={user?.email}
-              allowClear
-            />
+            <Input allowClear />
           </Form.Item>
         </Form>
       </Col>
