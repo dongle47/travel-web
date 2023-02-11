@@ -18,6 +18,7 @@ import { Typography, Row, Col, Space, Button, Divider } from "antd";
 
 import apiPlaces from "../../apis/placesApi";
 import { Place } from "../../models/place";
+import CommentWrapper from "./components/CommentWrapper";
 
 const { Title, Text } = Typography;
 
@@ -202,27 +203,8 @@ const DetailPlace: React.FC = () => {
             </Text>
           </Divider>
 
-          <Row className="w-100" justify="center">
-            <Comment />
-          </Row>
+          <CommentWrapper />
         </div>
-
-        <Row className="w-100 mt-5" justify="center" gutter={25}>
-          <Button
-            style={{
-              width: "10rem",
-              height: "3rem",
-              backgroundColor: "#FF7424",
-            }}
-            className="border-0"
-            type="primary"
-          >
-            {" "}
-            <Text className="text-white fs-6" strong>
-              Load more
-            </Text>
-          </Button>
-        </Row>
       </Row>
 
       <Footer />
