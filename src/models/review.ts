@@ -6,7 +6,7 @@ export interface CreateReviewParams{
     rate: number;
     review_img:Array<{
         name: string;
-        url: string
+        url: string | undefined
     }>
 }
 

@@ -25,6 +25,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useAppSelector } from "../../hooks";
 import { selectUser } from "../Authentication/authSlice";
 import uploadApi from "../../apis/uploadApi";
+import { CreateReviewParams } from "../../models/review";
+import reviewApi from "../../apis/reviewApi";
+import { toast } from "react-toastify";
 
 const { Title, Text } = Typography;
 
@@ -38,6 +41,7 @@ const getBase64 = (file: RcFile): Promise<string> =>
 
 const Review: React.FC = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
   const user = useAppSelector(selectUser);
 
   const [previewOpen, setPreviewOpen] = useState(false);
@@ -118,17 +122,38 @@ const Review: React.FC = () => {
   };
 
   const handleSubmit = () => {
-    // setLoading(true);
+    setLoading(true);
     // setTimeout(() => {
     //   setLoading(false);
     //   setOpenReview(false);
     // }, 3000);
-    console.log("rate", rate);
-    console.log("content", valueReview);
-    console.log(
-      "image list",
-      fileList.map((item) => item.url)
-    );
+    if (id) {
+      const params: CreateReviewParams = {
+        description: valueReview,
+        place_id: id,
+        rate: rate,
+        review_img: fileList.map((item) => ({
+          name: item.name,
+          url: item.url,
+        })),
+      };
+
+      console.log(params);
+
+      reviewApi
+        .postReview(params)
+        .then((res) => {
+          setLoading(false);
+          setOpenReview(false);
+          toast.success("Đánh giá thành công");
+        })
+        .catch((err) => {
+          toast.error("Đánh giá thất bại");
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
   };
 
   const handleCancel = () => {
@@ -138,8 +163,6 @@ const Review: React.FC = () => {
   const [statusCheckIn, setStatusCheckIn] = useState(-1);
 
   const historyCheckInId: any = ["sdad", "dsada"];
-
-  const { id } = useParams();
 
   useEffect(() => {
     if (user) {

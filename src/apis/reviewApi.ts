@@ -2,7 +2,7 @@ import { axiosClient } from './axiosClient';
 import { CreateReviewParams } from './../models/review';
 const reviewApi = {
     postReview(params: CreateReviewParams) : Promise<any>{
-        const url = '/review/create'
+        const url = '/place-service/review/create'
         return axiosClient.post(url, params)
     },
 
