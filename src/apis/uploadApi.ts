@@ -1,3 +1,4 @@
+import { ImageUploaded, Response } from "../models/common";
 import { axiosClient } from "./axiosClient";
 
 const uploadApi = {
@@ -10,7 +11,7 @@ const uploadApi = {
 //     return res.data;
 //   },
 
-  uploadAvatar(params:any){
+  uploadAvatar(params:any) : Promise<Response<ImageUploaded>>{
     const url = 'upload-service/file/upload'
     return axiosClient.post(url,  params, {
         headers: {

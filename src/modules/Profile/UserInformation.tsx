@@ -19,16 +19,25 @@ import {
 
 import { PlusOutlined } from "@ant-design/icons";
 
+import nullAvatar from "../../assets/img/null-avatar.jpg";
+
 const { Title, Text } = Typography;
 
 import type { DatePickerProps, MenuProps } from "antd";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { authActions, selectUser } from "../Authentication/authSlice";
 import profileApi from "../../apis/profileApi";
+import uploadApi from "../../apis/uploadApi";
 
 const UserInformation: React.FC = () => {
   const dispatch = useAppDispatch();
-  const [image, setImage] = useState([]);
+  const user = useAppSelector(selectUser);
+
+  const [avatarFile, setAvatarFile] = useState<any>([]);
+
+  const [avatarURL, setAvatarURL] = useState<string>(
+    user?.avatar ? user?.avatar : ""
+  );
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -41,23 +50,18 @@ const UserInformation: React.FC = () => {
   };
 
   const onChange = (imageList: any, addUpdateIndex: any) => {
-    // data for submit
-    console.log(imageList, addUpdateIndex);
-    setImage(imageList);
-  };
-
-  const onChangeDate: DatePickerProps["onChange"] = (date, dateString) => {
-    console.log(date, dateString);
+    setAvatarFile(imageList);
   };
 
   const onFinish = async (values: any) => {
     if (values.date_of_birth)
       values.date_of_birth = dayjs(values.date_of_birth).format("DD/MM/YYYY");
-    values.avatar = "";
-    console.log(values);
+    values.avatar = avatarURL;
+
     profileApi
       .updateProfile(values)
       .then((res) => {
+        console.log(res);
         toast.success(res.message);
         dispatch(authActions.updateUser(values));
       })
@@ -67,7 +71,7 @@ const UserInformation: React.FC = () => {
   const [uploading, setUploading] = useState(false);
 
   const handleUploadAvatar = () => {
-    if (image.length === 0) {
+    if (avatarFile.length === 0) {
       toast.warning("Vui lòng chọn ảnh");
       return;
     }
@@ -78,9 +82,15 @@ const UserInformation: React.FC = () => {
       return;
     }
     setUploading(true);
-  };
 
-  const user = useAppSelector(selectUser);
+    uploadApi
+      .uploadAvatar({ file: avatarFile[0].file, type: "avatar" })
+      .then((res) => {
+        setAvatarURL(res.data.full_path);
+        setIsModalOpen(false);
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <Row className="w-100" justify="start">
@@ -134,10 +144,8 @@ const UserInformation: React.FC = () => {
         <Row className="h-100" justify="center" align="middle">
           <Space direction="vertical" align="center">
             <div className="position-relative mb-2">
-              <Avatar
-                size={150}
-                src="https://wegotthiscovered.com/wp-content/uploads/2022/08/Vegeta.jpeg"
-              />
+              <Avatar size={150} src={avatarURL ? avatarURL : nullAvatar} />
+
               <Button
                 style={{ right: "1rem" }}
                 className="position-absolute bottom-0"
@@ -156,7 +164,7 @@ const UserInformation: React.FC = () => {
               footer={null}
             >
               <ImageUploading
-                value={image}
+                value={avatarFile}
                 onChange={onChange}
                 dataURLKey="data_url"
                 acceptType={["jpg"]}

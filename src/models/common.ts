@@ -22,3 +22,12 @@ export interface ResponseMessage<T>{
 export interface Response<T>{
     data: T
 }
+
+export interface ImageUploaded{
+    full_path: string;
+    id: string;
+    name: string;
+    path: string;
+    size: number;
+    type: string;
+}
