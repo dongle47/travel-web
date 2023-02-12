@@ -38,7 +38,9 @@ const Login: React.FC = () => {
         toast.success(`Xin chào ${user.user_name || ""}`);
         navigate("/");
       })
-      .catch((err: any) => console.log(err));
+      .catch((err: any) => {
+        toast.error("Đăng nhập thất bại");
+      });
   };
 
   return (

@@ -61,11 +61,12 @@ const UserInformation: React.FC = () => {
     profileApi
       .updateProfile(values)
       .then((res) => {
-        console.log(res);
         toast.success(res.message);
         dispatch(authActions.updateUser(values));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        toast.error("Cập nhật thất bại");
+      });
   };
 
   const [uploading, setUploading] = useState(false);

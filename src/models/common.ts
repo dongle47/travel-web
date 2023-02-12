@@ -31,3 +31,8 @@ export interface ImageUploaded{
     size: number;
     type: string;
 }
+
+export interface PaginateParams{
+    page: number;
+    limit: number;
+}

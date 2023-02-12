@@ -22,6 +22,12 @@ import type { RcFile, UploadProps } from "antd/es/upload";
 import type { UploadFile } from "antd/es/upload/interface";
 import TextArea from "antd/lib/input/TextArea";
 import { useNavigate, useParams } from "react-router-dom";
+import { useAppSelector } from "../../hooks";
+import { selectUser } from "../Authentication/authSlice";
+import uploadApi from "../../apis/uploadApi";
+import { CreateReviewParams } from "../../models/review";
+import reviewApi from "../../apis/reviewApi";
+import { toast } from "react-toastify";
 
 const { Title, Text } = Typography;
 
@@ -33,32 +39,39 @@ const getBase64 = (file: RcFile): Promise<string> =>
     reader.onerror = (error) => reject(error);
   });
 
-const Rating: React.FC = () => {
+const Review: React.FC = () => {
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const user = useAppSelector(selectUser);
+
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");
 
+  const [rate, setRate] = useState(0);
+
   const [loading, setLoading] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("");
+  const [openReview, setOpenReview] = useState(false);
+  const [valueReview, setValueReview] = useState("");
+
   const [fileList, setFileList] = useState<UploadFile[]>([
-    {
-      uid: "-3",
-      name: "image.png",
-      status: "done",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-    {
-      uid: "-4",
-      name: "image.png",
-      status: "done",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-    {
-      uid: "-5",
-      name: "image.png",
-      status: "error",
-    },
+    // {
+    //   uid: "-4",
+    //   name: "image.png",
+    //   status: "done",
+    //   url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
+    // },
+    // {
+    //   uid: "1000",
+    //   name: "rose",
+    //   status: "done",
+    //   url: "https://travel-api.huytx.com/stag/upload-service/files/avatar/ce508995-a9e4-11ed-98b0-0242c0a80002.jpeg",
+    // },
+    // {
+    //   uid: "-5",
+    //   name: "image.png",
+    //   status: "error",
+    // },
   ]);
 
   const uploadButton = (
@@ -69,7 +82,7 @@ const Rating: React.FC = () => {
   );
 
   const showModal = () => {
-    setOpen(true);
+    setOpenReview(true);
   };
 
   const handleCancelUpload = () => setPreviewOpen(false);
@@ -86,39 +99,79 @@ const Rating: React.FC = () => {
     );
   };
 
-  const handleChange: UploadProps["onChange"] = ({ fileList: newFileList }) =>
-    setFileList(newFileList);
+  const handleChangeImage: UploadProps["onChange"] = (
+    //   {
+    //   fileList: newFileList,
+    // }
+    value: any
+  ) => {
+    const fileObj = value.file.originFileObj;
+    uploadApi
+      .uploadAvatar({ file: fileObj, type: "review" })
+      .then((res) => {
+        const resImage = res.data;
+        const file: UploadFile = {
+          uid: resImage.id,
+          name: resImage.name,
+          status: "done",
+          url: resImage.full_path,
+        };
+        setFileList((prev) => [...prev, file]);
+      })
+      .catch((err) => console.log(err));
+  };
 
-  const handleOk = () => {
+  const handleSubmit = () => {
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setOpen(false);
-    }, 3000);
+    // setTimeout(() => {
+    //   setLoading(false);
+    //   setOpenReview(false);
+    // }, 3000);
+    if (id) {
+      const params: CreateReviewParams = {
+        description: valueReview,
+        place_id: id,
+        rate: rate,
+        review_img: fileList.map((item) => ({
+          name: item.name,
+          url: item.url,
+        })),
+      };
+
+      console.log(params);
+
+      reviewApi
+        .postReview(params)
+        .then((res) => {
+          setLoading(false);
+          setOpenReview(false);
+          toast.success("Đánh giá thành công");
+        })
+        .catch((err) => {
+          toast.error("Đánh giá thất bại");
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
   };
 
   const handleCancel = () => {
-    setOpen(false);
+    setOpenReview(false);
   };
 
   const [statusCheckIn, setStatusCheckIn] = useState(-1);
 
-  const user = useSelector((state: any) => state.auth.user);
-
-  const historyCheckIn: any = ["sdad", "dsada"];
-
-  const { id } = useParams();
+  const historyCheckInId: any = ["sdad", "dsada"];
 
   useEffect(() => {
     if (user) {
-      if (historyCheckIn.includes(id)) setStatusCheckIn(1);
-      else setStatusCheckIn(0);
+      if (historyCheckInId.includes(id)) setStatusCheckIn(1);
+      else setStatusCheckIn(1);
     } else {
       setStatusCheckIn(-1);
     }
   }, []);
-
-  const navigate = useNavigate();
 
   return (
     <Row className="m-0 mt-5" justify="center" align="middle" gutter={100}>
@@ -185,9 +238,9 @@ const Rating: React.FC = () => {
       </Space>
 
       <Modal
-        open={open}
+        open={openReview}
         title="Đánh giá"
-        onOk={handleOk}
+        onOk={handleSubmit}
         onCancel={handleCancel}
         footer={[
           <Button key="back" onClick={handleCancel}>
@@ -197,17 +250,18 @@ const Rating: React.FC = () => {
             key="submit"
             type="primary"
             loading={loading}
-            onClick={handleOk}
+            onClick={handleSubmit}
           >
             Xác nhận
           </Button>,
         ]}
       >
-        <Space direction="vertical" size={15}>
-          <Rate allowHalf defaultValue={2.5} />
+        <Space className="w-100" direction="vertical" size={15}>
+          <Rate allowHalf onChange={setRate} value={rate} />
+
           <TextArea
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
+            value={valueReview}
+            onChange={(e) => setValueReview(e.target.value)}
             placeholder="Viết bình luận"
             autoSize={{ minRows: 3, maxRows: 5 }}
           />
@@ -217,7 +271,7 @@ const Rating: React.FC = () => {
             listType="picture-card"
             fileList={fileList}
             onPreview={handlePreview}
-            onChange={handleChange}
+            onChange={handleChangeImage}
           >
             {fileList.length >= 8 ? null : uploadButton}
           </Upload>
@@ -236,4 +290,4 @@ const Rating: React.FC = () => {
   );
 };
 
-export default Rating;
+export default Review;

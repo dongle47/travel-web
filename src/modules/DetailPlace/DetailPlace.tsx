@@ -6,7 +6,7 @@ import { Header, Footer, Comment } from "../../components";
 
 import Images from "./Images";
 import Summary from "./Summary";
-import Rating from "./Rating";
+import Review from "./Review";
 import Video from "./Video";
 
 // Import Swiper styles
@@ -18,6 +18,7 @@ import { Typography, Row, Col, Space, Button, Divider } from "antd";
 
 import apiPlaces from "../../apis/placesApi";
 import { Place } from "../../models/place";
+import CommentWrapper from "./components/CommentWrapper";
 
 const { Title, Text } = Typography;
 
@@ -193,7 +194,7 @@ const DetailPlace: React.FC = () => {
           </Space>
 
           <Row className="m-0" justify="center" align="middle" gutter={100}>
-            <Rating />
+            <Review />
           </Row>
 
           <Divider style={{ borderTop: "#FF7424" }} className="mt-5 mb-5" plain>
@@ -202,27 +203,8 @@ const DetailPlace: React.FC = () => {
             </Text>
           </Divider>
 
-          <Row className="w-100" justify="center">
-            <Comment />
-          </Row>
+          <CommentWrapper />
         </div>
-
-        <Row className="w-100 mt-5" justify="center" gutter={25}>
-          <Button
-            style={{
-              width: "10rem",
-              height: "3rem",
-              backgroundColor: "#FF7424",
-            }}
-            className="border-0"
-            type="primary"
-          >
-            {" "}
-            <Text className="text-white fs-6" strong>
-              Load more
-            </Text>
-          </Button>
-        </Row>
       </Row>
 
       <Footer />
