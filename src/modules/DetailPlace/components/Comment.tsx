@@ -23,6 +23,7 @@ import Icon, {
 } from "@ant-design/icons";
 import { useAppSelector } from "../../../hooks";
 import { selectUser } from "../../Authentication/authSlice";
+import { toast } from "react-toastify";
 
 const { Title, Text } = Typography;
 
@@ -49,6 +50,18 @@ const Comment: React.FC<ICommentProps> = ({
   const [replyVisibility, setReplyVisibility] = useState(false);
 
   const user = useAppSelector(selectUser);
+
+  const handleCheckReply = () => {
+    if (!user) {
+      toast.info("Cần đăng nhập để thực hiện chức năng này");
+    } else {
+      setReplyVisibility((prev) => !prev);
+    }
+  };
+
+  const handleCancelReply = () => {
+    setReplyVisibility(false);
+  };
 
   return (
     <>
@@ -79,13 +92,6 @@ const Comment: React.FC<ICommentProps> = ({
 
         <Col span={13}>
           <Row className="mb-1">
-            {/* <Space size={3}>
-              <StarFilled style={{ color: "#FFC107", fontSize: "1.2rem" }} />
-              <StarFilled style={{ color: "#FFC107", fontSize: "1.2rem" }} />
-              <StarFilled style={{ color: "#FFC107", fontSize: "1.2rem" }} />
-              <StarFilled style={{ color: "#E0E0E3", fontSize: "1.2rem" }} />
-              <StarFilled style={{ color: "#E0E0E3", fontSize: "1.2rem" }} />
-            </Space> */}
             <Rate disabled defaultValue={rate} allowHalf />
           </Row>
 
@@ -169,7 +175,12 @@ const Comment: React.FC<ICommentProps> = ({
               </div>
 
               <Row className="mt-1" justify="end">
-                <Button style={{ width: "18%" }} className="me-2" type="text">
+                <Button
+                  style={{ width: "18%" }}
+                  className="me-2"
+                  type="text"
+                  onClick={handleCancelReply}
+                >
                   Huỷ
                 </Button>
                 <Button style={{ backgroundColor: "#69B9C7", width: "20%" }}>
@@ -198,7 +209,7 @@ const Comment: React.FC<ICommentProps> = ({
               type="text"
               size="large"
               icon={<CommentOutlined className="fs-4 text-secondary" />}
-              onClick={() => setReplyVisibility((prev) => !prev)}
+              onClick={handleCheckReply}
             >
               <Text style={{ fontSize: "0.9rem" }} className="text-secondary">
                 Trả lời

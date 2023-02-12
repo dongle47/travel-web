@@ -25,9 +25,7 @@ export default function CommentWrapper(props: any) {
         })
         .catch((err) => console.log(err));
     }
-  }, []);
-
-  console.log(listCmt);
+  }, [page]);
 
   return (
     <div>
@@ -54,6 +52,7 @@ export default function CommentWrapper(props: any) {
           }}
           className="border-0"
           type="primary"
+          onClick={() => setPage((prev) => prev + 1)}
         >
           {" "}
           <Text className="text-white fs-6" strong>
