@@ -17,7 +17,7 @@ export interface Review{
     user: User;
     rate: number;
     description: string;
-    review_img: Array<{
+    review_img?: Array<{
         name: string;
         url: string | undefined
     }>;
