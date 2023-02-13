@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import "./Profile.scss";
-import { useDispatch, useSelector } from "react-redux";
 
-import { toast } from "react-toastify";
+import nullAvatar from "../../assets/img/null-avatar.jpg";
 
 import { Header, Footer } from "../../components";
 
@@ -35,14 +34,15 @@ import Icon, {
 } from "@ant-design/icons";
 
 import type { DatePickerProps, MenuProps } from "antd";
-import { authActions } from "../Authentication/authSlice";
-import { useAppDispatch } from "../../hooks";
+import { authActions, selectUser } from "../Authentication/authSlice";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 
 const { Content, Sider } = Layout;
 const { Title, Text } = Typography;
 const { SubMenu } = Menu;
 
 const Profile: React.FC = () => {
+  const user = useAppSelector(selectUser);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -51,17 +51,12 @@ const Profile: React.FC = () => {
     navigate("/");
   };
 
-  const onChangeDate: DatePickerProps["onChange"] = (date, dateString) => {
-    console.log(date, dateString);
-  };
-
   return (
     <Layout
       style={{
         backgroundColor: "#E5E5E5",
         width: "100%",
         height: "100%",
-        // padding: "5rem",
       }}
       className="primary-font"
     >
@@ -78,13 +73,16 @@ const Profile: React.FC = () => {
           <Col>
             <Avatar
               size={45}
-              src="https://wegotthiscovered.com/wp-content/uploads/2022/08/Vegeta-1200x900.jpeg"
+              src={user?.avatar ? user.avatar : nullAvatar}
+              // src="https://wegotthiscovered.com/wp-content/uploads/2022/08/Vegeta-1200x900.jpeg"
             />
           </Col>
           <Col>
             <Space direction="vertical" size={0}>
               <Text className="text-secondary">Tài khoản của</Text>
-              <Text strong>Tên người dùng</Text>
+              <Text strong>
+                {user?.full_name ? user.full_name : "Tên người dùng"}
+              </Text>
             </Space>
           </Col>
 
@@ -146,194 +144,10 @@ const Profile: React.FC = () => {
             <Content
               className="w-100"
               style={{
-                // padding: 24,
                 margin: 0,
                 minHeight: 280,
               }}
             >
-              {/* <Row className="w-100" justify="start">
-                <Col span={12}>
-                  <Form
-                    id="info-form"
-                    labelCol={{ span: 7 }}
-                    wrapperCol={{ span: 22 }}
-                    layout="vertical"
-                    onFinish={onFinish}
-                  >
-                    <Form.Item
-                      name="fullName"
-                      label={<Text strong>Họ tên</Text>}
-                    >
-                      <Input defaultValue={user.full_name} allowClear />
-                    </Form.Item>
-
-                    <Form.Item name="sex" label={<Text strong>Giới tính</Text>}>
-                      <Radio.Group>
-                        <Radio className="text-center" value="male">
-                          Nam
-                        </Radio>
-                        <Radio className="text-center" value="female">
-                          Nữ
-                        </Radio>
-                        <Radio className="text-center" value="other">
-                          Khác
-                        </Radio>
-                      </Radio.Group>
-                    </Form.Item>
-
-                    <Form.Item
-                      name="dateBirth"
-                      label={<Text strong>Ngày sinh</Text>}
-                    >
-                      <DatePicker className="w-100" />
-                    </Form.Item>
-
-                    <Form.Item
-                      name="phone"
-                      label={<Text strong>Số điện thoại</Text>}
-                    >
-                      <Input defaultValue={user.phone} allowClear />
-                    </Form.Item>
-
-                    <Form.Item name="email" label={<Text strong>Email</Text>}>
-                      <Input defaultValue={user.email} allowClear />
-                    </Form.Item>
-                  </Form>
-                </Col>
-
-                <Col span={12}>
-                  <Row className="h-100" justify="center" align="middle">
-                    <Space direction="vertical" align="center">
-                      <div className="position-relative mb-2">
-                        <Avatar
-                          size={150}
-                          src="https://wegotthiscovered.com/wp-content/uploads/2022/08/Vegeta.jpeg"
-                        />
-                        <Button
-                          style={{ right: "1rem" }}
-                          className="position-absolute bottom-0"
-                          type="primary"
-                          shape="circle"
-                          size="small"
-                          icon={<PlusOutlined className="text-white" />}
-                          onClick={showModal}
-                        />
-                      </div>
-                      <Modal
-                        title="Basic Modal"
-                        open={isModalOpen}
-                        onOk={handleOk}
-                        onCancel={handleCancel}
-                      >
-                        <ImageUploading
-                          value={image}
-                          onChange={onChange}
-                          dataURLKey="data_url"
-                          acceptType={["jpg"]}
-                        >
-                          {({
-                            imageList,
-                            onImageUpload,
-                            onImageUpdate,
-                            onImageRemove,
-                            isDragging,
-                            dragProps,
-                          }) => (
-                            // write your building UI
-                            <div className="upload__image-wrapper">
-                              {imageList.length === 0 ? (
-                                <Row
-                                  style={{
-                                    width: "100%",
-                                    height: "30rem",
-                                    border: "2px dashed grey",
-                                    borderRadius: "5px",
-                                  }}
-                                  // style={isDragging ? { color: "red" } : null}
-                                  justify="center"
-                                  align="middle"
-                                  onClick={onImageUpload}
-                                  {...dragProps}
-                                >
-                                  <Text
-                                    style={{
-                                      marginLeft: "auto",
-                                      marginRight: "auto",
-                                      color: "blue",
-                                    }}
-                                  >
-                                    Nhấn để chọn hoặc kéo thả hình ảnh vào khung
-                                    này.
-                                  </Text>
-                                </Row>
-                              ) : null}
-
-                              {imageList.map((image, i) => (
-                                <Row
-                                  key={i}
-                                  style={{
-                                    width: "100%",
-                                    height: "30rem",
-                                    borderRadius: "5px",
-                                  }}
-                                  // spacing={3}
-                                  className="image-item"
-                                >
-                                  <img
-                                    style={{
-                                      width: "25rem",
-                                      height: "25rem",
-                                      alignSelf: "center",
-                                    }}
-                                    src={image.data_url}
-                                    alt=""
-                                  />
-                                  <Row
-                                    className="image-item__btn-wrapper"
-                                    justify="center"
-                                  >
-                                    <Button
-                                      style={{ width: "50%" }}
-                                      onClick={() => onImageRemove(0)}
-                                    >
-                                      Hủy bỏ
-                                    </Button>
-                                    <Button
-                                      style={{ width: "50%" }}
-                                      onClick={handleUploadAvatar}
-                                    >
-                                      {uploading} Lưu thay đổi
-                                    </Button>
-                                  </Row>
-                                </Row>
-                              ))}
-                            </div>
-                          )}
-                        </ImageUploading>
-                      </Modal>
-
-                      <Button
-                        style={{
-                          backgroundColor: "#FD7E14",
-                          width: "8rem",
-                          height: "2.5rem",
-                        }}
-                        className="text-white rounded"
-                        form="info-form"
-                        htmlType="submit"
-                      >
-                        <Text
-                          style={{ fontSize: "0.8rem" }}
-                          className="text-white"
-                        >
-                          LƯU THAY ĐỔI
-                        </Text>
-                      </Button>
-                    </Space>
-                  </Row>
-                </Col>
-              </Row> */}
-
               <Routes>
                 <Route path="user-information" element={<UserInformation />} />
                 <Route path="history-check-in" element={<HistoryCheckIn />} />

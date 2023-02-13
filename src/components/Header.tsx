@@ -72,7 +72,7 @@ const Header: React.FC = () => {
             PAGE
           </Button>
           <Button size="small" type="text">
-            TRAVEL
+            PAGE
           </Button>
           <Col>
             <Link to={"/"}>
@@ -80,7 +80,7 @@ const Header: React.FC = () => {
             </Link>
           </Col>
           <Button size="small" type="text">
-            BLOG
+            PAGE
           </Button>
 
           {user ? (
